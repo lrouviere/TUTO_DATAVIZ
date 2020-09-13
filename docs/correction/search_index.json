@@ -1,0 +1,7 @@
+[
+["index.html", "Tutorial: Dynamic data visualization with R Presentation", " Tutorial: Dynamic data visualization with R Laurent Rouvière 2020-09-13 Presentation This tutorial provides some R tools for data visualization. You can find materials (slides) associated with this tutotial as well as dataset at https://lrouviere.github.io/DATAVIZ/; tutorial without correction at https://lrouviere.github.io/TUTO_DATAVIZ/; tutorial with corrections at https://lrouviere.github.io/TUTO_DATAVIZ/correction/. I strongly encourage to use mozilla firefox to read this tutorial. Basics on R and comuter programming are necessary. The tutorial is divided into tree parts : Visualization with ggplot2: presentation of the ggplot2 grammar; Mapping with R: how to build map with ggmap, sf and leaflet ; Dynamic visualization: some tools to make interactive visusalization (rAmCharts, plotly), dasboard and web applications (shiny). "],
+["ggplot2.html", "Chapter 1 Data visualization with ggplot2", " Chapter 1 Data visualization with ggplot2 "],
+["mapping.html", "Chapter 2 Mapping with R", " Chapter 2 Mapping with R "],
+["dynamic.html", "Chapter 3 Dynamic visualization", " Chapter 3 Dynamic visualization "],
+["references.html", "References", " References "]
+]
