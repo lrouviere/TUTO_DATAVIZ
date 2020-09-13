@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">Visualisation avec R, L. Rouvière</a></li>
+        <li><a href="./">Dynamic data visualization, L. Rouvière</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
       fontsettings:
