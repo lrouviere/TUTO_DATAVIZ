@@ -730,3 +730,147 @@ m1 <- leaflet() %>% addTiles() %>%
   addLayersControl(options=layersControlOptions(collapsed = FALSE))
 m1
 
+## ---------------------------------------------------------
+library(rAmCharts)
+amHist(iris$Petal.Length)
+amPlot(iris, col = colnames(iris)[1:2], type = c("l", "st"), 
+       zoom = TRUE, legend = TRUE)
+amBoxplot(iris)
+
+## ---------------------------------------------------------
+library(plotly)
+n <- 100
+X <- runif(n,-5,5)
+Y <- 2+3*X+rnorm(n,0,1)
+D <- data.frame(X,Y)
+model <- lm(Y~X,data=D)
+
+## ---------------------------------------------------------
+D %>% plot_ly(x=~X,y=~Y) %>%
+  add_markers(type="scatter",mode="markers",
+              marker=list(color="red"),name="Nuage") %>%
+  add_trace(y=fitted(model),type="scatter",mode='lines',
+            name="Régression",line=list(color="blue")) %>% 
+  layout(title="Régression",xaxis=list(title="abscisse"),
+         yaxis=list(title="ordonnées"))
+
+## ----name="plotly_html",eval=!comp_pdf,echo=!comp_pdf-----
+#  plot_ly(z = volcano, type = "surface")
+#  plot_ly(z = volcano, type = "contour")
+
+## ----eval=FALSE,echo=FALSE--------------------------------
+#  p <- plot_ly(z = volcano, type = "surface")
+#  orca(p, "./FIGURES/surface-plot.pdf")
+
+## ----name="plotly_pdf",echo=comp_pdf,eval=FALSE-----------
+#  plot_ly(z = volcano, type = "surface")
+
+## ----name="plotly_pdf1",eval=comp_pdf,echo=comp_pdf-------
+plot_ly(z = volcano, type = "contour")
+
+## ---------------------------------------------------------
+p <- ggplot(iris)+aes(x=Species,y=Sepal.Length)+geom_boxplot()+theme_classic()
+ggplotly(p)
+
+## ----echo=cor,eval=cor------------------------------------
+amPlot(Sepal.Length~Sepal.Width,data=iris,col=iris$Species) 
+
+## ----echo=cor,eval=cor------------------------------------
+iris %>% plot_ly(x=~Sepal.Width,y=~Sepal.Length,color=~Species) %>%
+  add_markers(type="scatter",mode="markers")
+
+## ----echo=cor,eval=cor------------------------------------
+amBoxplot(Sepal.Length~Species,data=iris)
+
+## ----echo=cor,eval=cor------------------------------------
+iris %>% plot_ly(x=~Species,y=~Petal.Length) %>% add_boxplot()
+
+## ---------------------------------------------------------
+nodes <- data.frame(id = 1:15, label = paste("Id", 1:15),
+                    group=sample(LETTERS[1:3], 15, replace = TRUE))
+edges <- data.frame(from = trunc(runif(15)*(15-1))+1,to = trunc(runif(15)*(15-1))+1)
+library(visNetwork)
+visNetwork(nodes,edges)
+visNetwork(nodes, edges) %>% visOptions(highlightNearest = TRUE)
+visNetwork(nodes, edges) %>% visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+visNetwork(nodes, edges) %>% visOptions(selectedBy = "group")
+
+## ---------------------------------------------------------
+nodes <- read.csv("data/Dataset1-Media-Example-NODES.csv", header=T, as.is=T)
+links <- read.csv("data/Dataset1-Media-Example-EDGES.csv", header=T, as.is=T)
+head(nodes)
+head(links)
+
+## ---------------------------------------------------------
+library(igraph)
+media <- graph_from_data_frame(d=links, vertices=nodes, directed=T) 
+V(media)$name <- nodes$media
+
+## ---------------------------------------------------------
+plot(media)
+
+## ----echo=cor,eval=cor------------------------------------
+media.VN <- toVisNetworkData(media)
+visNetwork(nodes=media.VN$nodes,edges=media.VN$edges)
+
+## ----echo=cor,eval=cor------------------------------------
+visNetwork(nodes=media.VN$nodes,edges=media.VN$edges) %>% 
+  visOptions(selectedBy = "type.label") 
+
+## ----echo=cor,eval=cor------------------------------------
+media.VN1 <- media.VN
+names(media.VN1$nodes)[3] <- "group"
+visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) %>% 
+  visOptions(selectedBy = "type.label")
+
+## ----echo=cor,eval=cor------------------------------------
+names(media.VN1$edges)[3] <- "value"
+visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) %>% 
+  visOptions(selectedBy = "type.label",highlightNearest = TRUE) 
+
+## ----echo=FALSE,eval=FALSE,indent='    '------------------
+#  df <- read.table("data/ozone.txt")
+#  gg.nuage <- ggplot(df)+aes(x=T12,y=maxO3)+geom_point()+geom_smooth()
+#  modT12 <- lm(maxO3~T12,data=df)
+#  p12 <- predict(modT12) %>% as.numeric()
+#  am.nuage <- amPlot(x=df$T12,y=df$maxO3) %>% amLines(y=p12,type="line")
+#  pl.nuage <- ggplotly(gg.nuage)
+
+## ----echo=cor,eval=cor,indent='        '------------------
+df <- read.table("data/ozone.txt")
+cc <- cor(df[,1:11])
+mat.cor <- corrplot::corrplot(cc)
+
+## ----echo=cor,eval=cor,indent='        '------------------
+gg.H <- ggplot(df)+aes(x=maxO3)+geom_histogram(bins = 10)
+am.H <- amHist(df$maxO3)
+pl.H <- ggplotly(gg.H)
+
+## ----echo=cor,eval=cor,indent='        '------------------
+mod <- lm(maxO3~.,data=df)
+res <- rstudent(mod)
+df1 <- data.frame(maxO3=df$maxO3,r.student=res)
+Ggg <- ggplot(df1)+aes(x=maxO3,y=res)+geom_point()+geom_smooth()
+Gggp <- ggplotly(Ggg)
+
+## ----eval=FALSE,indent='        '-------------------------
+#  radioButtons("variable1",
+#                     label="Choisir la variable explicative",
+#                     choices=names(df)[-1],
+#                     selected=list("T9"))
+
+## ----eval=FALSE,indent='        '-------------------------
+#  runtime: shiny
+
+## ----eval=FALSE,indent = '        '-----------------------
+#  checkboxGroupInput("variable",
+#                     label="Choisir la variable",
+#                     choices=names(df)[-1],
+#                     selected=list("T9"))
+
+## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750,indent='        '----
+#  knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
+
+## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf,indent='        '----
+webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
+
