@@ -551,15 +551,9 @@ DD <- st_distance(df,centro)
 NN <- apply(DD,2,order)[1,]
 t_prev <- station1[NN,2]
 
-## ----teacher=correct--------------------------------------
-dpt1 <- dpt %>% mutate(t_prev=as.matrix(t_prev))
-ggplot(dpt1) + geom_sf(aes(fill=t_prev)) +
-  scale_fill_continuous(low="yellow",high="red")+theme_void()
-
-## ----teacher=correct--------------------------------------
-ggplot(dpt1) + geom_sf(aes(fill=t_prev,color=t_prev)) + 
-  scale_fill_continuous(low="yellow",high="red") + 
-  scale_color_continuous(low="yellow",high="red")+theme_void()
+## ---------------------------------------------------------
+correct <- FALSE
+cor <- FALSE
 
 ## ---------------------------------------------------------
 world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
@@ -622,17 +616,6 @@ leaflet() %>% addTiles() %>%
     options = popupOptions(closeButton = FALSE)
   )
 
-## ---- teacher=cor-----------------------------------------
-Ensai <- mygeocode("Ensai bruz") %>% as_tibble()
-info <- paste(sep = "<br/>",
-  "<b><a href='http://ensai.fr'>Ensai</a></b>",
-  "Campus ker lann")
-
-
-leaflet() %>% addTiles() %>%  
-  addPopups(Ensai[1]$lon, Ensai[2]$lat, info,options = popupOptions(closeButton = FALSE))
-
-
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  #Pour éviter les problèmes de changement
 #  sta.Paris <- read_delim("https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",delim=";")
@@ -651,73 +634,11 @@ sta.Paris1 <- sta.Paris %>% separate(`Coordonnées géographiques`,
                                  into=c("lat","lon"),sep=",") %>% 
   mutate(lat=as.numeric(lat),lon=as.numeric(lon))
 
-## ---- teacher=correct-------------------------------------
-map.velib1 <- leaflet(data = sta.Paris1) %>% 
-  addTiles() %>%
-  addCircleMarkers(~ lon, ~ lat,radius=3,
-stroke = FALSE, fillOpacity = 0.5,color="red"
-  )
-
-map.velib1
-
-## ----teacher=correct--------------------------------------
-map.velib2 <- leaflet(data = sta.Paris1) %>% 
-  addTiles() %>% 
-  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, 
-               fillOpacity = 0.7,color="red", 
-               popup = ~ sprintf("<b> Vélos dispos: %s</b>",
-                                 as.character(`Nombre total vélos disponibles`)))
-
-#or without sprintf
-
-map.velib2 <- leaflet(data = sta.Paris1) %>% 
-  addTiles() %>% 
-  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, fillOpacity = 0.7,color="red", 
-               popup = ~ paste("Vélos dispos :",
-                               as.character(`Nombre total vélos disponibles`)))
-
-map.velib2
-
-## ----teacher=correct--------------------------------------
-map.velib3 <- leaflet(data = sta.Paris1) %>% 
-  addTiles() %>%
-  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, 
-               fillOpacity = 0.7,color="red", 
-               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
-                               as.character(`Nombre total vélos disponibles`),
-                               sep=""))
-
-map.velib3
-
 ## ---------------------------------------------------------
 ColorPal1 <- colorNumeric(scales::seq_gradient_pal(low = "#132B43", high = "#56B1F7",
                                                space = "Lab"), domain = c(0,1))
 ColorPal2 <- colorNumeric(scales::seq_gradient_pal(low = "red", high = "black", 
                                                space = "Lab"), domain = c(0,1))
-
-## ---- teacher=correct-------------------------------------
-map.velib4 <- leaflet(data = sta.Paris1) %>% 
-  addTiles() %>%
-  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, fillOpacity = 0.7,
-               color=~ColorPal1(`Nombre total vélos disponibles`/
-                                  `Capacité de la station`), 
-               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
-                               as.character(`Nombre total vélos disponibles`),
-                               sep=""))
-
-map.velib4
-map.velib5 <- leaflet(data = sta.Paris1) %>% 
-  addTiles() %>%
-  addCircleMarkers(~ lon, ~ lat,stroke = FALSE, fillOpacity = 0.7,
-               color=~ColorPal2(`Nombre total vélos disponibles`/
-                                  `Capacité de la station`),
-               radius=~(`Nombre total vélos disponibles`/
-                          `Capacité de la station`)*8,
-               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
-                               as.character(`Nombre total vélos disponibles`),
-                               sep=""))
-
-map.velib5
 
 ## ----echo=correct,eval=TRUE-------------------------------
 nom.station <- "Jussieu - Fossés Saint-Bernard"
@@ -739,27 +660,6 @@ addMarkers(lng=df$lon,lat=df$lat,
 ## ---------------------------------------------------------
 local.station("Jussieu - Fossés Saint-Bernard")
 local.station("Gare Montparnasse - Arrivée")
-
-## ----teacher=correct--------------------------------------
-dpt2 <- st_transform(dpt1, crs = 4326)
-dpt2$t_prev <- round(dpt2$t_prev)
-pal <- colorNumeric(scales::seq_gradient_pal(low = "yellow", high = "red",
-                                             space = "Lab"), domain = dpt2$t_prev)
-m <- leaflet() %>% addTiles() %>% 
-  addPolygons(data = dpt2,color=~pal(t_prev),fillOpacity = 0.6, 
-              stroke = TRUE,weight=1,
-              popup=~paste(as.character(NOM_DEPT),as.character(t_prev),sep=" : ")) %>% 
-  addLayersControl(options=layersControlOptions(collapsed = FALSE))
-m
-
-## ----teacher=correct--------------------------------------
-pal1 <- colorNumeric(palette = c("inferno"),domain = dpt2$t_prev)
-m1 <- leaflet() %>% addTiles() %>% 
-  addPolygons(data = dpt2,color=~pal1(t_prev),fillOpacity = 0.6, 
-              stroke = TRUE,weight=1,
-              popup=~paste(as.character(NOM_DEPT),as.character(t_prev),sep=" : ")) %>% 
-  addLayersControl(options=layersControlOptions(collapsed = FALSE))
-m1
 
 ## ---------------------------------------------------------
 correct <- FALSE
@@ -790,8 +690,8 @@ D %>% plot_ly(x=~X,y=~Y) %>%
          yaxis=list(title="ordonnées"))
 
 ## ----name="plotly_html",eval=!comp_pdf,echo=!comp_pdf-----
-plot_ly(z = volcano, type = "surface")
-plot_ly(z = volcano, type = "contour")
+#  plot_ly(z = volcano, type = "surface")
+#  plot_ly(z = volcano, type = "contour")
 
 ## ----eval=FALSE,echo=FALSE--------------------------------
 #  p <- plot_ly(z = volcano, type = "surface")
@@ -801,7 +701,7 @@ plot_ly(z = volcano, type = "contour")
 #  plot_ly(z = volcano, type = "surface")
 
 ## ----name="plotly_pdf1",eval=comp_pdf,echo=comp_pdf-------
-#  plot_ly(z = volcano, type = "contour")
+plot_ly(z = volcano, type = "contour")
 
 ## ---------------------------------------------------------
 p <- ggplot(iris)+aes(x=Species,y=Sepal.Length)+geom_boxplot()+theme_classic()
@@ -904,10 +804,10 @@ plot(media)
 #                     selected=list("T9"))
 
 ## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750,indent='        '----
-knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
 
 ## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf,indent='        '----
-#  webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  selectInput(inputId = "color", label = "Couleur :",
@@ -991,14 +891,14 @@ knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px'
 #  choices=names(SAheart)[sapply(SAheart,class)=="numeric"]
 
 ## ----name='desc-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
 
 ## ----name='desc-app_pdf',echo=FALSE,eval=comp_pdf---------
-#  webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="dashboard.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="dashboard.png",delay=5,zoom=1)
 
 ## ----name='velib-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
 
 ## ----name='velib-app_pdf',echo=FALSE,eval=comp_pdf--------
-#  webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="dashboard.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="dashboard.png",delay=5,zoom=1)
 
