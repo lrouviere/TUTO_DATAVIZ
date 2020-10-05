@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  4 OCT 2020 20:35
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  5 OCT 2020 11:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1194,298 +1194,420 @@ File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-12-2.pdf Graphic file (type
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-12-3.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-12-3.pdf>
-[9] [10] [11]
+[9]
+File: TUTO_DATAVIZ_files/figure-latex/test-a-1.pdf Graphic file (type pdf)
+<use TUTO_DATAVIZ_files/figure-latex/test-a-1.pdf>
+[10]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-13-1.pdf>
+[11]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-20-1.pdf>
+[12]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-21-1.pdf>
+[13]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-23-1.pdf>
+[14]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-24-1.pdf>
-[12]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-24-2.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-24-2.pdf>
-[13]
+[15]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-24-3.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-24-3.pdf>
-[14] [15]
+[16]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-25-1.pdf>
+[17]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-26-1.pdf>
+[18]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-27-1.pdf>
+[19] [20]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-30-1.pdf>
-[16]
+[21]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-31-1.pdf>
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-32-1.pdf>
+[22]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-33-1.pdf>
+[23]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-34-1.pdf>
-[17]
+[24]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-35-1.pdf>
+[25]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-36-1.pdf>
-[18] [19]
+[26]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-38-1.pdf>
+[27]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-39-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-39-1.pdf>
+[28]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-39-2.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-39-2.pdf>
+[29]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-40-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-40-1.pdf>
+[30]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-40-2.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-40-2.pdf>
+[31]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-41-1.pdf>
-[20]
+[32]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-42-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-42-1.pdf>
+[33]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-43-1.pdf>
-[21]
+[34]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-44-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-44-1.pdf>
-[22]
+[35]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-45-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-45-1.pdf>
-[23]
+[36]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-46-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-46-1.pdf>
-[24]
+[37]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-47-1.pdf>
-[25]
+[38]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-48-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-48-1.pdf>
-[26]
+[39]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-48-2.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-48-2.pdf>
-[27]
+[40]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-49-1.pdf>
-[28]
+[41]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-49-2.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-49-2.pdf>
-[29]
+[42]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-51-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-51-1.pdf>
-[30]
+[43]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-51-2.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-51-2.pdf>
-[31]
+[44]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-51-3.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-51-3.pdf>
-[32]
+[45]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-52-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-52-1.pdf>
-[33]
+[46]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-1.pdf>
-[34]
+[47]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-2.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-2.pdf>
-[35]
+[48]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-3.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-3.pdf>
-[36]
+[49]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-4.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-53-4.pdf>
-[37] [38]
+[50]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-54-1.pdf>
+[51]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-55-1.pdf>
+[52]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-55-2.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-55-2.pdf>
+[53]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-56-1.pdf>
+[54]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-57-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-57-1.pdf>
+[55]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-58-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-58-1.pdf>
+[56] [57]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-60-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-60-1.pdf>
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-60-2.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-60-2.pdf>
+[58]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-61-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-61-1.pdf>
+[59]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-62-1.pdf>
+[60]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-63-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-63-1.pdf>
+[61]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-63-2.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-63-2.pdf>
+[62]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-64-1.pdf>
+[63]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-67-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-67-1.pdf>
+[64]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-69-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-69-1.pdf>
+[65]
+File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-70-1.pdf Graphic file (type
+ pdf)
+<use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-70-1.pdf>
+[66]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-71-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-71-1.pdf>
-[39]
+[67]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-71-2.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-71-2.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-71-3.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-71-3.pdf>
-[40]
+[68]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-74-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-74-1.pdf>
-[41]
+[69]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-75-1.pdf>
-[42]
+[70]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-79-1.pdf>
+[71]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-80-1.pdf>
-[43]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-81-1.pdf>
-[44]
+[72]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-82-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-82-1.pdf>
-[45] [46] [47]
+[73] [74] [75]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-94-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-94-1.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-95-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-95-1.pdf>
-[48]
+[76]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-96-1.pdf Graphic file (type
  pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-96-1.pdf>
-[49]
+[77]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-102-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-102-1.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-103-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-103-1.pdf>
-[50]
+[78]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-104-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-104-1.pdf>
-[51]
+[79]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-127-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-127-1.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-128-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-128-1.pdf>
-[52]
+[80]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-131-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-131-1.pdf>
-[53]
+[81]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-132-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-132-1.pdf>
-[54]
+[82]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-1.pdf>
-[55]
+[83]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-2.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-2.pdf>
-[56]
+[84]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-3.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-3.pdf>
-[57]
+[85]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-4.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-134-4.pdf>
-[58]
+[86]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-135-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-135-1.pdf>
-[59]
+[87]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-136-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-136-1.pdf>
-[60] [61]
+[88] [89]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-149-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-149-1.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-149-2.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-149-2.pdf>
-[62]
+[90]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 1782.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 2154.
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-153-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-153-1.pdf>
-[63]
+[91]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-153-2.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-153-2.pdf>
-[64]
+[92]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-153-3.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-153-3.pdf>
-[65] [66]
+[93] [94]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-155-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-155-1.pdf>
 File: ./FIGURES/surface-plot.pdf Graphic file (type pdf)
 <use ./FIGURES/surface-plot.pdf>
-[67]
+[95]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-160-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-160-1.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-161-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-161-1.pdf>
-[68]
+[96]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-1.pdf>
-[69]
+[97]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-2.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-2.pdf>
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-3.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-3.pdf>
-[70]
+[98]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-4.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-166-4.pdf>
 
-Underfull \vbox (badness 1354) detected at line 1971
+Underfull \vbox (badness 1354) detected at line 2343
  []
 
-[71]
+[99]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-169-1.pdf Graphic file (typ
 e pdf)
 <use TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-169-1.pdf>
-[72]
+[100]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-184-1.png Graphic file (typ
 e bmp)
 <TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-184-1.png>
-[73] [74]
-Overfull \hbox (13.02998pt too wide) in paragraph at lines 2186--2188
+[101] [102]
+Overfull \hbox (13.02998pt too wide) in paragraph at lines 2558--2560
 []\TU/lmr/m/n/10 select the variable of \TU/lmtt/m/n/10 faithful \TU/lmr/m/n/10
  for the histogram (use a \TU/lmtt/m/n/10 radioButtons \TU/lmr/m/n/10 with choi
 ces \TU/lmtt/m/n/10 colnames(faithful)\TU/lmr/m/n/10 ) ; 
  []
 
-[75] [76]
+[103] [104]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-196-1.png Graphic file (typ
 e bmp)
 <TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-196-1.png>
-[77]
+[105]
 File: TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-198-1.png Graphic file (typ
 e bmp)
 <TUTO_DATAVIZ_files/figure-latex/unnamed-chunk-198-1.png>
-[78]
 No file TUTO_DATAVIZ.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2391.
-[79]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2391.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2763.
+[106]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2763.
 (./TUTO_DATAVIZ.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2391.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2391.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 2763.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2763.
  ) 
 Here is how much of TeX's memory you used:
- 29736 strings out of 492956
- 535902 string characters out of 6133501
- 768545 words of memory out of 5000000
- 33359 multiletter control sequences out of 15000+600000
- 538675 words of font info for 77 fonts, out of 8000000 for 9000
+ 29864 strings out of 492956
+ 542584 string characters out of 6133501
+ 769201 words of memory out of 5000000
+ 33454 multiletter control sequences out of 15000+600000
+ 538683 words of font info for 78 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  59i,7n,116p,818b,740s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on TUTO_DATAVIZ.pdf (79 pages).
+Output written on TUTO_DATAVIZ.pdf (106 pages).
