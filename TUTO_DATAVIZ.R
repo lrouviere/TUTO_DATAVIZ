@@ -551,7 +551,7 @@ DD <- st_distance(df,centro)
 NN <- apply(DD,2,order)[1,]
 t_prev <- station1[NN,2]
 
-## ---------------------------------------------------------
+## ----echo=FALSE-------------------------------------------
 correct <- FALSE
 cor <- FALSE
 
