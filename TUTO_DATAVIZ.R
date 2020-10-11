@@ -523,7 +523,7 @@ D <- inner_join(temp, station, by = c("ID"))
 station1 <- D %>% filter(Longitude<25 & Longitude>-20) %>% na.omit()
 station4326 <- st_multipoint(as.matrix(station1[,5:4])) %>% st_geometry()
 st_crs(station4326) <- 4326
-ggplot(dpt) + geom_sf()+geom_sf(data=station4326)
+ggplot(dpt) + geom_sf()+ geom_sf(data=station4326)
 
 ## ----echo=TRUE,eval=correct-------------------------------
 station2 <- station1 %>% select(Longitude,Latitude) %>% 
@@ -551,9 +551,19 @@ DD <- st_distance(df,centro)
 NN <- apply(DD,2,order)[1,]
 t_prev <- station1[NN,2]
 
-## ----echo=FALSE-------------------------------------------
-correct <- FALSE
+## ----teacher=correct--------------------------------------
+dpt1 <- dpt %>% mutate(t_prev=as.matrix(t_prev))
+ggplot(dpt1) + geom_sf(aes(fill=t_prev)) +
+  scale_fill_continuous(low="yellow",high="red")+theme_void()
+
+## ----teacher=correct--------------------------------------
+ggplot(dpt1) + geom_sf(aes(fill=t_prev,color=t_prev)) + 
+  scale_fill_continuous(low="yellow",high="red") + 
+  scale_color_continuous(low="yellow",high="red")+theme_void()
+
+## ----echo=FALSE,eval=TRUE---------------------------------
 cor <- FALSE
+correct <- FALSE
 
 ## ---------------------------------------------------------
 world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
@@ -625,13 +635,12 @@ leaflet() %>% addTiles() %>%
 sta.Paris <- read_csv("data/sta.Paris.csv")
 
 ## ---- echo=correct,eval=FALSE-----------------------------
-#  lien <- "https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/
-#  download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"
+#  lien <- "https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true"
 #  sta.Paris <- read_delim(lien,delim=";")
 
 ## ---- echo=correct,eval=TRUE------------------------------
-sta.Paris1 <- sta.Paris %>% separate(`Coordonnées géographiques`,
-                                 into=c("lat","lon"),sep=",") %>% 
+sta.Paris1 <- sta.Paris %>% 
+  separate(`Coordonnées géographiques`,into=c("lat","lon"),sep=",") %>% 
   mutate(lat=as.numeric(lat),lon=as.numeric(lon))
 
 ## ---------------------------------------------------------
@@ -644,7 +653,7 @@ ColorPal2 <- colorNumeric(scales::seq_gradient_pal(low = "red", high = "black",
 nom.station <- "Jussieu - Fossés Saint-Bernard"
 local.station <- function(nom.station){
   df <- sta.Paris1 %>% filter(`Nom station`==nom.station)
-  leaflet(data = sta.Paris1) %>% setView(lng=df$lon,lat=df$lat,zoom=15) %>%
+  leaflet(data = sta.Paris1) %>% setView(lng=df$lon,lat=df$lat,zoom=15) %>% 
 addTiles() %>% 
 addCircleMarkers(~ lon, ~ lat,stroke = FALSE, fillOpacity = 0.7,
                 popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
@@ -660,10 +669,6 @@ addMarkers(lng=df$lon,lat=df$lat,
 ## ---------------------------------------------------------
 local.station("Jussieu - Fossés Saint-Bernard")
 local.station("Gare Montparnasse - Arrivée")
-
-## ---------------------------------------------------------
-correct <- FALSE
-cor <- FALSE
 
 ## ---------------------------------------------------------
 library(rAmCharts)
@@ -795,7 +800,22 @@ plot(media)
 #                     selected=list("T9"))
 
 ## ----eval=FALSE,indent='        '-------------------------
-#  runtime: shiny
+#  mod1 <- reactive({
+#    XX <- paste(input$variable1,collapse="+")
+#    form <- paste("maxO3~",XX,sep="") %>% formula()
+#    lm(form,data=df)
+#    })
+#  #Df corresponds to the dataset
+#  renderDataTable({
+#    mod.sum1 <- summary(mod1())$coefficients %>% round(3) %>% as.data.frame()
+#    DT::datatable(mod.sum1,options = list(dom = 't'))
+#  })
+
+## ----eval=FALSE,indent='        '-------------------------
+#  renderPlotly({
+#    (ggplot(df)+aes(x=!!as.name(input$variable1),y=maxO3)+
+#       geom_point()+geom_smooth(method="lm")) %>% ggplotly()
+#  })
 
 ## ----eval=FALSE,indent = '        '-----------------------
 #  checkboxGroupInput("variable",
@@ -803,10 +823,10 @@ plot(media)
 #                     choices=names(df)[-1],
 #                     selected=list("T9"))
 
-## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750,indent='        '----
+## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
 #  knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
 
-## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf,indent='        '----
+## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf---------
 webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
@@ -815,11 +835,11 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  # ui.R
-#  verbatimTextOutput("summary")
+#  verbatimTextOutput("...")
 #  
 #  # server.R
-#  output$summary <- renderPrint({
-#    summary(faithful)
+#  output$... <- renderPrint({
+#    summary(...)
 #  })
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
@@ -845,17 +865,10 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  # server.R
-#  output$distPlot <- renderAmCharts({
-#      x    <- faithful[, input$var]
-#      bins <- round(seq(min(x), max(x), length.out = input$bins + 1), 2)
-#  
-#      amHist(x = x, control_hist = list(breaks = bins),
-#             col = input$color, main = input$titre,
-#             export = TRUE, zoom = TRUE)
-#  })
+#  output$distPlot <- renderAmCharts({...})
 #  
 #  # ui.R
-#  amChartsOutput("distPlot")
+#  amChartsOutput("...")
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  # think to add  "session"
@@ -871,13 +884,12 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 #  })
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
-#  # rappel de la syntaxe
+#  # Example of reactive
 #  data <- reactive({
 #    ...
 #  })
 #  
 #  output$plot <- renderPlot({
-#    # recuperation des donnees
 #    x <- data()
 #    ...
 #  })
@@ -894,11 +906,11 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 #  knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
 
 ## ----name='desc-app_pdf',echo=FALSE,eval=comp_pdf---------
-webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="dashboard.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
 
 ## ----name='velib-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
 #  knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
 
 ## ----name='velib-app_pdf',echo=FALSE,eval=comp_pdf--------
-webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="dashboard.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
 

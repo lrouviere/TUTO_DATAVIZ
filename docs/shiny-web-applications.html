@@ -24,7 +24,7 @@
 <meta name="author" content="Laurent Rouvière" />
 
 
-<meta name="date" content="2020-10-04" />
+<meta name="date" content="2020-10-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -182,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="mapping.html"><a href="mapping.html#finding-background-shapefile-map"><i class="fa fa-check"></i><b>2.2.2</b> Finding background shapefile map</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="mapping.html"><a href="mapping.html#dynamic-maps-with-leaflet"><i class="fa fa-check"></i><b>2.3</b> Dynamic maps with leaflet</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="mapping.html"><a href="mapping.html#challenge-2-city-bike-in-paris"><i class="fa fa-check"></i><b>2.3.1</b> Challenge 2: city bike in Paris</a></li>
+<li class="chapter" data-level="2.3.1" data-path="mapping.html"><a href="mapping.html#challenge-2-bike-stations-in-paris"><i class="fa fa-check"></i><b>2.3.1</b> Challenge 2: bike stations in Paris</a></li>
 <li class="chapter" data-level="2.3.2" data-path="mapping.html"><a href="mapping.html#temperature-map-with-leaflet"><i class="fa fa-check"></i><b>2.3.2</b> Temperature map with leaflet</a></li>
 </ul></li>
 </ul></li>
@@ -192,7 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="dynamic.html"><a href="dynamic.html#dashboard"><i class="fa fa-check"></i><b>3.3</b> Dashboard</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html"><i class="fa fa-check"></i><b>4</b> Shiny web applications</a><ul>
-<li class="chapter" data-level="4.1" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#first-step"><i class="fa fa-check"></i><b>4.1</b> First step</a></li>
+<li class="chapter" data-level="4.1" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#first-app"><i class="fa fa-check"></i><b>4.1</b> First app</a></li>
 <li class="chapter" data-level="4.2" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#input---output"><i class="fa fa-check"></i><b>4.2</b> Input - output</a></li>
 <li class="chapter" data-level="4.3" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#organizing-the-application"><i class="fa fa-check"></i><b>4.3</b> Organizing the application</a></li>
 <li class="chapter" data-level="4.4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#adding-interactive-charts"><i class="fa fa-check"></i><b>4.4</b> Adding interactive charts</a></li>
@@ -223,60 +223,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="shiny-web-applications" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Shiny web applications</h1>
 <p>This part comes from the tutorial of Benoît Thieurmel. It is available here <a href="https://github.com/datastorm-open/tuto_shiny_rennes" class="uri">https://github.com/datastorm-open/tuto_shiny_rennes</a>.</p>
-<div id="first-step" class="section level2">
-<h2><span class="header-section-number">4.1</span> First step</h2>
+<div id="first-app" class="section level2">
+<h2><span class="header-section-number">4.1</span> First app</h2>
 <p>Create a new repository for the application (<strong>in RStudio</strong>):</p>
 <pre><code>File -&gt; New Project -&gt; New Directory -&gt; Shiny Web Application</code></pre>
 <p>Choose an application <strong>Multiple File</strong>.</p>
-<p>If the option <strong>Multiple File</strong> is not possible, you can use</p>
-<pre><code>File &gt; New File &gt; Shiny Web App &gt; Multiple File</code></pre>
-<p>Two files are automically created: <code>ui.R</code> and <code>server.R</code>. Run the application with the button <code>Run App</code>.</p>
+<p>If the option <strong>Multiple File</strong> (it depends on the version of Rstudio) is not possible, you can use</p>
+<pre><code>File -&gt; New File -&gt; Shiny Web App -&gt; Multiple File</code></pre>
+<p>Two files are automatically created: <code>ui.R</code> and <code>server.R</code>. Run the application with the button <code>Run App</code>.</p>
 <ul>
-<li>Change the title of the application. You can call it <strong>My firt application</strong>.</li>
-<li>Update the application and check the new title.</li>
+<li>Change the title of the application. You can call it <strong>My first application</strong>.</li>
+<li>Update the application and check that the new title appears.</li>
 </ul>
 </div>
 <div id="input---output" class="section level2">
 <h2><span class="header-section-number">4.2</span> Input - output</h2>
-<p>For the moment, we will add:</p>
+<p>We keep the same application, we don’t care about the structure (rows, columns, tabs…) for the moment. We just want to add:</p>
 <ul>
-<li>new <strong>inputs</strong> in <code>sidebarPanel</code>, after the <code>sliderInput</code>. Don’t forget to add commas for separate the inputs;</li>
-<li>new <strong>outputs</strong> in <code>mainPanel</code>, after the <code>plotOutput</code>. Don’t forget to add commas for separate the outputs.</li>
+<li>new <strong>inputs</strong> in <code>sidebarPanel</code>, after the <code>sliderInput</code>. Don’t forget to add commas to separate the inputs;</li>
+<li>new <strong>outputs</strong> in <code>mainPanel</code>, after the <code>plotOutput</code>. Don’t forget to add commas to separate the outputs.</li>
 </ul>
+<p>To summarize, we want one column for all the inputs and another one for all the outputs.</p>
 <ol style="list-style-type: decimal">
-<li><p>Add in <code>ui.R</code> an input which allow to change the color of the histogram. You can use this command:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="shiny-web-applications.html#cb102-1"></a><span class="kw">selectInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;color&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Couleur :&quot;</span>,</span>
-<span id="cb102-2"><a href="shiny-web-applications.html#cb102-2"></a>            <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;Rouge&quot;</span> =<span class="st"> &quot;red&quot;</span>, <span class="st">&quot;Vert&quot;</span> =<span class="st"> &quot;green&quot;</span>, <span class="st">&quot;Bleu&quot;</span> =<span class="st"> &quot;blue&quot;</span>))</span></code></pre></div></li>
+<li><p>Add in <code>ui.R</code> an input which allows to change the color of the histogram. You can use this command:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="shiny-web-applications.html#cb159-1"></a><span class="kw">selectInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;color&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Couleur :&quot;</span>,</span>
+<span id="cb159-2"><a href="shiny-web-applications.html#cb159-2"></a>            <span class="dt">choices =</span> <span class="kw">c</span>(<span class="st">&quot;Rouge&quot;</span> =<span class="st"> &quot;red&quot;</span>, <span class="st">&quot;Vert&quot;</span> =<span class="st"> &quot;green&quot;</span>, <span class="st">&quot;Bleu&quot;</span> =<span class="st"> &quot;blue&quot;</span>))</span></code></pre></div></li>
 <li><p>Add a new output to visualize the <strong>summary</strong> of the dataset <code>faithful</code>. You can use:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="shiny-web-applications.html#cb103-1"></a><span class="co"># ui.R</span></span>
-<span id="cb103-2"><a href="shiny-web-applications.html#cb103-2"></a><span class="kw">verbatimTextOutput</span>(<span class="st">&quot;summary&quot;</span>)</span>
-<span id="cb103-3"><a href="shiny-web-applications.html#cb103-3"></a></span>
-<span id="cb103-4"><a href="shiny-web-applications.html#cb103-4"></a><span class="co"># server.R</span></span>
-<span id="cb103-5"><a href="shiny-web-applications.html#cb103-5"></a>output<span class="op">$</span>summary &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</span>
-<span id="cb103-6"><a href="shiny-web-applications.html#cb103-6"></a>  <span class="kw">summary</span>(faithful)</span>
-<span id="cb103-7"><a href="shiny-web-applications.html#cb103-7"></a>})</span></code></pre></div></li>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="shiny-web-applications.html#cb160-1"></a><span class="co"># ui.R</span></span>
+<span id="cb160-2"><a href="shiny-web-applications.html#cb160-2"></a><span class="kw">verbatimTextOutput</span>(<span class="st">&quot;...&quot;</span>)</span>
+<span id="cb160-3"><a href="shiny-web-applications.html#cb160-3"></a></span>
+<span id="cb160-4"><a href="shiny-web-applications.html#cb160-4"></a><span class="co"># server.R</span></span>
+<span id="cb160-5"><a href="shiny-web-applications.html#cb160-5"></a>output<span class="op">$</span>... &lt;-<span class="st"> </span><span class="kw">renderPrint</span>({</span>
+<span id="cb160-6"><a href="shiny-web-applications.html#cb160-6"></a>  <span class="kw">summary</span>(...)</span>
+<span id="cb160-7"><a href="shiny-web-applications.html#cb160-7"></a>})</span></code></pre></div></li>
 </ol>
 
 <div class="exercise">
-<span id="exr:exo-shiny-input-output" class="exercise"><strong>Exercise 4.1  (Adding somme inputs/outputs)  </strong></span>
+<span id="exr:exo-shiny-input-output" class="exercise"><strong>Exercise 4.1  (Adding some inputs/outputs)  </strong></span>
 </div>
 
 <p>Add some inputs and outputs on the previous application to</p>
 <ol style="list-style-type: decimal">
-<li><p>propose to the user to change the title of the histogram (use a <code>textInput</code> in the <strong>ui</strong> and the option <code>main</code> in the histogram);</p></li>
+<li><p>propose to the user to change the title of the histogram (use a <code>textInput</code> in the <strong>ui</strong> and the option <code>main</code> in the hist function);</p></li>
 <li><p>select the variable of <code>faithful</code> for the histogram (use a <code>radioButtons</code> with choices <code>colnames(faithful)</code>);</p></li>
 <li><p>visualize the whole dataset <code>faithful</code> (<code>renderDataTable</code> &amp; <code>dataTableOutput</code>);</p></li>
-<li><p>add a text under the histogram which indicates the number of class (use <code>renderText</code> and <code>paste</code> functions in <strong>server</strong>, `textOutput`` in <strong>ui</strong>).</p></li>
-<li><p>Replace the <code>selectInput</code> of the color choice by a <code>colourInput</code> (use package <a href="https://cran.r-project.org/web/packages/colourpicker/vignettes/colourpicker.html">colourpicker</a>);</p></li>
-<li><p>Add an input to export the graph (<code>downloadButton</code> &amp; <code>jpeg</code>).</p></li>
+<li><p>add a text under the histogram which indicates the number of class (use <code>renderText</code> and <code>paste</code> functions in <strong>server</strong>, <code>textOutput</code> in <strong>ui</strong>).</p></li>
+<li><p>replace the <code>selectInput</code> of the color choice by a <code>colourInput</code> (use <a href="https://cran.r-project.org/web/packages/colourpicker/vignettes/colourpicker.html">colourpicker</a> package);</p></li>
+<li><p>export the graph (<code>downloadButton</code> &amp; <code>jpeg</code>).</p></li>
 </ol>
 </div>
 <div id="organizing-the-application" class="section level2">
 <h2><span class="header-section-number">4.3</span> Organizing the application</h2>
-<p>Consider the application <strong>app_structure</strong> It is quite the same as the previous one with a <code>navbarPage</code>:</p>
+<p>Consider the application <strong>app_structure</strong> available <a href="https://lrouviere.github.io/VISU/">here</a>. It is quite the same as the previous one with a <code>navbarPage</code> which defines</p>
 <ul>
 <li>a tab <em>Data</em> to visualize the data (table + summary)</li>
-<li>a tab <em>Visualisation</em> : inputs + histogramm.</li>
+<li>a tab <em>Visualisation</em> : inputs + histogram.</li>
 </ul>
 
 <div class="exercise">
@@ -284,79 +285,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 
 <ol style="list-style-type: decimal">
-<li><p>Tab <strong>Data</strong>: use <code>navlistPanel</code> to separate the <code>summar</code> and the <code>table</code> into two tabs:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="shiny-web-applications.html#cb104-1"></a><span class="co"># rappel de la structure (ui.R)</span></span>
-<span id="cb104-2"><a href="shiny-web-applications.html#cb104-2"></a><span class="kw">navlistPanel</span>(</span>
-<span id="cb104-3"><a href="shiny-web-applications.html#cb104-3"></a><span class="st">&quot;Title of the structure&quot;</span>,</span>
-<span id="cb104-4"><a href="shiny-web-applications.html#cb104-4"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>),</span>
-<span id="cb104-5"><a href="shiny-web-applications.html#cb104-5"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>)</span>
-<span id="cb104-6"><a href="shiny-web-applications.html#cb104-6"></a>)</span></code></pre></div></li>
+<li><p>Tab <strong>Data</strong>: use <code>navlistPanel</code> to separate the <code>summary</code> and the <code>table</code> into two tabs:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="shiny-web-applications.html#cb161-1"></a><span class="co"># rappel de la structure (ui.R)</span></span>
+<span id="cb161-2"><a href="shiny-web-applications.html#cb161-2"></a><span class="kw">navlistPanel</span>(</span>
+<span id="cb161-3"><a href="shiny-web-applications.html#cb161-3"></a><span class="st">&quot;Title of the structure&quot;</span>,</span>
+<span id="cb161-4"><a href="shiny-web-applications.html#cb161-4"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>),</span>
+<span id="cb161-5"><a href="shiny-web-applications.html#cb161-5"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>)</span>
+<span id="cb161-6"><a href="shiny-web-applications.html#cb161-6"></a>)</span></code></pre></div></li>
 <li><p>Tab <strong>Visualisation</strong>: change <code>sidebarLayout</code> - <code>sidebarPanel</code> - <code>mainPanel</code> by a <code>fluidRow</code> with 2 columns:</p>
 <ul>
 <li>1/4: for the <code>sidebarPanel</code></li>
 <li>3/4: for the <code>mainPanel</code>.</li>
 </ul>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="shiny-web-applications.html#cb105-1"></a><span class="kw">fluidRow</span>(</span>
-<span id="cb105-2"><a href="shiny-web-applications.html#cb105-2"></a>  <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">3</span>, ...), <span class="co"># column 1/4 (3/12)</span></span>
-<span id="cb105-3"><a href="shiny-web-applications.html#cb105-3"></a>  <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">9</span>, ...)  <span class="co"># column 3/4 (9/12)</span></span>
-<span id="cb105-4"><a href="shiny-web-applications.html#cb105-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="shiny-web-applications.html#cb162-1"></a><span class="kw">fluidRow</span>(</span>
+<span id="cb162-2"><a href="shiny-web-applications.html#cb162-2"></a>  <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">3</span>, ...), <span class="co"># column 1/4 (3/12)</span></span>
+<span id="cb162-3"><a href="shiny-web-applications.html#cb162-3"></a>  <span class="kw">column</span>(<span class="dt">width =</span> <span class="dv">9</span>, ...)  <span class="co"># column 3/4 (9/12)</span></span>
+<span id="cb162-4"><a href="shiny-web-applications.html#cb162-4"></a>)</span></code></pre></div>
 <p><em>Hint: use <code>wellPanel</code> for the left column.</em></p></li>
 <li><p>Add a boxplot in the visualisation tab (same variable and same color). You can also use <code>tabsetPanel</code> to obtain two different tabs for the histogram and the boxplot.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="shiny-web-applications.html#cb106-1"></a><span class="co"># rappel de la structure (ui.R)</span></span>
-<span id="cb106-2"><a href="shiny-web-applications.html#cb106-2"></a><span class="kw">tabsetPanel</span>(</span>
-<span id="cb106-3"><a href="shiny-web-applications.html#cb106-3"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>),</span>
-<span id="cb106-4"><a href="shiny-web-applications.html#cb106-4"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>)</span>
-<span id="cb106-5"><a href="shiny-web-applications.html#cb106-5"></a>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="shiny-web-applications.html#cb163-1"></a><span class="co"># rappel de la structure (ui.R)</span></span>
+<span id="cb163-2"><a href="shiny-web-applications.html#cb163-2"></a><span class="kw">tabsetPanel</span>(</span>
+<span id="cb163-3"><a href="shiny-web-applications.html#cb163-3"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>),</span>
+<span id="cb163-4"><a href="shiny-web-applications.html#cb163-4"></a><span class="kw">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>)</span>
+<span id="cb163-5"><a href="shiny-web-applications.html#cb163-5"></a>)</span></code></pre></div></li>
 </ol>
 <p><strong>Taking things further</strong>: use <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> (<a href="https://rstudio.github.io/shinydashboard/" class="uri">https://rstudio.github.io/shinydashboard/</a>) for building the same application.</p>
 </div>
 <div id="adding-interactive-charts" class="section level2">
 <h2><span class="header-section-number">4.4</span> Adding interactive charts</h2>
-<p>In the previous application, replace histogram and boxplots by javascript charts obatin with <a href="http://datastorm-open.github.io/introduction_ramcharts/">rAmCharts</a>. You can use</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="shiny-web-applications.html#cb107-1"></a><span class="co"># server.R</span></span>
-<span id="cb107-2"><a href="shiny-web-applications.html#cb107-2"></a>output<span class="op">$</span>distPlot &lt;-<span class="st"> </span><span class="kw">renderAmCharts</span>({</span>
-<span id="cb107-3"><a href="shiny-web-applications.html#cb107-3"></a>    x    &lt;-<span class="st"> </span>faithful[, input<span class="op">$</span>var] </span>
-<span id="cb107-4"><a href="shiny-web-applications.html#cb107-4"></a>    bins &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">seq</span>(<span class="kw">min</span>(x), <span class="kw">max</span>(x), <span class="dt">length.out =</span> input<span class="op">$</span>bins <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), <span class="dv">2</span>)</span>
-<span id="cb107-5"><a href="shiny-web-applications.html#cb107-5"></a>    </span>
-<span id="cb107-6"><a href="shiny-web-applications.html#cb107-6"></a>    <span class="kw">amHist</span>(<span class="dt">x =</span> x, <span class="dt">control_hist =</span> <span class="kw">list</span>(<span class="dt">breaks =</span> bins), </span>
-<span id="cb107-7"><a href="shiny-web-applications.html#cb107-7"></a>           <span class="dt">col =</span> input<span class="op">$</span>color, <span class="dt">main =</span> input<span class="op">$</span>titre, </span>
-<span id="cb107-8"><a href="shiny-web-applications.html#cb107-8"></a>           <span class="dt">export =</span> <span class="ot">TRUE</span>, <span class="dt">zoom =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb107-9"><a href="shiny-web-applications.html#cb107-9"></a>})</span>
-<span id="cb107-10"><a href="shiny-web-applications.html#cb107-10"></a></span>
-<span id="cb107-11"><a href="shiny-web-applications.html#cb107-11"></a><span class="co"># ui.R</span></span>
-<span id="cb107-12"><a href="shiny-web-applications.html#cb107-12"></a><span class="kw">amChartsOutput</span>(<span class="st">&quot;distPlot&quot;</span>)</span></code></pre></div>
+<p>In the previous application, replace histogram and boxplots by javascript charts obtained with <a href="http://datastorm-open.github.io/introduction_ramcharts/">rAmCharts</a>. You can use</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="shiny-web-applications.html#cb164-1"></a><span class="co"># server.R</span></span>
+<span id="cb164-2"><a href="shiny-web-applications.html#cb164-2"></a>output<span class="op">$</span>distPlot &lt;-<span class="st"> </span><span class="kw">renderAmCharts</span>({...})</span>
+<span id="cb164-3"><a href="shiny-web-applications.html#cb164-3"></a></span>
+<span id="cb164-4"><a href="shiny-web-applications.html#cb164-4"></a><span class="co"># ui.R</span></span>
+<span id="cb164-5"><a href="shiny-web-applications.html#cb164-5"></a><span class="kw">amChartsOutput</span>(<span class="st">&quot;...&quot;</span>)</span></code></pre></div>
 </div>
 <div id="reactive-isolation-observe-html" class="section level2">
 <h2><span class="header-section-number">4.5</span> Reactive, isolation, observe, html, …</h2>
 <p>For the previous application</p>
 <ul>
-<li><p>add <code>actionButton</code> combined with <code>isolate</code> to update the application when we click on a button.</p></li>
+<li><p>add <code>actionButton</code> combined with <code>isolate</code> to update the application only when we click on a button.</p></li>
 <li><p>Use <code>observeEvent</code> to force the visualization of the histogram when we update the application. You can use</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="shiny-web-applications.html#cb108-1"></a><span class="co"># think to add  &quot;session&quot; </span></span>
-<span id="cb108-2"><a href="shiny-web-applications.html#cb108-2"></a><span class="kw">shinyServer</span>(<span class="cf">function</span>(input, output, session)</span>
-<span id="cb108-3"><a href="shiny-web-applications.html#cb108-3"></a></span>
-<span id="cb108-4"><a href="shiny-web-applications.html#cb108-4"></a><span class="co"># an id </span></span>
-<span id="cb108-5"><a href="shiny-web-applications.html#cb108-5"></a><span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;viz&quot;</span>, </span>
-<span id="cb108-6"><a href="shiny-web-applications.html#cb108-6"></a>  <span class="kw">tabPanel</span>(<span class="st">&quot;Histogramme&quot;</span>, ...</span>
-<span id="cb108-7"><a href="shiny-web-applications.html#cb108-7"></a></span>
-<span id="cb108-8"><a href="shiny-web-applications.html#cb108-8"></a><span class="co"># and finaly</span></span>
-<span id="cb108-9"><a href="shiny-web-applications.html#cb108-9"></a><span class="kw">observeEvent</span>(input<span class="op">$</span>go, {</span>
-<span id="cb108-10"><a href="shiny-web-applications.html#cb108-10"></a><span class="kw">updateTabsetPanel</span>(session, <span class="dt">inputId =</span> <span class="st">&quot;viz&quot;</span>, <span class="dt">selected =</span> <span class="st">&quot;Histogramme&quot;</span>)</span>
-<span id="cb108-11"><a href="shiny-web-applications.html#cb108-11"></a>})  </span></code></pre></div></li>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="shiny-web-applications.html#cb165-1"></a><span class="co"># think to add  &quot;session&quot; </span></span>
+<span id="cb165-2"><a href="shiny-web-applications.html#cb165-2"></a><span class="kw">shinyServer</span>(<span class="cf">function</span>(input, output, session)</span>
+<span id="cb165-3"><a href="shiny-web-applications.html#cb165-3"></a></span>
+<span id="cb165-4"><a href="shiny-web-applications.html#cb165-4"></a><span class="co"># an id </span></span>
+<span id="cb165-5"><a href="shiny-web-applications.html#cb165-5"></a><span class="kw">tabsetPanel</span>(<span class="dt">id =</span> <span class="st">&quot;viz&quot;</span>, </span>
+<span id="cb165-6"><a href="shiny-web-applications.html#cb165-6"></a>  <span class="kw">tabPanel</span>(<span class="st">&quot;Histogramme&quot;</span>, ...</span>
+<span id="cb165-7"><a href="shiny-web-applications.html#cb165-7"></a></span>
+<span id="cb165-8"><a href="shiny-web-applications.html#cb165-8"></a><span class="co"># and finaly</span></span>
+<span id="cb165-9"><a href="shiny-web-applications.html#cb165-9"></a><span class="kw">observeEvent</span>(input<span class="op">$</span>go, {</span>
+<span id="cb165-10"><a href="shiny-web-applications.html#cb165-10"></a><span class="kw">updateTabsetPanel</span>(session, <span class="dt">inputId =</span> <span class="st">&quot;viz&quot;</span>, <span class="dt">selected =</span> <span class="st">&quot;Histogramme&quot;</span>)</span>
+<span id="cb165-11"><a href="shiny-web-applications.html#cb165-11"></a>})  </span></code></pre></div></li>
 <li><p>Use <code>reactive</code> function to store the selected variable</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="shiny-web-applications.html#cb109-1"></a><span class="co"># rappel de la syntaxe</span></span>
-<span id="cb109-2"><a href="shiny-web-applications.html#cb109-2"></a>data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
-<span id="cb109-3"><a href="shiny-web-applications.html#cb109-3"></a>  ...</span>
-<span id="cb109-4"><a href="shiny-web-applications.html#cb109-4"></a>})</span>
-<span id="cb109-5"><a href="shiny-web-applications.html#cb109-5"></a></span>
-<span id="cb109-6"><a href="shiny-web-applications.html#cb109-6"></a>output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
-<span id="cb109-7"><a href="shiny-web-applications.html#cb109-7"></a>  <span class="co"># recuperation des donnees</span></span>
-<span id="cb109-8"><a href="shiny-web-applications.html#cb109-8"></a>  x &lt;-<span class="st"> </span><span class="kw">data</span>()</span>
-<span id="cb109-9"><a href="shiny-web-applications.html#cb109-9"></a>  ...</span>
-<span id="cb109-10"><a href="shiny-web-applications.html#cb109-10"></a>})</span></code></pre></div></li>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="shiny-web-applications.html#cb166-1"></a><span class="co"># Example of reactive</span></span>
+<span id="cb166-2"><a href="shiny-web-applications.html#cb166-2"></a>data &lt;-<span class="st"> </span><span class="kw">reactive</span>({</span>
+<span id="cb166-3"><a href="shiny-web-applications.html#cb166-3"></a>  ...</span>
+<span id="cb166-4"><a href="shiny-web-applications.html#cb166-4"></a>})</span>
+<span id="cb166-5"><a href="shiny-web-applications.html#cb166-5"></a></span>
+<span id="cb166-6"><a href="shiny-web-applications.html#cb166-6"></a>output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb166-7"><a href="shiny-web-applications.html#cb166-7"></a>  x &lt;-<span class="st"> </span><span class="kw">data</span>()</span>
+<span id="cb166-8"><a href="shiny-web-applications.html#cb166-8"></a>  ...</span>
+<span id="cb166-9"><a href="shiny-web-applications.html#cb166-9"></a>})</span></code></pre></div></li>
 <li><p>Add a title on the dataset with blue color. You can use <code>h1</code> and a <code>css</code> style.</p></li>
 <li><p>Add a third tab where you present a summary of you. You can also add an image and a link to a website.</p></li>
-<li><p><strong>Taking things further</strong>: change the rheme of the application with a <code>.css</code> file. You can use bootswatch for instance <a href="http://bootswatch.com/3" class="uri">http://bootswatch.com/3</a>.</p></li>
+<li><p><strong>Taking things further</strong>: change the theme of the application with a <code>.css</code> file. You can use bootswatch for instance <a href="http://bootswatch.com/3" class="uri">http://bootswatch.com/3</a>.</p></li>
 </ul>
 </div>
 <div id="some-additional-exercises" class="section level2">
@@ -369,11 +362,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We consider the dataset <strong>SAheart</strong> from the <strong>bestglm</strong> package.</p>
 <ol style="list-style-type: decimal">
 <li><p>Use <strong>rAmCharts</strong> to visualize histograms of the numeric variables of the dataset and boxplots in terms of the variable <strong>chd</strong>.</p></li>
-<li><p>Create a shiny web application which allow to</p>
+<li><p>Create a shiny web application (you can use <a href="https://rstudio.github.io/shinydashboard/index.html">shinydashboard</a> which allows to</p>
 <ul>
 <li>select one variable among the numeric variables of the dataset. You can use <strong>radioButtons</strong> with</li>
 </ul>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="shiny-web-applications.html#cb110-1"></a>choices=<span class="kw">names</span>(SAheart)[<span class="kw">sapply</span>(SAheart,class)<span class="op">==</span><span class="st">&quot;numeric&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="shiny-web-applications.html#cb167-1"></a>choices=<span class="kw">names</span>(SAheart)[<span class="kw">sapply</span>(SAheart,class)<span class="op">==</span><span class="st">&quot;numeric&quot;</span>]</span></code></pre></div>
 <ul>
 <li><p>visualize the histogram and the boxplot (in terms of <strong>chd</strong>) of the selected variable. These graphsshould be done with <strong>rAmCharts</strong> (use <strong>amChartsOutput</strong>).</p></li>
 <li><p>The required application may look like
@@ -383,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is also available at <a href="https://lrouviere.shinyapps.io/DESC_APP">https://lrouviere.shinyapps.io/DESC_APP</a>.</p>
 
 <div class="exercise">
-<span id="exr:shiny-velib-app" class="exercise"><strong>Exercise 4.4  (Bije stations in Rennes)  </strong></span>
+<span id="exr:shiny-velib-app" class="exercise"><strong>Exercise 4.4  (Bike stations in Rennes)  </strong></span>
 </div>
 
 <p>Create an application which allows to visualize bike stations in Rennes. It may look like</p>
