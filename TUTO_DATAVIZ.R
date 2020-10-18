@@ -561,10 +561,6 @@ ggplot(dpt1) + geom_sf(aes(fill=t_prev,color=t_prev)) +
   scale_fill_continuous(low="yellow",high="red") + 
   scale_color_continuous(low="yellow",high="red")+theme_void()
 
-## ----echo=FALSE,eval=TRUE---------------------------------
-cor <- FALSE
-correct <- FALSE
-
 ## ---------------------------------------------------------
 world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
 class(world)
@@ -626,6 +622,17 @@ leaflet() %>% addTiles() %>%
     options = popupOptions(closeButton = FALSE)
   )
 
+## ---- teacher=cor-----------------------------------------
+Ensai <- mygeocode("Ensai bruz") %>% as_tibble()
+info <- paste(sep = "<br/>",
+  "<b><a href='http://ensai.fr'>Ensai</a></b>",
+  "Campus ker lann")
+
+
+leaflet() %>% addTiles() %>%  
+  addPopups(Ensai[1]$lon, Ensai[2]$lat, info,
+            options = popupOptions(closeButton = FALSE))
+
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  #Pour éviter les problèmes de changement
 #  sta.Paris <- read_delim("https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",delim=";")
@@ -643,11 +650,72 @@ sta.Paris1 <- sta.Paris %>%
   separate(`Coordonnées géographiques`,into=c("lat","lon"),sep=",") %>% 
   mutate(lat=as.numeric(lat),lon=as.numeric(lon))
 
+## ---- teacher=correct-------------------------------------
+map.velib1 <- leaflet(data = sta.Paris1) %>% 
+  addTiles() %>%
+  addCircleMarkers(~ lon, ~ lat,radius=3,
+               stroke = FALSE, fillOpacity = 0.5,color="red")
+
+map.velib1
+
+## ----teacher=correct--------------------------------------
+map.velib2 <- leaflet(data = sta.Paris1) %>% 
+  addTiles() %>% 
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, 
+               fillOpacity = 0.7,color="red", 
+               popup = ~ sprintf("<b> Vélos dispos: %s</b>",
+                                 as.character(`Nombre total vélos disponibles`)))
+
+#or without sprintf
+
+map.velib2 <- leaflet(data = sta.Paris1) %>% 
+  addTiles() %>% 
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, fillOpacity = 0.7,color="red", 
+               popup = ~ paste("Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`)))
+
+map.velib2
+
+## ----teacher=correct--------------------------------------
+map.velib3 <- leaflet(data = sta.Paris1) %>% 
+  addTiles() %>%
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, 
+               fillOpacity = 0.7,color="red", 
+               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`),
+                               sep=""))
+
+map.velib3
+
 ## ---------------------------------------------------------
 ColorPal1 <- colorNumeric(scales::seq_gradient_pal(low = "#132B43", high = "#56B1F7",
                                                space = "Lab"), domain = c(0,1))
 ColorPal2 <- colorNumeric(scales::seq_gradient_pal(low = "red", high = "black", 
                                                space = "Lab"), domain = c(0,1))
+
+## ---- teacher=correct-------------------------------------
+map.velib4 <- leaflet(data = sta.Paris1) %>% 
+  addTiles() %>%
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, fillOpacity = 0.7,
+               color=~ColorPal1(`Nombre total vélos disponibles`/
+                                  `Capacité de la station`), 
+               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`),
+                               sep=""))
+
+map.velib4
+map.velib5 <- leaflet(data = sta.Paris1) %>% 
+  addTiles() %>%
+  addCircleMarkers(~ lon, ~ lat,stroke = FALSE, fillOpacity = 0.7,
+               color=~ColorPal2(`Nombre total vélos disponibles`/
+                                  `Capacité de la station`),
+               radius=~(`Nombre total vélos disponibles`/
+                          `Capacité de la station`)*8,
+               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`),
+                               sep=""))
+
+map.velib5
 
 ## ----echo=correct,eval=TRUE-------------------------------
 nom.station <- "Jussieu - Fossés Saint-Bernard"
@@ -669,6 +737,27 @@ addMarkers(lng=df$lon,lat=df$lat,
 ## ---------------------------------------------------------
 local.station("Jussieu - Fossés Saint-Bernard")
 local.station("Gare Montparnasse - Arrivée")
+
+## ----teacher=correct--------------------------------------
+dpt2 <- st_transform(dpt1, crs = 4326)
+dpt2$t_prev <- round(dpt2$t_prev)
+pal <- colorNumeric(scales::seq_gradient_pal(low = "yellow", high = "red",
+                                             space = "Lab"), domain = dpt2$t_prev)
+m <- leaflet() %>% addTiles() %>% 
+  addPolygons(data = dpt2,color=~pal(t_prev),fillOpacity = 0.6, 
+              stroke = TRUE,weight=1,
+              popup=~paste(as.character(NOM_DEPT),as.character(t_prev),sep=" : ")) %>% 
+  addLayersControl(options=layersControlOptions(collapsed = FALSE))
+m
+
+## ----teacher=correct--------------------------------------
+pal1 <- colorNumeric(palette = c("inferno"),domain = dpt2$t_prev)
+m1 <- leaflet() %>% addTiles() %>% 
+  addPolygons(data = dpt2,color=~pal1(t_prev),fillOpacity = 0.6, 
+              stroke = TRUE,weight=1,
+              popup=~paste(as.character(NOM_DEPT),as.character(t_prev),sep=" : ")) %>% 
+  addLayersControl(options=layersControlOptions(collapsed = FALSE))
+m1
 
 ## ---------------------------------------------------------
 library(rAmCharts)
@@ -713,17 +802,17 @@ p <- ggplot(iris)+aes(x=Species,y=Sepal.Length)+geom_boxplot()+theme_classic()
 ggplotly(p)
 
 ## ----echo=cor,eval=cor------------------------------------
-#  amPlot(Sepal.Length~Sepal.Width,data=iris,col=iris$Species)
+amPlot(Sepal.Length~Sepal.Width,data=iris,col=iris$Species) 
 
 ## ----echo=cor,eval=cor------------------------------------
-#  iris %>% plot_ly(x=~Sepal.Width,y=~Sepal.Length,color=~Species) %>%
-#    add_markers(type="scatter",mode="markers")
+iris %>% plot_ly(x=~Sepal.Width,y=~Sepal.Length,color=~Species) %>%
+  add_markers(type="scatter",mode="markers")
 
 ## ----echo=cor,eval=cor------------------------------------
-#  amBoxplot(Sepal.Length~Species,data=iris)
+amBoxplot(Sepal.Length~Species,data=iris)
 
 ## ----echo=cor,eval=cor------------------------------------
-#  iris %>% plot_ly(x=~Species,y=~Petal.Length) %>% add_boxplot()
+iris %>% plot_ly(x=~Species,y=~Petal.Length) %>% add_boxplot()
 
 ## ---------------------------------------------------------
 nodes <- data.frame(id = 1:15, label = paste("Id", 1:15),
@@ -750,23 +839,23 @@ V(media)$name <- nodes$media
 plot(media)
 
 ## ----echo=cor,eval=cor------------------------------------
-#  media.VN <- toVisNetworkData(media)
-#  visNetwork(nodes=media.VN$nodes,edges=media.VN$edges)
+media.VN <- toVisNetworkData(media)
+visNetwork(nodes=media.VN$nodes,edges=media.VN$edges)
 
 ## ----echo=cor,eval=cor------------------------------------
-#  visNetwork(nodes=media.VN$nodes,edges=media.VN$edges) %>%
-#    visOptions(selectedBy = "type.label")
+visNetwork(nodes=media.VN$nodes,edges=media.VN$edges) %>% 
+  visOptions(selectedBy = "type.label") 
 
 ## ----echo=cor,eval=cor------------------------------------
-#  media.VN1 <- media.VN
-#  names(media.VN1$nodes)[3] <- "group"
-#  visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) %>%
-#    visOptions(selectedBy = "type.label")
+media.VN1 <- media.VN
+names(media.VN1$nodes)[3] <- "group"
+visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) %>% 
+  visOptions(selectedBy = "type.label")
 
 ## ----echo=cor,eval=cor------------------------------------
-#  names(media.VN1$edges)[3] <- "value"
-#  visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) %>%
-#    visOptions(selectedBy = "type.label",highlightNearest = TRUE)
+names(media.VN1$edges)[3] <- "value"
+visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) %>% 
+  visOptions(selectedBy = "type.label",highlightNearest = TRUE) 
 
 ## ----echo=FALSE,eval=FALSE,indent='    '------------------
 #  df <- read.table("data/ozone.txt")
@@ -777,21 +866,21 @@ plot(media)
 #  pl.nuage <- ggplotly(gg.nuage)
 
 ## ----echo=cor,eval=cor,indent='        '------------------
-#  df <- read.table("data/ozone.txt")
-#  cc <- cor(df[,1:11])
-#  mat.cor <- corrplot::corrplot(cc)
+df <- read.table("data/ozone.txt")
+cc <- cor(df[,1:11])
+mat.cor <- corrplot::corrplot(cc)
 
 ## ----echo=cor,eval=cor,indent='        '------------------
-#  gg.H <- ggplot(df)+aes(x=maxO3)+geom_histogram(bins = 10)
-#  am.H <- amHist(df$maxO3)
-#  pl.H <- ggplotly(gg.H)
+gg.H <- ggplot(df)+aes(x=maxO3)+geom_histogram(bins = 10)
+am.H <- amHist(df$maxO3)
+pl.H <- ggplotly(gg.H)
 
 ## ----echo=cor,eval=cor,indent='        '------------------
-#  mod <- lm(maxO3~.,data=df)
-#  res <- rstudent(mod)
-#  df1 <- data.frame(maxO3=df$maxO3,r.student=res)
-#  Ggg <- ggplot(df1)+aes(x=maxO3,y=res)+geom_point()+geom_smooth()
-#  Gggp <- ggplotly(Ggg)
+mod <- lm(maxO3~.,data=df)
+res <- rstudent(mod)
+df1 <- data.frame(maxO3=df$maxO3,r.student=res)
+Ggg <- ggplot(df1)+aes(x=maxO3,y=res)+geom_point()+geom_smooth()
+Gggp <- ggplotly(Ggg)
 
 ## ----eval=FALSE,indent='        '-------------------------
 #  radioButtons("variable1",
@@ -876,11 +965,11 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 #  
 #  # an id
 #  tabsetPanel(id = "viz",
-#    tabPanel("Histogramme", ...
+#    tabPanel("Histogram", ...
 #  
 #  # and finaly
 #  observeEvent(input$go, {
-#  updateTabsetPanel(session, inputId = "viz", selected = "Histogramme")
+#  updateTabsetPanel(session, inputId = "viz", selected = "Histogram")
 #  })
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
@@ -894,10 +983,13 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 #    ...
 #  })
 
+## ----echo=TRUE,eval=FALSE---------------------------------
+#  h1("Dataset", style = "color : #0099ff;text-align:center")
+
 ## ----echo=correct,eval=correct----------------------------
-#  library(bestglm)
-#  amHist(SAheart$adiposity,freq=FALSE,xlab="adiposity")
-#  amBoxplot(adiposity~chd,data=SAheart)
+library(bestglm)
+amHist(SAheart$adiposity,freq=FALSE,xlab="adiposity")
+amBoxplot(adiposity~chd,data=SAheart)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE, include=TRUE----
 #  choices=names(SAheart)[sapply(SAheart,class)=="numeric"]
