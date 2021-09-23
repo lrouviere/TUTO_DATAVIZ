@@ -24,7 +24,7 @@
 <meta name="author" content="Laurent Rouvière" />
 
 
-<meta name="date" content="2020-12-27" />
+<meta name="date" content="2021-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,8 @@
   
 <link rel="prev" href="shiny-web-applications.html"/>
 
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,10 +51,7 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <script src="libs/amcharts-3.21.13/amcharts.js"></script>
 <script src="libs/ramcharts_base-binding-2.1.13/ramcharts_base.js"></script>
 <script src="libs/amcharts_type_serial-3.20.18/serial.js"></script>
@@ -61,36 +59,36 @@
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
-<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 <link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
 <script src="libs/vis-4.20.1/vis.min.js"></script>
 <script src="libs/visNetwork-binding-2.0.9/visNetwork.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -110,7 +108,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -160,13 +158,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentation</a></li>
-<li class="chapter" data-level="1" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>1</b> Data visualization with ggplot2</a><ul>
-<li class="chapter" data-level="1.1" data-path="ggplot2.html"><a href="ggplot2.html#conventional-graphical-functions"><i class="fa fa-check"></i><b>1.1</b> Conventional Graphical Functions</a><ul>
+<li class="chapter" data-level="1" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>1</b> Data visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ggplot2.html"><a href="ggplot2.html#conventional-graphical-functions"><i class="fa fa-check"></i><b>1.1</b> Conventional Graphical Functions</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="ggplot2.html"><a href="ggplot2.html#the-plot-function"><i class="fa fa-check"></i><b>1.1.1</b> The plot function</a></li>
 <li class="chapter" data-level="1.1.2" data-path="ggplot2.html"><a href="ggplot2.html#interactive-graphs-with-ramcharts"><i class="fa fa-check"></i><b>1.1.2</b> Interactive graphs with rAmCharts</a></li>
 <li class="chapter" data-level="1.1.3" data-path="ggplot2.html"><a href="ggplot2.html#some-exercises"><i class="fa fa-check"></i><b>1.1.3</b> Some exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-grammar"><i class="fa fa-check"></i><b>1.2</b> Ggplot2 grammar</a><ul>
+<li class="chapter" data-level="1.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-grammar"><i class="fa fa-check"></i><b>1.2</b> Ggplot2 grammar</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="ggplot2.html"><a href="ggplot2.html#first-charts-with-ggplot2"><i class="fa fa-check"></i><b>1.2.1</b> First charts with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="1.2.2" data-path="ggplot2.html"><a href="ggplot2.html#data-et-aesthetics"><i class="fa fa-check"></i><b>1.2.2</b> Data et aesthetics</a></li>
 <li class="chapter" data-level="1.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrics"><i class="fa fa-check"></i><b>1.2.3</b> <code>Geometrics</code></a></li>
@@ -177,23 +178,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="ggplot2.html"><a href="ggplot2.html#complements"><i class="fa fa-check"></i><b>1.3</b> Complements</a></li>
 <li class="chapter" data-level="1.4" data-path="ggplot2.html"><a href="ggplot2.html#some-exercises-1"><i class="fa fa-check"></i><b>1.4</b> Some exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>2</b> Mapping with R</a><ul>
+<li class="chapter" data-level="2" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>2</b> Mapping with R</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="mapping.html"><a href="mapping.html#ggmap-package"><i class="fa fa-check"></i><b>2.1</b> ggmap package</a></li>
-<li class="chapter" data-level="2.2" data-path="mapping.html"><a href="mapping.html#maps-with-contours-shapefile-format"><i class="fa fa-check"></i><b>2.2</b> Maps with contours, shapefile format</a><ul>
+<li class="chapter" data-level="2.2" data-path="mapping.html"><a href="mapping.html#maps-with-contours-shapefile-format"><i class="fa fa-check"></i><b>2.2</b> Maps with contours, shapefile format</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="mapping.html"><a href="mapping.html#challenge1"><i class="fa fa-check"></i><b>2.2.1</b> Challenge 1: temperature map with sf</a></li>
 <li class="chapter" data-level="2.2.2" data-path="mapping.html"><a href="mapping.html#finding-background-shapefile-map"><i class="fa fa-check"></i><b>2.2.2</b> Finding background shapefile map</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="mapping.html"><a href="mapping.html#dynamic-maps-with-leaflet"><i class="fa fa-check"></i><b>2.3</b> Dynamic maps with leaflet</a><ul>
+<li class="chapter" data-level="2.3" data-path="mapping.html"><a href="mapping.html#dynamic-maps-with-leaflet"><i class="fa fa-check"></i><b>2.3</b> Dynamic maps with leaflet</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="mapping.html"><a href="mapping.html#challenge-2-bike-stations-in-paris"><i class="fa fa-check"></i><b>2.3.1</b> Challenge 2: bike stations in Paris</a></li>
 <li class="chapter" data-level="2.3.2" data-path="mapping.html"><a href="mapping.html#temperature-map-with-leaflet"><i class="fa fa-check"></i><b>2.3.2</b> Temperature map with leaflet</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="dynamic.html"><a href="dynamic.html"><i class="fa fa-check"></i><b>3</b> Dynamic visualization</a><ul>
+<li class="chapter" data-level="3" data-path="dynamic.html"><a href="dynamic.html"><i class="fa fa-check"></i><b>3</b> Dynamic visualization</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="dynamic.html"><a href="dynamic.html#classical-charts-with-ramcharts-and-plotly"><i class="fa fa-check"></i><b>3.1</b> Classical charts with <code>rAmCharts</code> and <code>plotly</code></a></li>
 <li class="chapter" data-level="3.2" data-path="dynamic.html"><a href="dynamic.html#graphs-to-visualize-networks-with-visnetwork"><i class="fa fa-check"></i><b>3.2</b> Graphs to visualize networks with visNetwork</a></li>
 <li class="chapter" data-level="3.3" data-path="dynamic.html"><a href="dynamic.html#dashboard"><i class="fa fa-check"></i><b>3.3</b> Dashboard</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html"><i class="fa fa-check"></i><b>4</b> Shiny web applications</a><ul>
+<li class="chapter" data-level="4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html"><i class="fa fa-check"></i><b>4</b> Shiny web applications</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#first-app"><i class="fa fa-check"></i><b>4.1</b> First app</a></li>
 <li class="chapter" data-level="4.2" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#input---output"><i class="fa fa-check"></i><b>4.2</b> Input - output</a></li>
 <li class="chapter" data-level="4.3" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#organizing-the-application"><i class="fa fa-check"></i><b>4.3</b> Organizing the application</a></li>
