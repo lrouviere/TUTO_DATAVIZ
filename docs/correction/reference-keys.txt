@@ -22,6 +22,7 @@ exr:exo-amchart-plotly
 exr:graphe
 exr:dash-ozone
 exr:exo-shiny-input-output
+exr:exo-shiny-structure
 exr:shiny-desc-app
 exr:shiny-velib-app
 ggplot2
