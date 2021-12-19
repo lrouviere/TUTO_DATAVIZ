@@ -511,8 +511,8 @@ D %>% plot_ly(x=~X,y=~Y) %>%
          yaxis=list(title="ordonnées"))
 
 ## ----name="plotly_html",eval=!comp_pdf,echo=!comp_pdf-----
-#  plot_ly(z = volcano, type = "surface")
-#  plot_ly(z = volcano, type = "contour")
+plot_ly(z = volcano, type = "surface")
+plot_ly(z = volcano, type = "contour")
 
 ## ----eval=FALSE,echo=FALSE--------------------------------
 #  p <- plot_ly(z = volcano, type = "surface")
@@ -522,7 +522,7 @@ D %>% plot_ly(x=~X,y=~Y) %>%
 #  plot_ly(z = volcano, type = "surface")
 
 ## ----name="plotly_pdf1",eval=comp_pdf,echo=comp_pdf-------
-plot_ly(z = volcano, type = "contour")
+#  plot_ly(z = volcano, type = "contour")
 
 ## ---------------------------------------------------------
 p <- ggplot(iris)+aes(x=Species,y=Sepal.Length)+geom_boxplot()+theme_classic()
@@ -614,10 +614,10 @@ plot(media)
 #                     selected=list("T9"))
 
 ## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-#  knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
+knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
 
 ## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf---------
-webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
+#  webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  selectInput(inputId = "color", label = "Couleur :",
@@ -696,14 +696,14 @@ webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.pn
 #  choices=names(SAheart)[sapply(SAheart,class)=="numeric"]
 
 ## ----name='desc-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-#  knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
+knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
 
 ## ----name='desc-app_pdf',echo=FALSE,eval=comp_pdf---------
-webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
+#  webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
 
 ## ----name='velib-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-#  knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
+knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
 
 ## ----name='velib-app_pdf',echo=FALSE,eval=comp_pdf--------
-webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
+#  webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
 

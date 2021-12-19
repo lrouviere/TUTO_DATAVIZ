@@ -24,7 +24,7 @@
 <meta name="author" content="Laurent Rouvière" />
 
 
-<meta name="date" content="2021-12-17" />
+<meta name="date" content="2021-12-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,29 +308,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can use this package to obtain dynamic graphs. It is easy, we just have to use the prefix <strong>am</strong> before the name of the function:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ggplot2.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rAmCharts)</span>
 <span id="cb11-2"><a href="ggplot2.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">amHist</span>(ozone<span class="sc">$</span>maxO3)</span></code></pre></div>
-<div id="htmlwidget-857f782f435159a2d028" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
-<script type="application/json" data-for="htmlwidget-857f782f435159a2d028">{"x":{"chartData":{"columnSpacing":0,"columnWidth":1,"fillAlphas":1,"lineAlpha":1,"categoryAxis":{"title":"ozone$maxO3"},"categoryField":"x","creditsPosition":"bottom-right","dataProvider":[{"x":50,"y":10,"cut":"(from 40 to 60)","color":"#1e90ff"},{"x":70,"y":43,"cut":"(from 60 to 80)","color":"#1e90ff"},{"x":90,"y":27,"cut":"(from 80 to 100)","color":"#1e90ff"},{"x":110,"y":16,"cut":"(from 100 to 120)","color":"#1e90ff"},{"x":130,"y":5,"cut":"(from 120 to 140)","color":"#1e90ff"},{"x":150,"y":10,"cut":"(from 140 to 160)","color":"#1e90ff"},{"x":170,"y":1,"cut":"(from 160 to 180)","color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"fillAlphas":0.8,"lineAlpha":1,"fillColorsField":"color","lineColor":"#1e90ff","labelText":"","balloonText":"<b>[[value]]<\/b> <br/> [[cut]] ","type":"column","valueField":"y"}],"theme":"light","type":"serial","valueAxes":[{"minimum":0,"maximum":45.15,"title":"Frequency"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-35d6dee6d9484c4da2ac" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-35d6dee6d9484c4da2ac">{"x":{"chartData":{"columnSpacing":0,"columnWidth":1,"fillAlphas":1,"lineAlpha":1,"categoryAxis":{"title":"ozone$maxO3"},"categoryField":"x","creditsPosition":"bottom-right","dataProvider":[{"x":50,"y":10,"cut":"(from 40 to 60)","color":"#1e90ff"},{"x":70,"y":43,"cut":"(from 60 to 80)","color":"#1e90ff"},{"x":90,"y":27,"cut":"(from 80 to 100)","color":"#1e90ff"},{"x":110,"y":16,"cut":"(from 100 to 120)","color":"#1e90ff"},{"x":130,"y":5,"cut":"(from 120 to 140)","color":"#1e90ff"},{"x":150,"y":10,"cut":"(from 140 to 160)","color":"#1e90ff"},{"x":170,"y":1,"cut":"(from 160 to 180)","color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"fillAlphas":0.8,"lineAlpha":1,"fillColorsField":"color","lineColor":"#1e90ff","labelText":"","balloonText":"<b>[[value]]<\/b> <br/> [[cut]] ","type":"column","valueField":"y"}],"theme":"light","type":"serial","valueAxes":[{"minimum":0,"maximum":45.15,"title":"Frequency"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
 amPlot(ozone,col=c("T9","T12"))
-<div id="htmlwidget-d13ea488b457e8a3f159" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d13ea488b457e8a3f159">{"x":{"chartData":{"precision":2,"categoryAxis":{"title":"index","position":"bottom","id":"x"},"categoryField":"amCategory","dataProvider":[{"T9":15.6,"T12":18.5,"amCategory":"Obs. 1"},{"T9":17,"T12":18.4,"amCategory":"Obs. 2"},{"T9":15.3,"T12":17.6,"amCategory":"Obs. 3"},{"T9":16.2,"T12":19.7,"amCategory":"Obs. 4"},{"T9":17.4,"T12":20.5,"amCategory":"Obs. 5"},{"T9":17.7,"T12":19.8,"amCategory":"Obs. 6"},{"T9":16.8,"T12":15.6,"amCategory":"Obs. 7"},{"T9":14.9,"T12":17.5,"amCategory":"Obs. 8"},{"T9":16.1,"T12":19.6,"amCategory":"Obs. 9"},{"T9":18.3,"T12":21.9,"amCategory":"Obs. 10"},{"T9":17.3,"T12":19.3,"amCategory":"Obs. 11"},{"T9":17.6,"T12":20.3,"amCategory":"Obs. 12"},{"T9":18.3,"T12":19.6,"amCategory":"Obs. 13"},{"T9":17.1,"T12":18.2,"amCategory":"Obs. 14"},{"T9":15.4,"T12":17.4,"amCategory":"Obs. 15"},{"T9":15.9,"T12":19.1,"amCategory":"Obs. 16"},{"T9":21,"T12":24.6,"amCategory":"Obs. 17"},{"T9":16.2,"T12":22.4,"amCategory":"Obs. 18"},{"T9":19.7,"T12":24.2,"amCategory":"Obs. 19"},{"T9":23.6,"T12":28.6,"amCategory":"Obs. 20"},{"T9":20.4,"T12":25.2,"amCategory":"Obs. 21"},{"T9":27,"T12":32.7,"amCategory":"Obs. 22"},{"T9":24,"T12":23.5,"amCategory":"Obs. 23"},{"T9":19.7,"T12":22.9,"amCategory":"Obs. 24"},{"T9":20.1,"T12":22.4,"amCategory":"Obs. 25"},{"T9":19.6,"T12":25.1,"amCategory":"Obs. 26"},{"T9":19.5,"T12":23.4,"amCategory":"Obs. 27"},{"T9":18.8,"T12":22.7,"amCategory":"Obs. 28"},{"T9":24.1,"T12":28.4,"amCategory":"Obs. 29"},{"T9":26.6,"T12":30.1,"amCategory":"Obs. 30"},{"T9":19.5,"T12":18.8,"amCategory":"Obs. 31"},{"T9":16.8,"T12":18.2,"amCategory":"Obs. 32"},{"T9":20.8,"T12":23.7,"amCategory":"Obs. 33"},{"T9":17.5,"T12":18.2,"amCategory":"Obs. 34"},{"T9":18.1,"T12":21.2,"amCategory":"Obs. 35"},{"T9":19.2,"T12":22,"amCategory":"Obs. 36"},{"T9":19.4,"T12":20.7,"amCategory":"Obs. 37"},{"T9":19.2,"T12":21,"amCategory":"Obs. 38"},{"T9":13.8,"T12":17.3,"amCategory":"Obs. 39"},{"T9":14.3,"T12":14.5,"amCategory":"Obs. 40"},{"T9":15.6,"T12":18.6,"amCategory":"Obs. 41"},{"T9":16.9,"T12":19.1,"amCategory":"Obs. 42"},{"T9":17.4,"T12":20.4,"amCategory":"Obs. 43"},{"T9":15.1,"T12":20.5,"amCategory":"Obs. 44"},{"T9":15.1,"T12":15.6,"amCategory":"Obs. 45"},{"T9":16.7,"T12":19.1,"amCategory":"Obs. 46"},{"T9":16.9,"T12":20.3,"amCategory":"Obs. 47"},{"T9":18,"T12":21.6,"amCategory":"Obs. 48"},{"T9":18.6,"T12":21.9,"amCategory":"Obs. 49"},{"T9":18.8,"T12":22.5,"amCategory":"Obs. 50"},{"T9":19,"T12":22.5,"amCategory":"Obs. 51"},{"T9":19.9,"T12":26.9,"amCategory":"Obs. 52"},{"T9":23.8,"T12":27.7,"amCategory":"Obs. 53"},{"T9":24,"T12":28.3,"amCategory":"Obs. 54"},{"T9":23.3,"T12":27.6,"amCategory":"Obs. 55"},{"T9":25,"T12":29.6,"amCategory":"Obs. 56"},{"T9":24.9,"T12":30.5,"amCategory":"Obs. 57"},{"T9":20.5,"T12":26.3,"amCategory":"Obs. 58"},{"T9":25.3,"T12":29.5,"amCategory":"Obs. 59"},{"T9":21.3,"T12":23.8,"amCategory":"Obs. 60"},{"T9":20,"T12":18.2,"amCategory":"Obs. 61"},{"T9":18.7,"T12":20.6,"amCategory":"Obs. 62"},{"T9":18.6,"T12":18.7,"amCategory":"Obs. 63"},{"T9":19.2,"T12":23,"amCategory":"Obs. 64"},{"T9":19.9,"T12":21.6,"amCategory":"Obs. 65"},{"T9":18.7,"T12":21.4,"amCategory":"Obs. 66"},{"T9":18.4,"T12":17.1,"amCategory":"Obs. 67"},{"T9":17.1,"T12":20,"amCategory":"Obs. 68"},{"T9":17.8,"T12":22.8,"amCategory":"Obs. 69"},{"T9":20.9,"T12":25.2,"amCategory":"Obs. 70"},{"T9":18.8,"T12":20.5,"amCategory":"Obs. 71"},{"T9":23.5,"T12":29.8,"amCategory":"Obs. 72"},{"T9":20.8,"T12":23.7,"amCategory":"Obs. 73"},{"T9":18.8,"T12":21.1,"amCategory":"Obs. 74"},{"T9":17.8,"T12":21.3,"amCategory":"Obs. 75"},{"T9":20.6,"T12":24.8,"amCategory":"Obs. 76"},{"T9":21.6,"T12":26.9,"amCategory":"Obs. 77"},{"T9":22.7,"T12":28.4,"amCategory":"Obs. 78"},{"T9":19.8,"T12":27.2,"amCategory":"Obs. 79"},{"T9":25,"T12":33.5,"amCategory":"Obs. 80"},{"T9":20.1,"T12":22.9,"amCategory":"Obs. 81"},{"T9":21,"T12":26.3,"amCategory":"Obs. 82"},{"T9":21,"T12":24.4,"amCategory":"Obs. 83"},{"T9":16.9,"T12":17.8,"amCategory":"Obs. 84"},{"T9":17.5,"T12":18.6,"amCategory":"Obs. 85"},{"T9":16.5,"T12":20.3,"amCategory":"Obs. 86"},{"T9":17.7,"T12":20.2,"amCategory":"Obs. 87"},{"T9":17.3,"T12":22.7,"amCategory":"Obs. 88"},{"T9":15.3,"T12":16.8,"amCategory":"Obs. 89"},{"T9":15.9,"T12":19.2,"amCategory":"Obs. 90"},{"T9":16.2,"T12":18.9,"amCategory":"Obs. 91"},{"T9":18.3,"T12":18.3,"amCategory":"Obs. 92"},{"T9":16.9,"T12":20.8,"amCategory":"Obs. 93"},{"T9":17.3,"T12":19.8,"amCategory":"Obs. 94"},{"T9":14.2,"T12":22.2,"amCategory":"Obs. 95"},{"T9":15.8,"T12":18.7,"amCategory":"Obs. 96"},{"T9":15.2,"T12":17.9,"amCategory":"Obs. 97"},{"T9":17.1,"T12":17.7,"amCategory":"Obs. 98"},{"T9":15.4,"T12":17.7,"amCategory":"Obs. 99"},{"T9":13.7,"T12":14,"amCategory":"Obs. 100"},{"T9":12.7,"T12":14.3,"amCategory":"Obs. 101"},{"T9":14.8,"T12":16.3,"amCategory":"Obs. 102"},{"T9":15.5,"T12":18,"amCategory":"Obs. 103"},{"T9":11.3,"T12":19.4,"amCategory":"Obs. 104"},{"T9":15.2,"T12":19.7,"amCategory":"Obs. 105"},{"T9":14.7,"T12":17.6,"amCategory":"Obs. 106"},{"T9":13.3,"T12":17.7,"amCategory":"Obs. 107"},{"T9":13.3,"T12":17.7,"amCategory":"Obs. 108"},{"T9":16.2,"T12":20.8,"amCategory":"Obs. 109"},{"T9":16.9,"T12":23,"amCategory":"Obs. 110"},{"T9":16.9,"T12":19.8,"amCategory":"Obs. 111"},{"T9":15.7,"T12":18.6,"amCategory":"Obs. 112"}],"graphs":[{"animationPlayed":false,"lineAlpha":1,"bullet":"round","fill_alphas":0,"bulletAlpha":0,"maxBulletSize":0,"balloonText":"value: <b>[[value]]<\/b>","title":"T9","type":"line","valueField":"T9"},{"animationPlayed":false,"lineAlpha":1,"bullet":"round","fill_alphas":0,"bulletAlpha":0,"maxBulletSize":0,"balloonText":"value: <b>[[value]]<\/b>","title":"T12","type":"line","valueField":"T12"}],"type":"serial","valueAxes":[{"position":"left","id":"y","title":"ozone"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5faf2e47c14f76efbb6b" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5faf2e47c14f76efbb6b">{"x":{"chartData":{"precision":2,"categoryAxis":{"title":"index","position":"bottom","id":"x"},"categoryField":"amCategory","dataProvider":[{"T9":15.6,"T12":18.5,"amCategory":"Obs. 1"},{"T9":17,"T12":18.4,"amCategory":"Obs. 2"},{"T9":15.3,"T12":17.6,"amCategory":"Obs. 3"},{"T9":16.2,"T12":19.7,"amCategory":"Obs. 4"},{"T9":17.4,"T12":20.5,"amCategory":"Obs. 5"},{"T9":17.7,"T12":19.8,"amCategory":"Obs. 6"},{"T9":16.8,"T12":15.6,"amCategory":"Obs. 7"},{"T9":14.9,"T12":17.5,"amCategory":"Obs. 8"},{"T9":16.1,"T12":19.6,"amCategory":"Obs. 9"},{"T9":18.3,"T12":21.9,"amCategory":"Obs. 10"},{"T9":17.3,"T12":19.3,"amCategory":"Obs. 11"},{"T9":17.6,"T12":20.3,"amCategory":"Obs. 12"},{"T9":18.3,"T12":19.6,"amCategory":"Obs. 13"},{"T9":17.1,"T12":18.2,"amCategory":"Obs. 14"},{"T9":15.4,"T12":17.4,"amCategory":"Obs. 15"},{"T9":15.9,"T12":19.1,"amCategory":"Obs. 16"},{"T9":21,"T12":24.6,"amCategory":"Obs. 17"},{"T9":16.2,"T12":22.4,"amCategory":"Obs. 18"},{"T9":19.7,"T12":24.2,"amCategory":"Obs. 19"},{"T9":23.6,"T12":28.6,"amCategory":"Obs. 20"},{"T9":20.4,"T12":25.2,"amCategory":"Obs. 21"},{"T9":27,"T12":32.7,"amCategory":"Obs. 22"},{"T9":24,"T12":23.5,"amCategory":"Obs. 23"},{"T9":19.7,"T12":22.9,"amCategory":"Obs. 24"},{"T9":20.1,"T12":22.4,"amCategory":"Obs. 25"},{"T9":19.6,"T12":25.1,"amCategory":"Obs. 26"},{"T9":19.5,"T12":23.4,"amCategory":"Obs. 27"},{"T9":18.8,"T12":22.7,"amCategory":"Obs. 28"},{"T9":24.1,"T12":28.4,"amCategory":"Obs. 29"},{"T9":26.6,"T12":30.1,"amCategory":"Obs. 30"},{"T9":19.5,"T12":18.8,"amCategory":"Obs. 31"},{"T9":16.8,"T12":18.2,"amCategory":"Obs. 32"},{"T9":20.8,"T12":23.7,"amCategory":"Obs. 33"},{"T9":17.5,"T12":18.2,"amCategory":"Obs. 34"},{"T9":18.1,"T12":21.2,"amCategory":"Obs. 35"},{"T9":19.2,"T12":22,"amCategory":"Obs. 36"},{"T9":19.4,"T12":20.7,"amCategory":"Obs. 37"},{"T9":19.2,"T12":21,"amCategory":"Obs. 38"},{"T9":13.8,"T12":17.3,"amCategory":"Obs. 39"},{"T9":14.3,"T12":14.5,"amCategory":"Obs. 40"},{"T9":15.6,"T12":18.6,"amCategory":"Obs. 41"},{"T9":16.9,"T12":19.1,"amCategory":"Obs. 42"},{"T9":17.4,"T12":20.4,"amCategory":"Obs. 43"},{"T9":15.1,"T12":20.5,"amCategory":"Obs. 44"},{"T9":15.1,"T12":15.6,"amCategory":"Obs. 45"},{"T9":16.7,"T12":19.1,"amCategory":"Obs. 46"},{"T9":16.9,"T12":20.3,"amCategory":"Obs. 47"},{"T9":18,"T12":21.6,"amCategory":"Obs. 48"},{"T9":18.6,"T12":21.9,"amCategory":"Obs. 49"},{"T9":18.8,"T12":22.5,"amCategory":"Obs. 50"},{"T9":19,"T12":22.5,"amCategory":"Obs. 51"},{"T9":19.9,"T12":26.9,"amCategory":"Obs. 52"},{"T9":23.8,"T12":27.7,"amCategory":"Obs. 53"},{"T9":24,"T12":28.3,"amCategory":"Obs. 54"},{"T9":23.3,"T12":27.6,"amCategory":"Obs. 55"},{"T9":25,"T12":29.6,"amCategory":"Obs. 56"},{"T9":24.9,"T12":30.5,"amCategory":"Obs. 57"},{"T9":20.5,"T12":26.3,"amCategory":"Obs. 58"},{"T9":25.3,"T12":29.5,"amCategory":"Obs. 59"},{"T9":21.3,"T12":23.8,"amCategory":"Obs. 60"},{"T9":20,"T12":18.2,"amCategory":"Obs. 61"},{"T9":18.7,"T12":20.6,"amCategory":"Obs. 62"},{"T9":18.6,"T12":18.7,"amCategory":"Obs. 63"},{"T9":19.2,"T12":23,"amCategory":"Obs. 64"},{"T9":19.9,"T12":21.6,"amCategory":"Obs. 65"},{"T9":18.7,"T12":21.4,"amCategory":"Obs. 66"},{"T9":18.4,"T12":17.1,"amCategory":"Obs. 67"},{"T9":17.1,"T12":20,"amCategory":"Obs. 68"},{"T9":17.8,"T12":22.8,"amCategory":"Obs. 69"},{"T9":20.9,"T12":25.2,"amCategory":"Obs. 70"},{"T9":18.8,"T12":20.5,"amCategory":"Obs. 71"},{"T9":23.5,"T12":29.8,"amCategory":"Obs. 72"},{"T9":20.8,"T12":23.7,"amCategory":"Obs. 73"},{"T9":18.8,"T12":21.1,"amCategory":"Obs. 74"},{"T9":17.8,"T12":21.3,"amCategory":"Obs. 75"},{"T9":20.6,"T12":24.8,"amCategory":"Obs. 76"},{"T9":21.6,"T12":26.9,"amCategory":"Obs. 77"},{"T9":22.7,"T12":28.4,"amCategory":"Obs. 78"},{"T9":19.8,"T12":27.2,"amCategory":"Obs. 79"},{"T9":25,"T12":33.5,"amCategory":"Obs. 80"},{"T9":20.1,"T12":22.9,"amCategory":"Obs. 81"},{"T9":21,"T12":26.3,"amCategory":"Obs. 82"},{"T9":21,"T12":24.4,"amCategory":"Obs. 83"},{"T9":16.9,"T12":17.8,"amCategory":"Obs. 84"},{"T9":17.5,"T12":18.6,"amCategory":"Obs. 85"},{"T9":16.5,"T12":20.3,"amCategory":"Obs. 86"},{"T9":17.7,"T12":20.2,"amCategory":"Obs. 87"},{"T9":17.3,"T12":22.7,"amCategory":"Obs. 88"},{"T9":15.3,"T12":16.8,"amCategory":"Obs. 89"},{"T9":15.9,"T12":19.2,"amCategory":"Obs. 90"},{"T9":16.2,"T12":18.9,"amCategory":"Obs. 91"},{"T9":18.3,"T12":18.3,"amCategory":"Obs. 92"},{"T9":16.9,"T12":20.8,"amCategory":"Obs. 93"},{"T9":17.3,"T12":19.8,"amCategory":"Obs. 94"},{"T9":14.2,"T12":22.2,"amCategory":"Obs. 95"},{"T9":15.8,"T12":18.7,"amCategory":"Obs. 96"},{"T9":15.2,"T12":17.9,"amCategory":"Obs. 97"},{"T9":17.1,"T12":17.7,"amCategory":"Obs. 98"},{"T9":15.4,"T12":17.7,"amCategory":"Obs. 99"},{"T9":13.7,"T12":14,"amCategory":"Obs. 100"},{"T9":12.7,"T12":14.3,"amCategory":"Obs. 101"},{"T9":14.8,"T12":16.3,"amCategory":"Obs. 102"},{"T9":15.5,"T12":18,"amCategory":"Obs. 103"},{"T9":11.3,"T12":19.4,"amCategory":"Obs. 104"},{"T9":15.2,"T12":19.7,"amCategory":"Obs. 105"},{"T9":14.7,"T12":17.6,"amCategory":"Obs. 106"},{"T9":13.3,"T12":17.7,"amCategory":"Obs. 107"},{"T9":13.3,"T12":17.7,"amCategory":"Obs. 108"},{"T9":16.2,"T12":20.8,"amCategory":"Obs. 109"},{"T9":16.9,"T12":23,"amCategory":"Obs. 110"},{"T9":16.9,"T12":19.8,"amCategory":"Obs. 111"},{"T9":15.7,"T12":18.6,"amCategory":"Obs. 112"}],"graphs":[{"animationPlayed":false,"lineAlpha":1,"bullet":"round","fill_alphas":0,"bulletAlpha":0,"maxBulletSize":0,"balloonText":"value: <b>[[value]]<\/b>","title":"T9","type":"line","valueField":"T9"},{"animationPlayed":false,"lineAlpha":1,"bullet":"round","fill_alphas":0,"bulletAlpha":0,"maxBulletSize":0,"balloonText":"value: <b>[[value]]<\/b>","title":"T12","type":"line","valueField":"T12"}],"type":"serial","valueAxes":[{"position":"left","id":"y","title":"ozone"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
 amBoxplot(maxO3~vent,data=ozone)
-<div id="htmlwidget-0d6e9e3fb52c6b71b8a5" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0d6e9e3fb52c6b71b8a5">{"x":{"chartData":{"rotate":false,"categoryField":"cat","dataProvider":[{"cat":"Est","low_outlier":92,"low":92,"open":96,"median":109,"close":121,"high":146,"high_outlier":146,"color":"#1e90ff","real_outlier_1":"45","individual_1":"<b> Individual <\/b>: 40"},{"cat":"Nord","low_outlier":42,"low":42,"open":71,"median":81,"close":94.5,"high":121,"high_outlier":121,"color":"#1e90ff","real_outlier_1":"153","individual_1":"<b> Individual <\/b>: 53","real_outlier_2":"159","individual_2":"<b> Individual <\/b>: 54"},{"cat":"Ouest","low_outlier":55,"low":55,"open":67,"median":76,"close":88,"high":113,"high_outlier":113,"color":"#1e90ff","real_outlier_1":"131","individual_1":"<b> Individual <\/b>: 78","real_outlier_2":"145","individual_2":"<b> Individual <\/b>: 17","real_outlier_3":"149","individual_3":"<b> Number of outliers <\/b>: 2","real_outlier_4":"156","individual_4":"<b> Individual <\/b>: 57","real_outlier_5":"166","individual_5":"<b> Individual <\/b>: 79"},{"cat":"Sud","low_outlier":54,"low":54,"open":81,"median":99,"close":116,"high":160,"high_outlier":160,"color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"id":"g1","closeField":"close","fillColorsField":"color","highField":"high","lineColor":"#7f8da9","lineAlpha":1,"lowField":"low","fillAlphas":"0.9","negativeLineColor":"#7f8da9","openField":"open","columnWidth":0.4,"balloonText":"High = <b>[[high_outlier]]<\/b><br/>3rd quart. = <b>[[close]]<\/b><br/>Median = <b>[[median]]<\/b><br/>1st quart. = <b>[[open]]<\/b><br/>Low = <b>[[low_outlier]]<\/b><br/>","title":"Price:","type":"candlestick","valueField":"close"},{"animationPlayed":false,"id":"g2","lineColor":"black","noStepRisers":true,"lineThickness":3,"periodSpan":0.4,"balloonText":"","type":"step","valueField":"median"},{"animationPlayed":false,"id":"g3","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"low_outlier"},{"animationPlayed":false,"id":"g4","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"high_outlier"},{"animationPlayed":false,"id":"g5","lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"","type":"line","valueField":"real_outlier"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_1]]<br/><b> Value <\/b>: [[real_outlier_1]]","type":"line","valueField":"real_outlier_1"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_2]]<br/><b> Value <\/b>: [[real_outlier_2]]","type":"line","valueField":"real_outlier_2"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_3]]<br/><b> Value <\/b>: [[real_outlier_3]]","type":"line","valueField":"real_outlier_3"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_4]]<br/><b> Value <\/b>: [[real_outlier_4]]","type":"line","valueField":"real_outlier_4"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_5]]<br/><b> Value <\/b>: [[real_outlier_5]]","type":"line","valueField":"real_outlier_5"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_6]]<br/><b> Value <\/b>: [[real_outlier_6]]","type":"line","valueField":"real_outlier_6"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_7]]<br/><b> Value <\/b>: [[real_outlier_7]]","type":"line","valueField":"real_outlier_7"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_8]]<br/><b> Value <\/b>: [[real_outlier_8]]","type":"line","valueField":"real_outlier_8"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_9]]<br/><b> Value <\/b>: [[real_outlier_9]]","type":"line","valueField":"real_outlier_9"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_10]]<br/><b> Value <\/b>: [[real_outlier_10]]","type":"line","valueField":"real_outlier_10"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_11]]<br/><b> Value <\/b>: [[real_outlier_11]]","type":"line","valueField":"real_outlier_11"}],"theme":"light","type":"serial"},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":null,"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-03d814b461a03a15b8db" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-03d814b461a03a15b8db">{"x":{"chartData":{"rotate":false,"categoryField":"cat","dataProvider":[{"cat":"Est","low_outlier":92,"low":92,"open":96,"median":109,"close":121,"high":146,"high_outlier":146,"color":"#1e90ff","real_outlier_1":"45","individual_1":"<b> Individual <\/b>: 40"},{"cat":"Nord","low_outlier":42,"low":42,"open":71,"median":81,"close":94.5,"high":121,"high_outlier":121,"color":"#1e90ff","real_outlier_1":"153","individual_1":"<b> Individual <\/b>: 53","real_outlier_2":"159","individual_2":"<b> Individual <\/b>: 54"},{"cat":"Ouest","low_outlier":55,"low":55,"open":67,"median":76,"close":88,"high":113,"high_outlier":113,"color":"#1e90ff","real_outlier_1":"131","individual_1":"<b> Individual <\/b>: 78","real_outlier_2":"145","individual_2":"<b> Individual <\/b>: 17","real_outlier_3":"149","individual_3":"<b> Number of outliers <\/b>: 2","real_outlier_4":"156","individual_4":"<b> Individual <\/b>: 57","real_outlier_5":"166","individual_5":"<b> Individual <\/b>: 79"},{"cat":"Sud","low_outlier":54,"low":54,"open":81,"median":99,"close":116,"high":160,"high_outlier":160,"color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"id":"g1","closeField":"close","fillColorsField":"color","highField":"high","lineColor":"#7f8da9","lineAlpha":1,"lowField":"low","fillAlphas":"0.9","negativeLineColor":"#7f8da9","openField":"open","columnWidth":0.4,"balloonText":"High = <b>[[high_outlier]]<\/b><br/>3rd quart. = <b>[[close]]<\/b><br/>Median = <b>[[median]]<\/b><br/>1st quart. = <b>[[open]]<\/b><br/>Low = <b>[[low_outlier]]<\/b><br/>","title":"Price:","type":"candlestick","valueField":"close"},{"animationPlayed":false,"id":"g2","lineColor":"black","noStepRisers":true,"lineThickness":3,"periodSpan":0.4,"balloonText":"","type":"step","valueField":"median"},{"animationPlayed":false,"id":"g3","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"low_outlier"},{"animationPlayed":false,"id":"g4","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"high_outlier"},{"animationPlayed":false,"id":"g5","lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"","type":"line","valueField":"real_outlier"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_1]]<br/><b> Value <\/b>: [[real_outlier_1]]","type":"line","valueField":"real_outlier_1"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_2]]<br/><b> Value <\/b>: [[real_outlier_2]]","type":"line","valueField":"real_outlier_2"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_3]]<br/><b> Value <\/b>: [[real_outlier_3]]","type":"line","valueField":"real_outlier_3"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_4]]<br/><b> Value <\/b>: [[real_outlier_4]]","type":"line","valueField":"real_outlier_4"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_5]]<br/><b> Value <\/b>: [[real_outlier_5]]","type":"line","valueField":"real_outlier_5"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_6]]<br/><b> Value <\/b>: [[real_outlier_6]]","type":"line","valueField":"real_outlier_6"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_7]]<br/><b> Value <\/b>: [[real_outlier_7]]","type":"line","valueField":"real_outlier_7"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_8]]<br/><b> Value <\/b>: [[real_outlier_8]]","type":"line","valueField":"real_outlier_8"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_9]]<br/><b> Value <\/b>: [[real_outlier_9]]","type":"line","valueField":"real_outlier_9"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_10]]<br/><b> Value <\/b>: [[real_outlier_10]]","type":"line","valueField":"real_outlier_10"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_11]]<br/><b> Value <\/b>: [[real_outlier_11]]","type":"line","valueField":"real_outlier_11"}],"theme":"light","type":"serial"},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":null,"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="some-exercises" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Some exercises</h3>
-ffalse{-91-70-105-114-115-116-32-99-104-97-114-116-93-}
 <div class="exercise">
-<span id="exr:exo1" class="exercise"><strong>Exercise 1.1  \iffalse (First chart)  </strong></span>
-</div>
+<p><span id="exr:exo1" class="exercise"><strong>Exercise 1.1  (First chart) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Draw the <strong>sine</strong> function between 0 and <span class="math inline">\(2\pi\)</span>.</p></li>
 <li><p>Add the following title: <strong>Plot of the sine function</strong>, you can use the function <strong>title</strong>.</p></li>
 </ol>
-ffalse{-91-71-97-117-115-115-105-97-110-32-100-101-110-115-105-116-121-32-100-105-115-116-114-105-98-117-116-105-111-110-93-}
-<div class="exercise">
-<span id="exr:exo2" class="exercise"><strong>Exercise 1.2  \iffalse (Gaussian density distribution)  </strong></span>
 </div>
+<div class="exercise">
+<p><span id="exr:exo2" class="exercise"><strong>Exercise 1.2  (Gaussian density distribution) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Draw the pdf (probability distribution function) of the standard Gaussian distribution between <span class="math inline">\(-4\)</span> and 4 (use <strong>dnorm</strong>).</p></li>
 <li><p>Add a vertical dashed line of equation <span class="math inline">\(x=0\)</span> (use <strong>abline</strong>).</p></li>
@@ -338,10 +337,10 @@ ffalse{-91-71-97-117-115-115-105-97-110-32-100-101-110-115-105-116-121-32-100-10
 and a different colour for each density.</p></li>
 <li><p>Add a legend at the top left to differentiate between each distribution (use <strong>legend</strong>).</p></li>
 </ol>
-ffalse{-91-68-114-97-119-105-110-103-32-115-117-110-115-112-111-116-115-93-}
-<div class="exercise">
-<span id="exr:exo3" class="exercise"><strong>Exercise 1.3  \iffalse (Drawing sunspots)  </strong></span>
 </div>
+<div class="exercise">
+<p><span id="exr:exo3" class="exercise"><strong>Exercise 1.3  (Drawing sunspots) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Read the file <strong>taches_solaires.csv</strong> series which details, data by data, the relative number of sunspots.</p></li>
 <li><p>Using the <strong>cut_interval</strong> function from the <em>tidyverse</em> package, create a qualitative variable which separates the dates into 8 intervals. We call <strong>period</strong> this variable.</p></li>
@@ -351,15 +350,14 @@ ffalse{-91-68-114-97-119-105-110-103-32-115-117-110-115-112-111-116-115-93-}
 <li><p>Explain the output of</p></li>
 <li><p>Visualize the sunspot series with a diffrect color for the 8 periods.</p></li>
 </ol>
-ffalse{-91-76-97-121-111-117-116-93-}
-<div class="exercise">
-<span id="exr:exo4" class="exercise"><strong>Exercise 1.4  \iffalse (Layout)  </strong></span>
 </div>
-<p>We consider the <strong>ozone</strong> dataset. With the <strong>layout</strong> function, split the window into two lines with</p>
+<div class="exercise">
+<p><span id="exr:exo4" class="exercise"><strong>Exercise 1.4  (Layout) </strong></span>We consider the <strong>ozone</strong> dataset. With the <strong>layout</strong> function, split the window into two lines with</p>
 <ol style="list-style-type: decimal">
 <li>the scatter plot <strong>maxO3 vs T12</strong> on the first line;</li>
 <li>2 graphs on the second lines: histogram of <strong>T12</strong> et boxplot of <strong>maxO3</strong>.</li>
 </ol>
+</div>
 </div>
 </div>
 <div id="ggplot2-grammar" class="section level2" number="1.2">
@@ -420,15 +418,15 @@ ffalse{-91-76-97-121-111-117-116-93-}
 <p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-33-2.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggplot2.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_point</span>() <span class="co">#OK</span></span></code></pre></div>
 <p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-33-3.png" width="672" style="display: block; margin: auto;" /></p>
-ffalse{-91-72-105-115-116-111-103-114-97-109-115-32-97-110-100-32-98-97-114-112-108-111-116-32-119-105-116-104-32-103-103-112-108-111-116-50-93-}
 <div class="exercise">
-<span id="exr:exoggplot1" class="exercise"><strong>Exercise 1.5  \iffalse (Histograms and barplot with ggplot2)  </strong></span>
-</div>
+<p><span id="exr:exoggplot1" class="exercise"><strong>Exercise 1.5  (Histograms and barplot with ggplot2) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Draw the histogram of <strong>carat</strong> (use <strong>geom_histogram</strong>)</p></li>
 <li><p>Draw the histogram of <strong>carat</strong> with 10 bins (<strong>help(geom_histogram)</strong>)</p></li>
 <li><p>Draw the barplot for the variable <strong>cut</strong> (use <strong>geom_bar</strong>)</p></li>
 </ol>
+</div>
 <p>To summarize, ggplot syntax is based on independent elements. These elements define the <strong>grammar</strong> of <strong>ggplot</strong>. Main elements of this grammar include:</p>
 <ul>
 <li><strong>Data</strong> (<code>ggplot</code>): the dataset, it should be a dataframe or a <strong>tibble</strong>.</li>
@@ -539,15 +537,14 @@ ffalse{-91-72-105-115-116-111-103-114-97-109-115-32-97-110-100-32-98-97-114-112-
 </tr>
 </tbody>
 </table>
-ffalse{-91-66-97-114-112-108-111-116-115-93-}
-<div class="exercise">
-<span id="exr:exoggplot2" class="exercise"><strong>Exercise 1.6  \iffalse (Barplots)  </strong></span>
-</div>
+<p>:::{.exercise exoggplot2 name=“Barplots”}<br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Draw the barplot of <strong>cut</strong> (with blue bars).</p></li>
 <li><p>Draw the barplot of <strong>cut</strong> with one color for each modality of cut. Add a legend.</p></li>
 <li><p>Draw the barplot of <strong>cut</strong> with one color <strong>of your choice</strong> for each modality of cut (and without lengend since it is not useful here).</p></li>
 </ol>
+<p>:::</p>
 </div>
 <div id="statistics" class="section level3" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> <code>Statistics</code></h3>
@@ -610,21 +607,19 @@ aesthetics to these new variables. For example, <strong>stat_bin</strong> functi
 </tbody>
 </table>
 <p><em>stat</em> and <em>geom</em> are not always easy to combine. For beginners, we recommend to use <em>geom</em> for beginners.</p>
-ffalse{-91-65-32-34-118-101-114-121-32-115-105-109-112-108-101-34-32-98-97-114-112-108-111-116-46-46-46-93-}
 <div class="exercise">
-<span id="exr:exo-stat1" class="exercise"><strong>Exercise 1.7  \iffalse (A “very simple” barplot…)  </strong></span>
-</div>
-<p>We consider a color variable <span class="math inline">\(X\)</span> with probability distribution
+<p><span id="exr:exo-stat1" class="exercise"><strong>Exercise 1.6  (A "very simple" barplot...) </strong></span>We consider a color variable <span class="math inline">\(X\)</span> with probability distribution
 <span class="math display">\[P(X=red)=0.3,\ P(X=blue)=0.2,\ P(X=green)=0.4,\ P(X=black)=0.1\]</span>
 Draw the barplot of this distribution.</p>
-ffalse{-91-83-109-111-111-116-104-105-110-103-93-}
-<div class="exercise">
-<span id="exr:exo-stat2" class="exercise"><strong>Exercise 1.8  \iffalse (Smoothing)  </strong></span>
 </div>
+<div class="exercise">
+<p><span id="exr:exo-stat2" class="exercise"><strong>Exercise 1.7  (Smoothing) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Visualize the non linear smoother for the variable <code>price</code> in terms of <code>carat</code>. You can use <code>geom_smooth</code> or <code>stat_smooth</code>.</p></li>
 <li><p>Same question but use a dotted line instead of a solid line.</p></li>
 </ol>
+</div>
 </div>
 <div id="scales" class="section level3" number="1.2.5">
 <h3><span class="header-section-number">1.2.5</span> <code>Scales</code></h3>
@@ -800,10 +795,9 @@ We change the gradient color</p>
 </div>
 <div id="some-exercises-1" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Some exercises</h2>
-ffalse{-91-67-111-115-105-110-101-32-97-110-100-32-115-105-110-101-32-102-117-110-99-116-105-111-110-115-46-46-46-93-}
 <div class="exercise">
-<span id="exr:exo-cos-sin" class="exercise"><strong>Exercise 1.9  \iffalse (Cosine and sine functions…)  </strong></span>
-</div>
+<p><span id="exr:exo-cos-sin" class="exercise"><strong>Exercise 1.8  (Cosine and sine functions...) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Draw the sine and cosine functions on the same graph. You first have to use two datasets (one for the sine function, the other for the cosine function).</p></li>
 <li><p>Do the same with one dataset and 2 <code>geom_line</code>.</p></li>
@@ -811,11 +805,9 @@ ffalse{-91-67-111-115-105-110-101-32-97-110-100-32-115-105-110-101-32-102-117-11
 <li><p>Draw the two functions on two different graphs (use <strong>facet_wrap</strong>).</p></li>
 <li><p>Do the same with the function <strong>grid.arrange</strong> from the package <strong>gridExtra</strong>.</p></li>
 </ol>
-ffalse{-91-67-108-97-115-115-105-99-97-108-32-114-101-112-114-101-115-101-110-116-97-116-105-111-110-115-32-102-111-114-32-97-32-100-97-116-97-115-101-116-93-}
-<div class="exercise">
-<span id="exr:exo-mtcars" class="exercise"><strong>Exercise 1.10  \iffalse (Classical representations for a dataset)  </strong></span>
 </div>
-<p>We consider the <strong>mtcars</strong> dataset:</p>
+<div class="exercise">
+<p><span id="exr:exo-mtcars" class="exercise"><strong>Exercise 1.9  (Classical representations for a dataset) </strong></span>We consider the <strong>mtcars</strong> dataset:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="ggplot2.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
 <span id="cb45-2"><a href="ggplot2.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span>
 <span id="cb45-3"><a href="ggplot2.html#cb45-3" aria-hidden="true" tabindex="-1"></a>      mpg             cyl             disp      </span>
@@ -853,10 +845,10 @@ ffalse{-91-67-108-97-115-115-105-99-97-108-32-114-101-112-114-101-115-101-110-11
 <li><p>Draw the scatter plot <code>disp vs mpg</code> with one color for each value of <code>cyl</code>.</p></li>
 <li><p>Add the linear smoothers, one linear smoother for each value of <code>cyl</code>.</p></li>
 </ol>
-ffalse{-91-82-101-115-105-100-117-97-108-115-32-102-111-114-32-97-32-115-105-109-112-108-101-32-114-101-103-114-101-115-115-105-111-110-32-109-111-100-101-108-93-}
-<div class="exercise">
-<span id="exr:ggplot-reg-simple" class="exercise"><strong>Exercise 1.11  \iffalse (Residuals for a simple regression model)  </strong></span>
 </div>
+<div class="exercise">
+<p><span id="exr:ggplot-reg-simple" class="exercise"><strong>Exercise 1.10  (Residuals for a simple regression model) </strong></span><br />
+</p>
 <ol style="list-style-type: decimal">
 <li><p>Simulate a sample <span class="math inline">\((x_i,y_i),i=1,\dots,100\)</span> according to the linear model
 <span class="math display">\[y_i=3+x_i+\varepsilon_i\]</span>
@@ -864,11 +856,9 @@ where the <span class="math inline">\(x_i\)</span>’s are i.i.d. with uniform d
 <li><p>Draw the scatter plot <strong>y vs x</strong> and add the linear smoother.</p></li>
 <li><p>Draw the residuals: add a vertical line from each point to the linear smoother (use <strong>geom_segment</strong>).</p></li>
 </ol>
-ffalse{-91-67-104-97-108-108-101-110-103-101-93-}
-<div class="exercise">
-<span id="exr:ggplot-challenge" class="exercise"><strong>Exercise 1.12  \iffalse (Challenge)  </strong></span>
 </div>
-<p>We consider the <strong>diamonds</strong> dataset.</p>
+<div class="exercise">
+<p><span id="exr:ggplot-challenge" class="exercise"><strong>Exercise 1.11  (Challenge) </strong></span>We consider the <strong>diamonds</strong> dataset.</p>
 <ol style="list-style-type: decimal">
 <li><p>Draw the following graphs (use <strong>coord_flip</strong> for the second one).</p>
 <p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-80-2.png" width="672" style="display: block; margin: auto;" /><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-80-3.png" width="672" style="display: block; margin: auto;" /></p></li>
@@ -877,6 +867,7 @@ ffalse{-91-67-104-97-108-108-101-110-103-101-93-}
 <li><p>Add a horizontal boxplot under each graph (use the <strong>ggstance</strong> package) to obtain the following chart:</p>
 <p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p></li>
 </ol>
+</div>
 
 </div>
 </div>
