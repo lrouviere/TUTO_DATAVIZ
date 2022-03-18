@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Data visualization with ggplot2 | Tutorial: Dynamic data visualization with R</title>
+  <meta name="description" content="Chapter 1 Data visualization with ggplot2 | Tutorial: Dynamic data visualization with R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Data visualization with ggplot2 | Tutorial: Dynamic data visualization with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Data visualization with ggplot2 | Tutorial: Dynamic data visualization with R" />
+  
+  
+  
+
+<meta name="author" content="Laurent Rouvière" />
+
+
+<meta name="date" content="2022-03-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="mapping.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/amcharts-3.21.13/amcharts.js"></script>
+<script src="libs/ramcharts_base-binding-2.1.13/ramcharts_base.js"></script>
+<script src="libs/amcharts_type_serial-3.20.18/serial.js"></script>
+<script src="libs/amcharts_themes_light.js-3.20.18/light.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<script src="libs/amcharts_type_xy-3.20.18/xy.js"></script>
+<link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet" />
+<script src="libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="libs/visNetwork-binding-2.1.0/visNetwork.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dynamic data visualization, L. Rouvière</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentation</a></li>
+<li class="chapter" data-level="1" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>1</b> Data visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ggplot2.html"><a href="ggplot2.html#conventional-graphical-functions"><i class="fa fa-check"></i><b>1.1</b> Conventional Graphical Functions</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="ggplot2.html"><a href="ggplot2.html#the-plot-function"><i class="fa fa-check"></i><b>1.1.1</b> The plot function</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ggplot2.html"><a href="ggplot2.html#interactive-graphs-with-ramcharts"><i class="fa fa-check"></i><b>1.1.2</b> Interactive graphs with rAmCharts</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ggplot2.html"><a href="ggplot2.html#some-exercises"><i class="fa fa-check"></i><b>1.1.3</b> Some exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-grammar"><i class="fa fa-check"></i><b>1.2</b> Ggplot2 grammar</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ggplot2.html"><a href="ggplot2.html#first-charts-with-ggplot2"><i class="fa fa-check"></i><b>1.2.1</b> First charts with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="ggplot2.html"><a href="ggplot2.html#data-et-aesthetics"><i class="fa fa-check"></i><b>1.2.2</b> Data et aesthetics</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrics"><i class="fa fa-check"></i><b>1.2.3</b> <code>Geometrics</code></a></li>
+<li class="chapter" data-level="1.2.4" data-path="ggplot2.html"><a href="ggplot2.html#statistics"><i class="fa fa-check"></i><b>1.2.4</b> <code>Statistics</code></a></li>
+<li class="chapter" data-level="1.2.5" data-path="ggplot2.html"><a href="ggplot2.html#scales"><i class="fa fa-check"></i><b>1.2.5</b> <code>Scales</code></a></li>
+<li class="chapter" data-level="1.2.6" data-path="ggplot2.html"><a href="ggplot2.html#group-and-facets"><i class="fa fa-check"></i><b>1.2.6</b> <code>Group and facets</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ggplot2.html"><a href="ggplot2.html#complements"><i class="fa fa-check"></i><b>1.3</b> Complements</a></li>
+<li class="chapter" data-level="1.4" data-path="ggplot2.html"><a href="ggplot2.html#some-exercises-1"><i class="fa fa-check"></i><b>1.4</b> Some exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>2</b> Mapping with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mapping.html"><a href="mapping.html#ggmap-package"><i class="fa fa-check"></i><b>2.1</b> ggmap package</a></li>
+<li class="chapter" data-level="2.2" data-path="mapping.html"><a href="mapping.html#maps-with-contours-shapefile-format"><i class="fa fa-check"></i><b>2.2</b> Maps with contours, shapefile format</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mapping.html"><a href="mapping.html#challenge1"><i class="fa fa-check"></i><b>2.2.1</b> Challenge 1: temperature map with sf</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mapping.html"><a href="mapping.html#finding-background-shapefile-map"><i class="fa fa-check"></i><b>2.2.2</b> Finding background shapefile map</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mapping.html"><a href="mapping.html#dynamic-maps-with-leaflet"><i class="fa fa-check"></i><b>2.3</b> Dynamic maps with leaflet</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="mapping.html"><a href="mapping.html#challenge-2-bike-stations-in-paris"><i class="fa fa-check"></i><b>2.3.1</b> Challenge 2: bike stations in Paris</a></li>
+<li class="chapter" data-level="2.3.2" data-path="mapping.html"><a href="mapping.html#temperature-map-with-leaflet"><i class="fa fa-check"></i><b>2.3.2</b> Temperature map with leaflet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dynamic.html"><a href="dynamic.html"><i class="fa fa-check"></i><b>3</b> Dynamic visualization</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dynamic.html"><a href="dynamic.html#basic-charts-with-ramcharts-and-plotly"><i class="fa fa-check"></i><b>3.1</b> Basic charts with <code>rAmCharts</code> and <code>plotly</code></a></li>
+<li class="chapter" data-level="3.2" data-path="dynamic.html"><a href="dynamic.html#graphs-to-visualize-networks-with-visnetwork"><i class="fa fa-check"></i><b>3.2</b> Graphs to visualize networks with visNetwork</a></li>
+<li class="chapter" data-level="3.3" data-path="dynamic.html"><a href="dynamic.html#dashboard"><i class="fa fa-check"></i><b>3.3</b> Dashboard</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html"><i class="fa fa-check"></i><b>4</b> Shiny web applications</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#first-app"><i class="fa fa-check"></i><b>4.1</b> First app</a></li>
+<li class="chapter" data-level="4.2" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#input---output"><i class="fa fa-check"></i><b>4.2</b> Input - output</a></li>
+<li class="chapter" data-level="4.3" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#organizing-the-application"><i class="fa fa-check"></i><b>4.3</b> Organizing the application</a></li>
+<li class="chapter" data-level="4.4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#adding-interactive-charts"><i class="fa fa-check"></i><b>4.4</b> Adding interactive charts</a></li>
+<li class="chapter" data-level="4.5" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#reactive-isolation-observe-html"><i class="fa fa-check"></i><b>4.5</b> Reactive, isolation, observe, html, …</a></li>
+<li class="chapter" data-level="4.6" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#some-additional-exercises"><i class="fa fa-check"></i><b>4.6</b> Some additional exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tutorial: Dynamic data visualization with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Data visualization with ggplot2</h1>
+<p>Graphs are often the starting point for statistical analysis. One of the main advantages of <strong>R</strong> is how easy it is for the user to create many different kinds of graphs. We begin this chapter by studying conventional graphs, followed by an examination of some more complex representations. This final (and main) part uses the <strong>ggplot2</strong> package.</p>
+<div id="conventional-graphical-functions" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Conventional Graphical Functions</h2>
+<p>To begin with, it may be interesting to examine few examples of graphical representations which can be constructed with <strong>R</strong>. We use the <strong>demo</strong> function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ggplot2.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(graphics)</span></code></pre></div>
+<div id="the-plot-function" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> The plot function</h3>
+<p>The <strong>plot</strong> function is a <strong>generic function</strong> used to represent all kinds of data. We can use this function for representing a scatterplot for a variable <em>y</em> according to another variable <em>x</em>. For example, to represent the graph of the function
+<span class="math inline">\(x\mapsto \sin(2\pi x)\)</span> on <span class="math inline">\([0,1]\)</span>, at regular steps we use the following commands:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ggplot2.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi,<span class="dv">2</span><span class="sc">*</span>pi,<span class="at">by=</span><span class="fl">0.05</span>)</span>
+<span id="cb2-2"><a href="ggplot2.html#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
+<span id="cb2-3"><a href="ggplot2.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y) <span class="co">#points (par défaut)</span></span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ggplot2.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;l&quot;</span>) <span class="co">#représentation sous forme de ligne</span></span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-6-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We provide examples of representations for quantitative and qualitative variables. We use the data file <strong>ozone.txt</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ggplot2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>ozone <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/ozone.txt&quot;</span>)</span>
+<span id="cb4-2"><a href="ggplot2.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ozone)</span>
+<span id="cb4-3"><a href="ggplot2.html#cb4-3" aria-hidden="true" tabindex="-1"></a>     maxO3              T9             T12       </span>
+<span id="cb4-4"><a href="ggplot2.html#cb4-4" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span> <span class="fl">42.00</span>   Min.   <span class="sc">:</span><span class="fl">11.30</span>   Min.   <span class="sc">:</span><span class="fl">14.00</span>  </span>
+<span id="cb4-5"><a href="ggplot2.html#cb4-5" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span> <span class="fl">70.75</span>   1st Qu.<span class="sc">:</span><span class="fl">16.20</span>   1st Qu.<span class="sc">:</span><span class="fl">18.60</span>  </span>
+<span id="cb4-6"><a href="ggplot2.html#cb4-6" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span> <span class="fl">81.50</span>   Median <span class="sc">:</span><span class="fl">17.80</span>   Median <span class="sc">:</span><span class="fl">20.55</span>  </span>
+<span id="cb4-7"><a href="ggplot2.html#cb4-7" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span> <span class="fl">90.30</span>   Mean   <span class="sc">:</span><span class="fl">18.36</span>   Mean   <span class="sc">:</span><span class="fl">21.53</span>  </span>
+<span id="cb4-8"><a href="ggplot2.html#cb4-8" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">106.00</span>   3rd Qu.<span class="sc">:</span><span class="fl">19.93</span>   3rd Qu.<span class="sc">:</span><span class="fl">23.55</span>  </span>
+<span id="cb4-9"><a href="ggplot2.html#cb4-9" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">166.00</span>   Max.   <span class="sc">:</span><span class="fl">27.00</span>   Max.   <span class="sc">:</span><span class="fl">33.50</span>  </span>
+<span id="cb4-10"><a href="ggplot2.html#cb4-10" aria-hidden="true" tabindex="-1"></a>      T15             Ne9             Ne12      </span>
+<span id="cb4-11"><a href="ggplot2.html#cb4-11" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">14.90</span>   Min.   <span class="sc">:</span><span class="fl">0.000</span>   Min.   <span class="sc">:</span><span class="fl">0.000</span>  </span>
+<span id="cb4-12"><a href="ggplot2.html#cb4-12" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">19.27</span>   1st Qu.<span class="sc">:</span><span class="fl">3.000</span>   1st Qu.<span class="sc">:</span><span class="fl">4.000</span>  </span>
+<span id="cb4-13"><a href="ggplot2.html#cb4-13" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">22.05</span>   Median <span class="sc">:</span><span class="fl">6.000</span>   Median <span class="sc">:</span><span class="fl">5.000</span>  </span>
+<span id="cb4-14"><a href="ggplot2.html#cb4-14" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">22.63</span>   Mean   <span class="sc">:</span><span class="fl">4.929</span>   Mean   <span class="sc">:</span><span class="fl">5.018</span>  </span>
+<span id="cb4-15"><a href="ggplot2.html#cb4-15" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">25.40</span>   3rd Qu.<span class="sc">:</span><span class="fl">7.000</span>   3rd Qu.<span class="sc">:</span><span class="fl">7.000</span>  </span>
+<span id="cb4-16"><a href="ggplot2.html#cb4-16" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">35.50</span>   Max.   <span class="sc">:</span><span class="fl">8.000</span>   Max.   <span class="sc">:</span><span class="fl">8.000</span>  </span>
+<span id="cb4-17"><a href="ggplot2.html#cb4-17" aria-hidden="true" tabindex="-1"></a>      Ne15           Vx9               Vx12       </span>
+<span id="cb4-18"><a href="ggplot2.html#cb4-18" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">0.00</span>   Min.   <span class="sc">:-</span><span class="fl">7.8785</span>   Min.   <span class="sc">:-</span><span class="fl">7.878</span>  </span>
+<span id="cb4-19"><a href="ggplot2.html#cb4-19" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">3.00</span>   1st Qu.<span class="sc">:-</span><span class="fl">3.2765</span>   1st Qu.<span class="sc">:-</span><span class="fl">3.565</span>  </span>
+<span id="cb4-20"><a href="ggplot2.html#cb4-20" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">5.00</span>   Median <span class="sc">:-</span><span class="fl">0.8660</span>   Median <span class="sc">:-</span><span class="fl">1.879</span>  </span>
+<span id="cb4-21"><a href="ggplot2.html#cb4-21" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">4.83</span>   Mean   <span class="sc">:-</span><span class="fl">1.2143</span>   Mean   <span class="sc">:-</span><span class="fl">1.611</span>  </span>
+<span id="cb4-22"><a href="ggplot2.html#cb4-22" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">7.00</span>   3rd Qu.<span class="sc">:</span> <span class="fl">0.6946</span>   3rd Qu.<span class="sc">:</span> <span class="fl">0.000</span>  </span>
+<span id="cb4-23"><a href="ggplot2.html#cb4-23" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">8.00</span>   Max.   <span class="sc">:</span> <span class="fl">5.1962</span>   Max.   <span class="sc">:</span> <span class="fl">6.578</span>  </span>
+<span id="cb4-24"><a href="ggplot2.html#cb4-24" aria-hidden="true" tabindex="-1"></a>      Vx15            maxO3v           vent          </span>
+<span id="cb4-25"><a href="ggplot2.html#cb4-25" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:-</span><span class="fl">9.000</span>   Min.   <span class="sc">:</span> <span class="fl">42.00</span>   Length<span class="sc">:</span><span class="dv">112</span>        </span>
+<span id="cb4-26"><a href="ggplot2.html#cb4-26" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:-</span><span class="fl">3.939</span>   1st Qu.<span class="sc">:</span> <span class="fl">71.00</span>   Class <span class="sc">:</span>character  </span>
+<span id="cb4-27"><a href="ggplot2.html#cb4-27" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:-</span><span class="fl">1.550</span>   Median <span class="sc">:</span> <span class="fl">82.50</span>   Mode  <span class="sc">:</span>character  </span>
+<span id="cb4-28"><a href="ggplot2.html#cb4-28" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:-</span><span class="fl">1.691</span>   Mean   <span class="sc">:</span> <span class="fl">90.57</span>                     </span>
+<span id="cb4-29"><a href="ggplot2.html#cb4-29" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span> <span class="fl">0.000</span>   3rd Qu.<span class="sc">:</span><span class="fl">106.00</span>                     </span>
+<span id="cb4-30"><a href="ggplot2.html#cb4-30" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span> <span class="fl">5.000</span>   Max.   <span class="sc">:</span><span class="fl">166.00</span>                     </span>
+<span id="cb4-31"><a href="ggplot2.html#cb4-31" aria-hidden="true" tabindex="-1"></a>    pluie          </span>
+<span id="cb4-32"><a href="ggplot2.html#cb4-32" aria-hidden="true" tabindex="-1"></a> Length<span class="sc">:</span><span class="dv">112</span>        </span>
+<span id="cb4-33"><a href="ggplot2.html#cb4-33" aria-hidden="true" tabindex="-1"></a> Class <span class="sc">:</span>character  </span>
+<span id="cb4-34"><a href="ggplot2.html#cb4-34" aria-hidden="true" tabindex="-1"></a> Mode  <span class="sc">:</span>character  </span>
+<span id="cb4-35"><a href="ggplot2.html#cb4-35" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb4-36"><a href="ggplot2.html#cb4-36" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb4-37"><a href="ggplot2.html#cb4-37" aria-hidden="true" tabindex="-1"></a>                   </span></code></pre></div>
+<p>Let us start by representing two quantitative variables: maximum ozone concentrations <strong>maxO3</strong> in term of temperatures <strong>T12</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ggplot2.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ozone[,<span class="st">&quot;T12&quot;</span>],ozone[,<span class="st">&quot;maxO3&quot;</span>])</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As the two variables are contained and named within the same table, a simpler syntax can be used, which automatically inserts the variables as labels for the axes:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ggplot2.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(maxO3<span class="sc">~</span>T12,<span class="at">data=</span>ozone)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can also use (more complicated and less interesting)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ggplot2.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ozone[,<span class="st">&quot;T12&quot;</span>],ozone[,<span class="st">&quot;maxO3&quot;</span>],<span class="at">xlab=</span><span class="st">&quot;T12&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;maxO3&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We have specific functions for each kind of charts, for instance</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ggplot2.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ozone<span class="sc">$</span>maxO3,<span class="at">main=</span><span class="st">&quot;Histogram&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ggplot2.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(ozone<span class="sc">$</span>vent)<span class="sc">/</span><span class="fu">nrow</span>(ozone),<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-11-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="ggplot2.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(maxO3<span class="sc">~</span>vent,<span class="at">data=</span>ozone)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-11-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interactive-graphs-with-ramcharts" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Interactive graphs with rAmCharts</h3>
+<p>We can use this package to obtain dynamic graphs. It is easy, we just have to use the prefix <strong>am</strong> before the name of the function:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ggplot2.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rAmCharts)</span>
+<span id="cb11-2"><a href="ggplot2.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">amHist</span>(ozone<span class="sc">$</span>maxO3)</span></code></pre></div>
+<div id="htmlwidget-e5ecfbedc0df4bb835c9" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e5ecfbedc0df4bb835c9">{"x":{"chartData":{"columnSpacing":0,"columnWidth":1,"fillAlphas":1,"lineAlpha":1,"categoryAxis":{"title":"ozone$maxO3"},"categoryField":"x","creditsPosition":"bottom-right","dataProvider":[{"x":50,"y":10,"cut":"(from 40 to 60)","color":"#1e90ff"},{"x":70,"y":43,"cut":"(from 60 to 80)","color":"#1e90ff"},{"x":90,"y":27,"cut":"(from 80 to 100)","color":"#1e90ff"},{"x":110,"y":16,"cut":"(from 100 to 120)","color":"#1e90ff"},{"x":130,"y":5,"cut":"(from 120 to 140)","color":"#1e90ff"},{"x":150,"y":10,"cut":"(from 140 to 160)","color":"#1e90ff"},{"x":170,"y":1,"cut":"(from 160 to 180)","color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"fillAlphas":0.8,"lineAlpha":1,"fillColorsField":"color","lineColor":"#1e90ff","labelText":"","balloonText":"<b>[[value]]<\/b> <br/> [[cut]] ","type":"column","valueField":"y"}],"theme":"light","type":"serial","valueAxes":[{"minimum":0,"maximum":45.15,"title":"Frequency"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+amPlot(ozone,col=c("T9","T12"))
+<div id="htmlwidget-5a42bd153d989a6b534a" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5a42bd153d989a6b534a">{"x":{"chartData":{"precision":2,"categoryAxis":{"title":"index","position":"bottom","id":"x"},"categoryField":"amCategory","dataProvider":[{"T9":15.6,"T12":18.5,"amCategory":"Obs. 1"},{"T9":17,"T12":18.4,"amCategory":"Obs. 2"},{"T9":15.3,"T12":17.6,"amCategory":"Obs. 3"},{"T9":16.2,"T12":19.7,"amCategory":"Obs. 4"},{"T9":17.4,"T12":20.5,"amCategory":"Obs. 5"},{"T9":17.7,"T12":19.8,"amCategory":"Obs. 6"},{"T9":16.8,"T12":15.6,"amCategory":"Obs. 7"},{"T9":14.9,"T12":17.5,"amCategory":"Obs. 8"},{"T9":16.1,"T12":19.6,"amCategory":"Obs. 9"},{"T9":18.3,"T12":21.9,"amCategory":"Obs. 10"},{"T9":17.3,"T12":19.3,"amCategory":"Obs. 11"},{"T9":17.6,"T12":20.3,"amCategory":"Obs. 12"},{"T9":18.3,"T12":19.6,"amCategory":"Obs. 13"},{"T9":17.1,"T12":18.2,"amCategory":"Obs. 14"},{"T9":15.4,"T12":17.4,"amCategory":"Obs. 15"},{"T9":15.9,"T12":19.1,"amCategory":"Obs. 16"},{"T9":21,"T12":24.6,"amCategory":"Obs. 17"},{"T9":16.2,"T12":22.4,"amCategory":"Obs. 18"},{"T9":19.7,"T12":24.2,"amCategory":"Obs. 19"},{"T9":23.6,"T12":28.6,"amCategory":"Obs. 20"},{"T9":20.4,"T12":25.2,"amCategory":"Obs. 21"},{"T9":27,"T12":32.7,"amCategory":"Obs. 22"},{"T9":24,"T12":23.5,"amCategory":"Obs. 23"},{"T9":19.7,"T12":22.9,"amCategory":"Obs. 24"},{"T9":20.1,"T12":22.4,"amCategory":"Obs. 25"},{"T9":19.6,"T12":25.1,"amCategory":"Obs. 26"},{"T9":19.5,"T12":23.4,"amCategory":"Obs. 27"},{"T9":18.8,"T12":22.7,"amCategory":"Obs. 28"},{"T9":24.1,"T12":28.4,"amCategory":"Obs. 29"},{"T9":26.6,"T12":30.1,"amCategory":"Obs. 30"},{"T9":19.5,"T12":18.8,"amCategory":"Obs. 31"},{"T9":16.8,"T12":18.2,"amCategory":"Obs. 32"},{"T9":20.8,"T12":23.7,"amCategory":"Obs. 33"},{"T9":17.5,"T12":18.2,"amCategory":"Obs. 34"},{"T9":18.1,"T12":21.2,"amCategory":"Obs. 35"},{"T9":19.2,"T12":22,"amCategory":"Obs. 36"},{"T9":19.4,"T12":20.7,"amCategory":"Obs. 37"},{"T9":19.2,"T12":21,"amCategory":"Obs. 38"},{"T9":13.8,"T12":17.3,"amCategory":"Obs. 39"},{"T9":14.3,"T12":14.5,"amCategory":"Obs. 40"},{"T9":15.6,"T12":18.6,"amCategory":"Obs. 41"},{"T9":16.9,"T12":19.1,"amCategory":"Obs. 42"},{"T9":17.4,"T12":20.4,"amCategory":"Obs. 43"},{"T9":15.1,"T12":20.5,"amCategory":"Obs. 44"},{"T9":15.1,"T12":15.6,"amCategory":"Obs. 45"},{"T9":16.7,"T12":19.1,"amCategory":"Obs. 46"},{"T9":16.9,"T12":20.3,"amCategory":"Obs. 47"},{"T9":18,"T12":21.6,"amCategory":"Obs. 48"},{"T9":18.6,"T12":21.9,"amCategory":"Obs. 49"},{"T9":18.8,"T12":22.5,"amCategory":"Obs. 50"},{"T9":19,"T12":22.5,"amCategory":"Obs. 51"},{"T9":19.9,"T12":26.9,"amCategory":"Obs. 52"},{"T9":23.8,"T12":27.7,"amCategory":"Obs. 53"},{"T9":24,"T12":28.3,"amCategory":"Obs. 54"},{"T9":23.3,"T12":27.6,"amCategory":"Obs. 55"},{"T9":25,"T12":29.6,"amCategory":"Obs. 56"},{"T9":24.9,"T12":30.5,"amCategory":"Obs. 57"},{"T9":20.5,"T12":26.3,"amCategory":"Obs. 58"},{"T9":25.3,"T12":29.5,"amCategory":"Obs. 59"},{"T9":21.3,"T12":23.8,"amCategory":"Obs. 60"},{"T9":20,"T12":18.2,"amCategory":"Obs. 61"},{"T9":18.7,"T12":20.6,"amCategory":"Obs. 62"},{"T9":18.6,"T12":18.7,"amCategory":"Obs. 63"},{"T9":19.2,"T12":23,"amCategory":"Obs. 64"},{"T9":19.9,"T12":21.6,"amCategory":"Obs. 65"},{"T9":18.7,"T12":21.4,"amCategory":"Obs. 66"},{"T9":18.4,"T12":17.1,"amCategory":"Obs. 67"},{"T9":17.1,"T12":20,"amCategory":"Obs. 68"},{"T9":17.8,"T12":22.8,"amCategory":"Obs. 69"},{"T9":20.9,"T12":25.2,"amCategory":"Obs. 70"},{"T9":18.8,"T12":20.5,"amCategory":"Obs. 71"},{"T9":23.5,"T12":29.8,"amCategory":"Obs. 72"},{"T9":20.8,"T12":23.7,"amCategory":"Obs. 73"},{"T9":18.8,"T12":21.1,"amCategory":"Obs. 74"},{"T9":17.8,"T12":21.3,"amCategory":"Obs. 75"},{"T9":20.6,"T12":24.8,"amCategory":"Obs. 76"},{"T9":21.6,"T12":26.9,"amCategory":"Obs. 77"},{"T9":22.7,"T12":28.4,"amCategory":"Obs. 78"},{"T9":19.8,"T12":27.2,"amCategory":"Obs. 79"},{"T9":25,"T12":33.5,"amCategory":"Obs. 80"},{"T9":20.1,"T12":22.9,"amCategory":"Obs. 81"},{"T9":21,"T12":26.3,"amCategory":"Obs. 82"},{"T9":21,"T12":24.4,"amCategory":"Obs. 83"},{"T9":16.9,"T12":17.8,"amCategory":"Obs. 84"},{"T9":17.5,"T12":18.6,"amCategory":"Obs. 85"},{"T9":16.5,"T12":20.3,"amCategory":"Obs. 86"},{"T9":17.7,"T12":20.2,"amCategory":"Obs. 87"},{"T9":17.3,"T12":22.7,"amCategory":"Obs. 88"},{"T9":15.3,"T12":16.8,"amCategory":"Obs. 89"},{"T9":15.9,"T12":19.2,"amCategory":"Obs. 90"},{"T9":16.2,"T12":18.9,"amCategory":"Obs. 91"},{"T9":18.3,"T12":18.3,"amCategory":"Obs. 92"},{"T9":16.9,"T12":20.8,"amCategory":"Obs. 93"},{"T9":17.3,"T12":19.8,"amCategory":"Obs. 94"},{"T9":14.2,"T12":22.2,"amCategory":"Obs. 95"},{"T9":15.8,"T12":18.7,"amCategory":"Obs. 96"},{"T9":15.2,"T12":17.9,"amCategory":"Obs. 97"},{"T9":17.1,"T12":17.7,"amCategory":"Obs. 98"},{"T9":15.4,"T12":17.7,"amCategory":"Obs. 99"},{"T9":13.7,"T12":14,"amCategory":"Obs. 100"},{"T9":12.7,"T12":14.3,"amCategory":"Obs. 101"},{"T9":14.8,"T12":16.3,"amCategory":"Obs. 102"},{"T9":15.5,"T12":18,"amCategory":"Obs. 103"},{"T9":11.3,"T12":19.4,"amCategory":"Obs. 104"},{"T9":15.2,"T12":19.7,"amCategory":"Obs. 105"},{"T9":14.7,"T12":17.6,"amCategory":"Obs. 106"},{"T9":13.3,"T12":17.7,"amCategory":"Obs. 107"},{"T9":13.3,"T12":17.7,"amCategory":"Obs. 108"},{"T9":16.2,"T12":20.8,"amCategory":"Obs. 109"},{"T9":16.9,"T12":23,"amCategory":"Obs. 110"},{"T9":16.9,"T12":19.8,"amCategory":"Obs. 111"},{"T9":15.7,"T12":18.6,"amCategory":"Obs. 112"}],"graphs":[{"animationPlayed":false,"lineAlpha":1,"bullet":"round","fill_alphas":0,"bulletAlpha":0,"maxBulletSize":0,"balloonText":"value: <b>[[value]]<\/b>","title":"T9","type":"line","valueField":"T9"},{"animationPlayed":false,"lineAlpha":1,"bullet":"round","fill_alphas":0,"bulletAlpha":0,"maxBulletSize":0,"balloonText":"value: <b>[[value]]<\/b>","title":"T12","type":"line","valueField":"T12"}],"type":"serial","valueAxes":[{"position":"left","id":"y","title":"ozone"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+amBoxplot(maxO3~vent,data=ozone)
+<div id="htmlwidget-d87bee82770cff0f1952" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d87bee82770cff0f1952">{"x":{"chartData":{"rotate":false,"categoryField":"cat","dataProvider":[{"cat":"Est","low_outlier":92,"low":92,"open":96,"median":109,"close":121,"high":146,"high_outlier":146,"color":"#1e90ff","real_outlier_1":"45","individual_1":"<b> Individual <\/b>: 40"},{"cat":"Nord","low_outlier":42,"low":42,"open":71,"median":81,"close":94.5,"high":121,"high_outlier":121,"color":"#1e90ff","real_outlier_1":"153","individual_1":"<b> Individual <\/b>: 53","real_outlier_2":"159","individual_2":"<b> Individual <\/b>: 54"},{"cat":"Ouest","low_outlier":55,"low":55,"open":67,"median":76,"close":88,"high":113,"high_outlier":113,"color":"#1e90ff","real_outlier_1":"131","individual_1":"<b> Individual <\/b>: 78","real_outlier_2":"145","individual_2":"<b> Individual <\/b>: 17","real_outlier_3":"149","individual_3":"<b> Number of outliers <\/b>: 2","real_outlier_4":"156","individual_4":"<b> Individual <\/b>: 57","real_outlier_5":"166","individual_5":"<b> Individual <\/b>: 79"},{"cat":"Sud","low_outlier":54,"low":54,"open":81,"median":99,"close":116,"high":160,"high_outlier":160,"color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"id":"g1","closeField":"close","fillColorsField":"color","highField":"high","lineColor":"#7f8da9","lineAlpha":1,"lowField":"low","fillAlphas":"0.9","negativeLineColor":"#7f8da9","openField":"open","columnWidth":0.4,"balloonText":"High = <b>[[high_outlier]]<\/b><br/>3rd quart. = <b>[[close]]<\/b><br/>Median = <b>[[median]]<\/b><br/>1st quart. = <b>[[open]]<\/b><br/>Low = <b>[[low_outlier]]<\/b><br/>","title":"Price:","type":"candlestick","valueField":"close"},{"animationPlayed":false,"id":"g2","lineColor":"black","noStepRisers":true,"lineThickness":3,"periodSpan":0.4,"balloonText":"","type":"step","valueField":"median"},{"animationPlayed":false,"id":"g3","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"low_outlier"},{"animationPlayed":false,"id":"g4","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"high_outlier"},{"animationPlayed":false,"id":"g5","lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"","type":"line","valueField":"real_outlier"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_1]]<br/><b> Value <\/b>: [[real_outlier_1]]","type":"line","valueField":"real_outlier_1"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_2]]<br/><b> Value <\/b>: [[real_outlier_2]]","type":"line","valueField":"real_outlier_2"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_3]]<br/><b> Value <\/b>: [[real_outlier_3]]","type":"line","valueField":"real_outlier_3"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_4]]<br/><b> Value <\/b>: [[real_outlier_4]]","type":"line","valueField":"real_outlier_4"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_5]]<br/><b> Value <\/b>: [[real_outlier_5]]","type":"line","valueField":"real_outlier_5"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_6]]<br/><b> Value <\/b>: [[real_outlier_6]]","type":"line","valueField":"real_outlier_6"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_7]]<br/><b> Value <\/b>: [[real_outlier_7]]","type":"line","valueField":"real_outlier_7"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_8]]<br/><b> Value <\/b>: [[real_outlier_8]]","type":"line","valueField":"real_outlier_8"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_9]]<br/><b> Value <\/b>: [[real_outlier_9]]","type":"line","valueField":"real_outlier_9"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_10]]<br/><b> Value <\/b>: [[real_outlier_10]]","type":"line","valueField":"real_outlier_10"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_11]]<br/><b> Value <\/b>: [[real_outlier_11]]","type":"line","valueField":"real_outlier_11"}],"theme":"light","type":"serial"},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":null,"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="some-exercises" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Some exercises</h3>
+<div class="exercise">
+<p><span id="exr:exo1" class="exercise"><strong>Exercise 1.1  (First chart) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw the <strong>sine</strong> function between 0 and <span class="math inline">\(2\pi\)</span>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="ggplot2.html#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span><span class="sc">*</span>pi,<span class="at">length=</span><span class="dv">1000</span>)</span>
+<span id="cb12-2"><a href="ggplot2.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">sin</span>(x),<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Add the following title: <strong>Plot of the sine function</strong>, you can use the function <strong>title</strong>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ggplot2.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Plot of the sine function&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:exo2" class="exercise"><strong>Exercise 1.2  (Gaussian density distribution) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw the pdf (probability distribution function) of the standard Gaussian distribution between <span class="math inline">\(-4\)</span> and 4 (use <strong>dnorm</strong>).</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ggplot2.html#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">by=</span><span class="fl">0.01</span>)</span>
+<span id="cb14-2"><a href="ggplot2.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">dnorm</span>(x),<span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Add a vertical dashed line of equation <span class="math inline">\(x=0\)</span> (use <strong>abline</strong>).</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="ggplot2.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>On the same graph, draw Student’s <span class="math inline">\(t\)</span>-distribution to 5 and 30 degrees of freedom (use <strong>dt</strong>). Use the <strong>lines</strong> function
+and a different colour for each density.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="ggplot2.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="fu">dt</span>(x,<span class="dv">5</span>),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb16-2"><a href="ggplot2.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x,<span class="fu">dt</span>(x,<span class="dv">30</span>),<span class="at">col=</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Add a legend at the top left to differentiate between each distribution (use <strong>legend</strong>).</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="ggplot2.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>,<span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Normal&quot;</span>,<span class="st">&quot;Student(5)&quot;</span>,<span class="st">&quot;Student(30)&quot;</span>),</span>
+<span id="cb17-2"><a href="ggplot2.html#cb17-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lty=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:exo3" class="exercise"><strong>Exercise 1.3  (Drawing sunspots) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Read the file <strong>taches_solaires.csv</strong> series which details, data by data, the relative number of sunspots.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggplot2.html#cb18-1" aria-hidden="true" tabindex="-1"></a>spots <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/taches_solaires.csv&quot;</span>,<span class="at">sep=</span><span class="st">&quot;;&quot;</span>,<span class="at">header=</span><span class="cn">TRUE</span>,<span class="at">dec=</span><span class="st">&quot;,&quot;</span>)</span></code></pre></div></li>
+<li><p>Using the <strong>cut_interval</strong> function from the <em>tidyverse</em> package, create a qualitative variable which separates the dates into 8 intervals. We call <strong>period</strong> this variable.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="ggplot2.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="ggplot2.html#cb19-2" aria-hidden="true" tabindex="-1"></a>period <span class="ot">&lt;-</span> <span class="fu">cut_interval</span>(spots<span class="sc">$</span>annee,<span class="at">n=</span><span class="dv">8</span>)</span></code></pre></div></li>
+<li><p>Use the following levels for <strong>period</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ggplot2.html#cb20-1" aria-hidden="true" tabindex="-1"></a>mycolors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;cyan&quot;</span>,</span>
+<span id="cb20-2"><a href="ggplot2.html#cb20-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;grey&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ggplot2.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(period) <span class="ot">&lt;-</span> mycolors</span></code></pre></div></li>
+<li><p>Explain the output of</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ggplot2.html#cb22-1" aria-hidden="true" tabindex="-1"></a>coordx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">along=</span>spots[,<span class="dv">1</span>])</span></code></pre></div>
+<div class="corR">
+<p>
+We create a sequence from 1 to the length of <code>spots[,1]</code>.
+</p>
+</div></li>
+<li><p>Visualize the sunspot series with a diffrect color for the 8 periods.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ggplot2.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coordx,spots[,<span class="dv">1</span>],<span class="at">xlab=</span><span class="st">&quot;Temps&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Nombre de taches&quot;</span>,</span>
+<span id="cb23-2"><a href="ggplot2.html#cb23-2" aria-hidden="true" tabindex="-1"></a> <span class="at">col=</span>period,<span class="at">type=</span><span class="st">&quot;p&quot;</span>,<span class="at">pch=</span><span class="st">&quot;+&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:exo4" class="exercise"><strong>Exercise 1.4  (Layout) </strong></span>We consider the <strong>ozone</strong> dataset. With the <strong>layout</strong> function, split the window into two lines with</p>
+<ol style="list-style-type: decimal">
+<li><p>the scatter plot <strong>maxO3 vs T12</strong> on the first line;</p></li>
+<li><p>2 graphs on the second lines: histogram of <strong>T12</strong> et boxplot of <strong>maxO3</strong>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="ggplot2.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dv">2</span>, <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb24-2"><a href="ggplot2.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(maxO3<span class="sc">~</span>T12,<span class="at">data=</span>ozone)</span>
+<span id="cb24-3"><a href="ggplot2.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ozone<span class="sc">$</span>T12)</span>
+<span id="cb24-4"><a href="ggplot2.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ozone<span class="sc">$</span>maxO3)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="ggplot2-grammar" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Ggplot2 grammar</h2>
+<p>ggplot2 is a plotting system for R based on the grammar of graphics (as <strong>dplyr</strong> to manipulate data). We can find documentation at <a href="http://ggplot2.org" class="uri">http://ggplot2.org</a> and <a href="https://ggplot2-book.org" class="uri">https://ggplot2-book.org</a>.</p>
+<div id="first-charts-with-ggplot2" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> First charts with <code>ggplot2</code></h3>
+<p>We consider a subsample of the <code>diamond dataset</code> from the package <strong>ggplot2</strong> (or <strong>tidyverse</strong>):</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ggplot2.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb25-2"><a href="ggplot2.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb25-3"><a href="ggplot2.html#cb25-3" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds[<span class="fu">sample</span>(<span class="fu">nrow</span>(diamonds),<span class="dv">5000</span>),] </span>
+<span id="cb25-4"><a href="ggplot2.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(diamonds2)</span>
+<span id="cb25-5"><a href="ggplot2.html#cb25-5" aria-hidden="true" tabindex="-1"></a>     carat               cut       color       clarity    </span>
+<span id="cb25-6"><a href="ggplot2.html#cb25-6" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">0.2000</span>   Fair     <span class="sc">:</span> <span class="dv">158</span>   D<span class="sc">:</span> <span class="dv">640</span>   SI1    <span class="sc">:</span><span class="dv">1189</span>  </span>
+<span id="cb25-7"><a href="ggplot2.html#cb25-7" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">0.4000</span>   Good     <span class="sc">:</span> <span class="dv">455</span>   E<span class="sc">:</span> <span class="dv">916</span>   VS2    <span class="sc">:</span><span class="dv">1157</span>  </span>
+<span id="cb25-8"><a href="ggplot2.html#cb25-8" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">0.7000</span>   Very Good<span class="sc">:</span><span class="dv">1094</span>   F<span class="sc">:</span> <span class="dv">900</span>   SI2    <span class="sc">:</span> <span class="dv">876</span>  </span>
+<span id="cb25-9"><a href="ggplot2.html#cb25-9" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">0.7969</span>   Premium  <span class="sc">:</span><span class="dv">1280</span>   G<span class="sc">:</span><span class="dv">1018</span>   VS1    <span class="sc">:</span> <span class="dv">738</span>  </span>
+<span id="cb25-10"><a href="ggplot2.html#cb25-10" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">1.0400</span>   Ideal    <span class="sc">:</span><span class="dv">2013</span>   H<span class="sc">:</span> <span class="dv">775</span>   VVS2   <span class="sc">:</span> <span class="dv">470</span>  </span>
+<span id="cb25-11"><a href="ggplot2.html#cb25-11" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">4.1300</span>                    I<span class="sc">:</span> <span class="dv">481</span>   VVS1   <span class="sc">:</span> <span class="dv">326</span>  </span>
+<span id="cb25-12"><a href="ggplot2.html#cb25-12" aria-hidden="true" tabindex="-1"></a>                                   J<span class="sc">:</span> <span class="dv">270</span>   (Other)<span class="sc">:</span> <span class="dv">244</span>  </span>
+<span id="cb25-13"><a href="ggplot2.html#cb25-13" aria-hidden="true" tabindex="-1"></a>     depth           table           price      </span>
+<span id="cb25-14"><a href="ggplot2.html#cb25-14" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">43.00</span>   Min.   <span class="sc">:</span><span class="fl">49.00</span>   Min.   <span class="sc">:</span>  <span class="dv">365</span>  </span>
+<span id="cb25-15"><a href="ggplot2.html#cb25-15" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">61.10</span>   1st Qu.<span class="sc">:</span><span class="fl">56.00</span>   1st Qu.<span class="sc">:</span>  <span class="dv">945</span>  </span>
+<span id="cb25-16"><a href="ggplot2.html#cb25-16" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">61.80</span>   Median <span class="sc">:</span><span class="fl">57.00</span>   Median <span class="sc">:</span> <span class="dv">2376</span>  </span>
+<span id="cb25-17"><a href="ggplot2.html#cb25-17" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">61.76</span>   Mean   <span class="sc">:</span><span class="fl">57.43</span>   Mean   <span class="sc">:</span> <span class="dv">3917</span>  </span>
+<span id="cb25-18"><a href="ggplot2.html#cb25-18" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">62.50</span>   3rd Qu.<span class="sc">:</span><span class="fl">59.00</span>   3rd Qu.<span class="sc">:</span> <span class="dv">5294</span>  </span>
+<span id="cb25-19"><a href="ggplot2.html#cb25-19" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">71.60</span>   Max.   <span class="sc">:</span><span class="fl">95.00</span>   Max.   <span class="sc">:</span><span class="dv">18757</span>  </span>
+<span id="cb25-20"><a href="ggplot2.html#cb25-20" aria-hidden="true" tabindex="-1"></a>                                                </span>
+<span id="cb25-21"><a href="ggplot2.html#cb25-21" aria-hidden="true" tabindex="-1"></a>       x                y               z        </span>
+<span id="cb25-22"><a href="ggplot2.html#cb25-22" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span> <span class="fl">0.000</span>   Min.   <span class="sc">:</span><span class="fl">3.720</span>   Min.   <span class="sc">:</span><span class="fl">0.000</span>  </span>
+<span id="cb25-23"><a href="ggplot2.html#cb25-23" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span> <span class="fl">4.720</span>   1st Qu.<span class="sc">:</span><span class="fl">4.720</span>   1st Qu.<span class="sc">:</span><span class="fl">2.920</span>  </span>
+<span id="cb25-24"><a href="ggplot2.html#cb25-24" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span> <span class="fl">5.690</span>   Median <span class="sc">:</span><span class="fl">5.700</span>   Median <span class="sc">:</span><span class="fl">3.520</span>  </span>
+<span id="cb25-25"><a href="ggplot2.html#cb25-25" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span> <span class="fl">5.728</span>   Mean   <span class="sc">:</span><span class="fl">5.731</span>   Mean   <span class="sc">:</span><span class="fl">3.538</span>  </span>
+<span id="cb25-26"><a href="ggplot2.html#cb25-26" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span> <span class="fl">6.530</span>   3rd Qu.<span class="sc">:</span><span class="fl">6.520</span>   3rd Qu.<span class="sc">:</span><span class="fl">4.030</span>  </span>
+<span id="cb25-27"><a href="ggplot2.html#cb25-27" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">10.000</span>   Max.   <span class="sc">:</span><span class="fl">9.850</span>   Max.   <span class="sc">:</span><span class="fl">6.430</span>  </span>
+<span id="cb25-28"><a href="ggplot2.html#cb25-28" aria-hidden="true" tabindex="-1"></a>                                                 </span>
+<span id="cb25-29"><a href="ggplot2.html#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(diamonds)</span></code></pre></div>
+<p>A graph is always defined from many <strong>layers</strong>. We usually have to specify:</p>
+<ul>
+<li>the data</li>
+<li>the variables we want to plot</li>
+<li>the type of representation (scatterplot, boxplot…).</li>
+</ul>
+<p>Ggplot graphs are defined from these layers. We have to specify each layer with a ggplot function :</p>
+<ul>
+<li>the data with <strong>ggplot</strong></li>
+<li>the variables with <strong>aes</strong> (aesthetics)</li>
+<li>the type of representation with <strong>geom_</strong></li>
+</ul>
+<p>These layers are gathered with the <code>+</code> operator.</p>
+<p>The scatterplot <strong>carat vs price</strong> is obtained with the <strong>plot</strong> function with</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ggplot2.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(price<span class="sc">~</span>carat,<span class="at">data=</span>diamonds2)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>With <strong>ggplot</strong>, we use</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="ggplot2.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2) <span class="co">#nothing</span></span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ggplot2.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price) <span class="co">#nothing</span></span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-33-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ggplot2.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_point</span>() <span class="co">#OK</span></span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-33-3.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="exercise">
+<p><span id="exr:exoggplot1" class="exercise"><strong>Exercise 1.5  (Histograms and barplot with ggplot2) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw the histogram of <strong>carat</strong> (use <strong>geom_histogram</strong>)</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ggplot2.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat)<span class="sc">+</span><span class="fu">geom_histogram</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the histogram of <strong>carat</strong> with 10 bins (<strong>help(geom_histogram)</strong>)</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the barplot for the variable <strong>cut</strong> (use <strong>geom_bar</strong>)</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ggplot2.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>cut)<span class="sc">+</span><span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<p>To summarize, ggplot syntax is based on independent elements. These elements define the <strong>grammar</strong> of <strong>ggplot</strong>. Main elements of this grammar include:</p>
+<ul>
+<li><strong>Data</strong> (<code>ggplot</code>): the dataset, it should be a dataframe or a <strong>tibble</strong>.</li>
+<li><strong>Aesthetics</strong> (<code>aes</code>): to describe the way that variables in the data are mapped. We have to specify <strong>all</strong> variables used to build the graph in <strong>aes</strong>.</li>
+<li><strong>Geometrics</strong> (<code>geom_...</code>): to control the type of plot (scaterplot, histogram…)</li>
+<li><strong>Statistics</strong> (<code>stat_...</code>): to describe transformations of the data needed for the chart.</li>
+<li><strong>Scales</strong> (<code>scale_...</code>): to control the mapping from data to aesthetic attributes (change of colors, options for the axis…)</li>
+</ul>
+<p>All these elements are combined with a <strong>+</strong>.</p>
+</div>
+<div id="data-et-aesthetics" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Data et aesthetics</h3>
+<p>We have two use these elements for all graphs. <strong>ggplot</strong> verb is used to indicate the dataset. If the syntax is efficient, you will never have to use the name of the dataset to obtain the required graph. <strong>aes</strong> verb is used to specify the variables we want to visualize. For instance, for a scaterplot <strong>price vs carat</strong>, the syntax should start with</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ggplot2.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)</span></code></pre></div>
+<p><strong>aes</strong> also possesses options such as <strong>color</strong>, <strong>size</strong>, <strong>fill</strong>. We use these options as soon as a color or a size is defined from a <strong>variable of the dataset</strong>. For instance</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price,<span class="at">color=</span>cut)</span></code></pre></div>
+</div>
+<div id="geometrics" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> <code>Geometrics</code></h3>
+<p>To draw a graph, we need to specify the type of representation. We have to use <strong>geometrics</strong> to do that. For a scatter plot, we use <strong>geom_point</strong>:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="ggplot2.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price,<span class="at">color=</span>cut)<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Observe that <strong>ggplot</strong> adds the lengend automatically. Examples of <strong>geometrics</strong> are described here:</p>
+<table>
+<caption><span id="tab:geom">Table 1.1: </span> Main geometrics</caption>
+<thead>
+<tr class="header">
+<th>Geom</th>
+<th>Description</th>
+<th>Aesthetics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>geom_point()</td>
+<td>Scatter plot</td>
+<td>x, y, shape, fill</td>
+</tr>
+<tr class="even">
+<td>geom_line()</td>
+<td>Line (ordered according to x)</td>
+<td>x, y, linetype</td>
+</tr>
+<tr class="odd">
+<td>geom_abline()</td>
+<td>Line</td>
+<td>slope, intercept</td>
+</tr>
+<tr class="even">
+<td>geom_path()</td>
+<td>Line (ordered according to the index)</td>
+<td>x, y, linetype</td>
+</tr>
+<tr class="odd">
+<td>geom_text()</td>
+<td>Text</td>
+<td>x, y, label, hjust, vjust</td>
+</tr>
+<tr class="even">
+<td>geom_rect()</td>
+<td>Rectangle</td>
+<td>xmin, xmax, ymin, ymax, fill, linetype</td>
+</tr>
+<tr class="odd">
+<td>geom_polygon()</td>
+<td>Polygone</td>
+<td>x, y, fill, linetype</td>
+</tr>
+<tr class="even">
+<td>geom_segment()</td>
+<td>Segment</td>
+<td>x, y, xend, yend, fill, linetype</td>
+</tr>
+<tr class="odd">
+<td>geom_bar()</td>
+<td>Barplot</td>
+<td>x, fill, linetype, weight</td>
+</tr>
+<tr class="even">
+<td>geom_histogram()</td>
+<td>Histogram</td>
+<td>x, fill, linetype, weight</td>
+</tr>
+<tr class="odd">
+<td>geom_boxplot()</td>
+<td>Boxplots</td>
+<td>x, y, fill, weight</td>
+</tr>
+<tr class="even">
+<td>geom_density()</td>
+<td>Density</td>
+<td>x, y, fill, linetype</td>
+</tr>
+<tr class="odd">
+<td>geom_contour()</td>
+<td>Contour lines</td>
+<td>x, y, fill, linetype</td>
+</tr>
+<tr class="even">
+<td>geom_smooth()</td>
+<td>Smoothers (linear or non linear)</td>
+<td>x, y, fill, linetype</td>
+</tr>
+<tr class="odd">
+<td>All</td>
+<td></td>
+<td>color, size, group</td>
+</tr>
+</tbody>
+</table>
+<p>:::{.exercise exoggplot2 name=“Barplots”}<br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw the barplot of <strong>cut</strong> (with blue bars).</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ggplot2.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>cut)<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">fill=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the barplot of <strong>cut</strong> with one color for each modality of cut. Add a legend.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="ggplot2.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>cut,<span class="at">fill=</span>cut)<span class="sc">+</span><span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the barplot of <strong>cut</strong> with one color <strong>of your choice</strong> for each modality of cut (and without lengend since it is not useful here).</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ggplot2.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>cut)<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">fill=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;black&quot;</span>))</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+<p>:::</p>
+</div>
+<div id="statistics" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> <code>Statistics</code></h3>
+<p>Many graphs need transformations the data to make the representation. It is for example the case for histogram or barplot: we have to calculate the heights for rectangles or bars. These heigths are not explicitely specified in the dataset.
+Simple transformations can be obtained quickly with <strong>ggplot2</strong>. For instance we can draw the sine function with</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="ggplot2.html#cb39-1" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi,<span class="dv">2</span><span class="sc">*</span>pi,<span class="at">by=</span><span class="fl">0.01</span>))</span>
+<span id="cb39-2"><a href="ggplot2.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(D)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span><span class="fu">sin</span>(X))<span class="sc">+</span><span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The sine transformation is indicated in <strong>aes</strong>. For more complex transformations, we have to used <strong>statistics</strong>. A <strong>stat</strong> function takes a dataset as input and returns another dataset as output, and so a stat can add new variables to the original dataset. It is then possible to map
+aesthetics to these new variables. For example, <strong>stat_bin</strong> function (used to build histograms) creates the following variables:</p>
+<ul>
+<li><code>count</code>, the number of observations in each bin ;</li>
+<li><code>density</code>, the density of observations in each bin (percentage of total / bar width) ;</li>
+<li><code>x</code>, the center of the bin.</li>
+</ul>
+<p>By default <em>geom_histogram</em> represents on the <span class="math inline">\(y\)</span>-axis the number of observations in each bin (the output <strong>count</strong>).</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ggplot2.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>price)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">40</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>If we are interested by another output of <code>stat_bin</code>, the density for instance, we have to use</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="ggplot2.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>price,<span class="at">y=</span>..density..)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">40</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><em>ggplot</em> proposes another way to make the representations: we can use <em>stat_</em> instead of <em>geom_</em>. Formally, each <strong>stat_…</strong> function has a <strong>geom_…</strong> and each <strong>geom_…</strong> has a <strong>stat_…</strong>. We can draw the same graph as above with</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="ggplot2.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>price,<span class="at">y=</span>..density..)<span class="sc">+</span><span class="fu">stat_bin</span>()</span></code></pre></div>
+<p>Here are some examples of <strong>stat functions</strong> :</p>
+<table>
+<caption><span id="tab:ggplot-stat">Table 1.2: </span> Examples of statistics.</caption>
+<thead>
+<tr class="header">
+<th>Stat</th>
+<th>Description</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>stat_identity()</td>
+<td>No transformation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>stat_bin()</td>
+<td>Count</td>
+<td>binwidth, origin</td>
+</tr>
+<tr class="odd">
+<td>stat_density()</td>
+<td>Density</td>
+<td>adjust, kernel</td>
+</tr>
+<tr class="even">
+<td>stat_smooth()</td>
+<td>Smoother</td>
+<td>method, se</td>
+</tr>
+<tr class="odd">
+<td>stat_boxplot()</td>
+<td>Boxplot</td>
+<td>coef</td>
+</tr>
+</tbody>
+</table>
+<p><em>stat</em> and <em>geom</em> are not always easy to combine. For beginners, we recommend to use <em>geom</em> for beginners.</p>
+<div class="exercise">
+<p><span id="exr:exo-stat1" class="exercise"><strong>Exercise 1.6  (A "very simple" barplot...) </strong></span>We consider a color variable <span class="math inline">\(X\)</span> with probability distribution
+<span class="math display">\[P(X=red)=0.3,\ P(X=blue)=0.2,\ P(X=green)=0.4,\ P(X=black)=0.1\]</span>
+Draw the barplot of this distribution.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="ggplot2.html#cb43-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">X1=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;black&quot;</span>),<span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.2</span>,<span class="fl">0.4</span>,<span class="fl">0.1</span>))</span>
+<span id="cb43-2"><a href="ggplot2.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(X)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X1,<span class="at">y=</span>prob,<span class="at">fill=</span>X1)<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">fill=</span><span class="st">&quot;Color&quot;</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-47-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div class="exercise">
+<p><span id="exr:exo-stat2" class="exercise"><strong>Exercise 1.7  (Smoothing) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Visualize the non linear smoother for the variable <code>price</code> in terms of <code>carat</code>. You can use <code>geom_smooth</code> or <code>stat_smooth</code>.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ggplot2.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="ggplot2.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-48-2.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Same question but use a dotted line instead of a solid line.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ggplot2.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>,<span class="at">linetype=</span><span class="st">&quot;dotted&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-49-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="ggplot2.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>,<span class="at">geom=</span><span class="st">&quot;point&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-49-2.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+</div>
+<div id="scales" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> <code>Scales</code></h3>
+<p>Scales control the mapping from data to aesthetic attributes (change of colors, sizes…). We generally use this element at the end of the process to refine the graph. Scales are defined as follows:</p>
+<ul>
+<li>begin with <code>scale_</code></li>
+<li>add the aesthetics we want to change (<code>color</code>, <code>fill</code>, <code>x_</code>)</li>
+<li>end with the name of the scale (<code>manual</code>, <code>identity</code>…)</li>
+</ul>
+<p>For instance,</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ggplot2.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price,<span class="at">color=</span>cut)<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb48-2"><a href="ggplot2.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span><span class="ot">=</span><span class="st">&quot;black&quot;</span>,<span class="st">&quot;Good&quot;</span><span class="ot">=</span><span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb48-3"><a href="ggplot2.html#cb48-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;Very Good&quot;</span><span class="ot">=</span><span class="st">&quot;blue&quot;</span>,<span class="st">&quot;Premium&quot;</span><span class="ot">=</span><span class="st">&quot;red&quot;</span>,<span class="st">&quot;Ideal&quot;</span><span class="ot">=</span><span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Here are the main scales:</p>
+<table>
+<caption><span id="tab:scales">Table 1.3: </span> Main scales</caption>
+<thead>
+<tr class="header">
+<th>aes</th>
+<th>Discrete</th>
+<th>Continuous</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Color (color et fill)</td>
+<td>brewer</td>
+<td>gradient</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>grey</td>
+<td>gradient2</td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td>hue</td>
+<td>gradientn</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>identity</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td>manual</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Position (x and y)</td>
+<td>discrete</td>
+<td>continous</td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td></td>
+<td>date</td>
+</tr>
+<tr class="even">
+<td>Shape</td>
+<td>shape</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td>identity</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>manual</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Size</td>
+<td>identity</td>
+<td>size</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>manual</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>We now present some examples on <strong>scales</strong>:</p>
+<ul>
+<li><p><code>color in a barplot</code></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="ggplot2.html#cb49-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>cut)<span class="sc">+</span><span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill=</span>cut))</span>
+<span id="cb49-2"><a href="ggplot2.html#cb49-2" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" />
+We change colors by using the palette <strong>Purples</strong> :</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ggplot2.html#cb50-1" aria-hidden="true" tabindex="-1"></a>p1<span class="sc">+</span><span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Purples&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p><code>Gradient color for a scatter plot</code> :</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="ggplot2.html#cb51-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>depth))</span>
+<span id="cb51-2"><a href="ggplot2.html#cb51-2" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" />
+We change the gradient color</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ggplot2.html#cb52-1" aria-hidden="true" tabindex="-1"></a>p2<span class="sc">+</span><span class="fu">scale_color_gradient</span>(<span class="at">low=</span><span class="st">&quot;red&quot;</span>,<span class="at">high=</span><span class="st">&quot;yellow&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p><code>Change on the axis</code></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="ggplot2.html#cb53-1" aria-hidden="true" tabindex="-1"></a>p2<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.5</span>,<span class="dv">3</span>,<span class="at">by=</span><span class="fl">0.5</span>))<span class="sc">+</span><span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;prix&quot;</span>)<span class="sc">+</span><span class="fu">scale_color_gradient</span>(<span class="st">&quot;Profondeur&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ul>
+</div>
+<div id="group-and-facets" class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> <code>Group and facets</code></h3>
+<p><strong>ggplot</strong> allows to make representations for subgroup of individuals. We can proceed in two ways:</p>
+<ul>
+<li>to represent subgroup on the same graph =&gt; <em>group</em> in <strong>aes</strong></li>
+<li>to represent subgroup on the different graphs =&gt; <strong>facets</strong></li>
+</ul>
+<p>We represent (on the same graph) the smoother <strong>price vs carat</strong> for each modality of <em>cut</em> with</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ggplot2.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price,<span class="at">group=</span>cut)<span class="sc">+</span></span>
+<span id="cb54-2"><a href="ggplot2.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To obtain the representation on many graphs, we use</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ggplot2.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span></span>
+<span id="cb55-2"><a href="ggplot2.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>)<span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>cut)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ggplot2.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span></span>
+<span id="cb56-2"><a href="ggplot2.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;loess&quot;</span>)<span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>cut,<span class="at">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-57-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><code>facet_grid</code> and <code>facet_wrap</code> do the same job but split the screen in different ways:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="ggplot2.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb57-2"><a href="ggplot2.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span><span class="fu">facet_grid</span>(color<span class="sc">~</span>cut)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ggplot2.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb58-2"><a href="ggplot2.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span><span class="fu">facet_wrap</span>(color<span class="sc">~</span>cut)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-58-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="complements" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Complements</h2>
+<p>Syntax for <strong>ggplot</strong> is defined according to the following process:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="ggplot2.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span><span class="fu">aes</span>()<span class="sc">+</span><span class="fu">geom_</span>()<span class="sc">+</span><span class="fu">scale_</span>()</span></code></pre></div>
+<p>It is really flexible: for instance <strong>aes</strong> could also be specified in <strong>ggplot</strong> or in <strong>geom_</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="ggplot2.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price)<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="ggplot2.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2,<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-60-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="ggplot2.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price))</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-60-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>It could be very useful when we want to use different <strong>aes</strong> in the <strong>geom_</strong></p>
+<p>We can also build a chart from many dataset:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="ggplot2.html#cb63-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi,<span class="dv">2</span><span class="sc">*</span>pi,<span class="at">by=</span><span class="fl">0.001</span>)</span>
+<span id="cb63-2"><a href="ggplot2.html#cb63-2" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> <span class="fu">cos</span>(X)</span>
+<span id="cb63-3"><a href="ggplot2.html#cb63-3" aria-hidden="true" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">sin</span>(X)</span>
+<span id="cb63-4"><a href="ggplot2.html#cb63-4" aria-hidden="true" tabindex="-1"></a>donnees1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,Y1)</span>
+<span id="cb63-5"><a href="ggplot2.html#cb63-5" aria-hidden="true" tabindex="-1"></a>donnees2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,Y2)</span>
+<span id="cb63-6"><a href="ggplot2.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(donnees1)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y1))<span class="sc">+</span></span>
+<span id="cb63-7"><a href="ggplot2.html#cb63-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>donnees2,<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y2),<span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-61-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Many other functions are proposed by <strong>ggplot</strong>:</p>
+<ul>
+<li><strong>ggtitle</strong> to add a title.</li>
+<li><strong>ggsave</strong> ta save a graph.</li>
+<li><strong>theme_</strong> to change the theme of the graph.</li>
+</ul>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="ggplot2.html#cb64-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>price,<span class="at">color=</span>cut)<span class="sc">+</span><span class="fu">geom_point</span>()</span>
+<span id="cb64-2"><a href="ggplot2.html#cb64-2" aria-hidden="true" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="ggplot2.html#cb65-1" aria-hidden="true" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-62-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ggplot2.html#cb66-1" aria-hidden="true" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_grey</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-62-3.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ggplot2.html#cb67-1" aria-hidden="true" tabindex="-1"></a>p<span class="sc">+</span><span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-62-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Many other themes are available in the <strong>ggtheme</strong> package. The function <code>set_theme</code> can be used to change the default theme in a <strong>markdown document</strong>.</p>
+</div>
+<div id="some-exercises-1" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Some exercises</h2>
+<div class="exercise">
+<p><span id="exr:exo-cos-sin" class="exercise"><strong>Exercise 1.8  (Cosine and sine functions...) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw the sine and cosine functions on the same graph. You first have to use two datasets (one for the sine function, the other for the cosine function).</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ggplot2.html#cb68-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi,<span class="dv">2</span><span class="sc">*</span>pi,<span class="at">by=</span><span class="fl">0.001</span>)</span>
+<span id="cb68-2"><a href="ggplot2.html#cb68-2" aria-hidden="true" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> <span class="fu">cos</span>(X)</span>
+<span id="cb68-3"><a href="ggplot2.html#cb68-3" aria-hidden="true" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">sin</span>(X)</span>
+<span id="cb68-4"><a href="ggplot2.html#cb68-4" aria-hidden="true" tabindex="-1"></a>donnees1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,Y1)</span>
+<span id="cb68-5"><a href="ggplot2.html#cb68-5" aria-hidden="true" tabindex="-1"></a>donnees2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,Y2)</span>
+<span id="cb68-6"><a href="ggplot2.html#cb68-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(donnees1)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y1))<span class="sc">+</span></span>
+<span id="cb68-7"><a href="ggplot2.html#cb68-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>donnees2,<span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y2),<span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-63-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Do the same with one dataset and 2 <code>geom_line</code>.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="ggplot2.html#cb69-1" aria-hidden="true" tabindex="-1"></a>donnees <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,Y1,Y2)</span>
+<span id="cb69-2"><a href="ggplot2.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(donnees)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y1)<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb69-3"><a href="ggplot2.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>Y2),<span class="at">color=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ggplot2.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or for the legend</span></span>
+<span id="cb70-2"><a href="ggplot2.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(donnees)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y1)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="st">&quot;cos&quot;</span>))<span class="sc">+</span></span>
+<span id="cb70-3"><a href="ggplot2.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>Y2,<span class="at">color=</span><span class="st">&quot;sin&quot;</span>))<span class="sc">+</span><span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;Fonction&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-64-2.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Do the same with one dataset and one <code>geom_line</code>. Hint: use the <strong>pivot_longer</strong> function from the <strong>tidyverse</strong> package.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="ggplot2.html#cb71-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,<span class="at">cos=</span>Y1,<span class="at">sin=</span>Y2)</span>
+<span id="cb71-2"><a href="ggplot2.html#cb71-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(cos,sin),</span>
+<span id="cb71-3"><a href="ggplot2.html#cb71-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names_to =</span> <span class="st">&quot;Fonction&quot;</span>,</span>
+<span id="cb71-4"><a href="ggplot2.html#cb71-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb71-5"><a href="ggplot2.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
+<span id="cb71-6"><a href="ggplot2.html#cb71-6" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="sc">-</span>X,</span>
+<span id="cb71-7"><a href="ggplot2.html#cb71-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names_to =</span> <span class="st">&quot;Fonction&quot;</span>,</span>
+<span id="cb71-8"><a href="ggplot2.html#cb71-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb71-9"><a href="ggplot2.html#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>value,<span class="at">color=</span>Fonction)<span class="sc">+</span><span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the two functions on two different graphs (use <strong>facet_wrap</strong>).</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ggplot2.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>value)<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>Fonction)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Do the same with the function <strong>grid.arrange</strong> from the package <strong>gridExtra</strong>.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="ggplot2.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb73-2"><a href="ggplot2.html#cb73-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(donnees1)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y1)<span class="sc">+</span><span class="fu">geom_line</span>()</span>
+<span id="cb73-3"><a href="ggplot2.html#cb73-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(donnees2)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y2)<span class="sc">+</span><span class="fu">geom_line</span>()</span>
+<span id="cb73-4"><a href="ggplot2.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1,p2,<span class="at">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:exo-mtcars" class="exercise"><strong>Exercise 1.9  (Classical representations for a dataset) </strong></span>We consider the <strong>mtcars</strong> dataset:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ggplot2.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb74-2"><a href="ggplot2.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span>
+<span id="cb74-3"><a href="ggplot2.html#cb74-3" aria-hidden="true" tabindex="-1"></a>      mpg             cyl             disp      </span>
+<span id="cb74-4"><a href="ggplot2.html#cb74-4" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">10.40</span>   Min.   <span class="sc">:</span><span class="fl">4.000</span>   Min.   <span class="sc">:</span> <span class="fl">71.1</span>  </span>
+<span id="cb74-5"><a href="ggplot2.html#cb74-5" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">15.43</span>   1st Qu.<span class="sc">:</span><span class="fl">4.000</span>   1st Qu.<span class="sc">:</span><span class="fl">120.8</span>  </span>
+<span id="cb74-6"><a href="ggplot2.html#cb74-6" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">19.20</span>   Median <span class="sc">:</span><span class="fl">6.000</span>   Median <span class="sc">:</span><span class="fl">196.3</span>  </span>
+<span id="cb74-7"><a href="ggplot2.html#cb74-7" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">20.09</span>   Mean   <span class="sc">:</span><span class="fl">6.188</span>   Mean   <span class="sc">:</span><span class="fl">230.7</span>  </span>
+<span id="cb74-8"><a href="ggplot2.html#cb74-8" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">22.80</span>   3rd Qu.<span class="sc">:</span><span class="fl">8.000</span>   3rd Qu.<span class="sc">:</span><span class="fl">326.0</span>  </span>
+<span id="cb74-9"><a href="ggplot2.html#cb74-9" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">33.90</span>   Max.   <span class="sc">:</span><span class="fl">8.000</span>   Max.   <span class="sc">:</span><span class="fl">472.0</span>  </span>
+<span id="cb74-10"><a href="ggplot2.html#cb74-10" aria-hidden="true" tabindex="-1"></a>       hp             drat             wt       </span>
+<span id="cb74-11"><a href="ggplot2.html#cb74-11" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span> <span class="fl">52.0</span>   Min.   <span class="sc">:</span><span class="fl">2.760</span>   Min.   <span class="sc">:</span><span class="fl">1.513</span>  </span>
+<span id="cb74-12"><a href="ggplot2.html#cb74-12" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span> <span class="fl">96.5</span>   1st Qu.<span class="sc">:</span><span class="fl">3.080</span>   1st Qu.<span class="sc">:</span><span class="fl">2.581</span>  </span>
+<span id="cb74-13"><a href="ggplot2.html#cb74-13" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">123.0</span>   Median <span class="sc">:</span><span class="fl">3.695</span>   Median <span class="sc">:</span><span class="fl">3.325</span>  </span>
+<span id="cb74-14"><a href="ggplot2.html#cb74-14" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">146.7</span>   Mean   <span class="sc">:</span><span class="fl">3.597</span>   Mean   <span class="sc">:</span><span class="fl">3.217</span>  </span>
+<span id="cb74-15"><a href="ggplot2.html#cb74-15" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">180.0</span>   3rd Qu.<span class="sc">:</span><span class="fl">3.920</span>   3rd Qu.<span class="sc">:</span><span class="fl">3.610</span>  </span>
+<span id="cb74-16"><a href="ggplot2.html#cb74-16" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">335.0</span>   Max.   <span class="sc">:</span><span class="fl">4.930</span>   Max.   <span class="sc">:</span><span class="fl">5.424</span>  </span>
+<span id="cb74-17"><a href="ggplot2.html#cb74-17" aria-hidden="true" tabindex="-1"></a>      qsec             vs               am        </span>
+<span id="cb74-18"><a href="ggplot2.html#cb74-18" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">14.50</span>   Min.   <span class="sc">:</span><span class="fl">0.0000</span>   Min.   <span class="sc">:</span><span class="fl">0.0000</span>  </span>
+<span id="cb74-19"><a href="ggplot2.html#cb74-19" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">16.89</span>   1st Qu.<span class="sc">:</span><span class="fl">0.0000</span>   1st Qu.<span class="sc">:</span><span class="fl">0.0000</span>  </span>
+<span id="cb74-20"><a href="ggplot2.html#cb74-20" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">17.71</span>   Median <span class="sc">:</span><span class="fl">0.0000</span>   Median <span class="sc">:</span><span class="fl">0.0000</span>  </span>
+<span id="cb74-21"><a href="ggplot2.html#cb74-21" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">17.85</span>   Mean   <span class="sc">:</span><span class="fl">0.4375</span>   Mean   <span class="sc">:</span><span class="fl">0.4062</span>  </span>
+<span id="cb74-22"><a href="ggplot2.html#cb74-22" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">18.90</span>   3rd Qu.<span class="sc">:</span><span class="fl">1.0000</span>   3rd Qu.<span class="sc">:</span><span class="fl">1.0000</span>  </span>
+<span id="cb74-23"><a href="ggplot2.html#cb74-23" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">22.90</span>   Max.   <span class="sc">:</span><span class="fl">1.0000</span>   Max.   <span class="sc">:</span><span class="fl">1.0000</span>  </span>
+<span id="cb74-24"><a href="ggplot2.html#cb74-24" aria-hidden="true" tabindex="-1"></a>      gear            carb      </span>
+<span id="cb74-25"><a href="ggplot2.html#cb74-25" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">3.000</span>   Min.   <span class="sc">:</span><span class="fl">1.000</span>  </span>
+<span id="cb74-26"><a href="ggplot2.html#cb74-26" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">3.000</span>   1st Qu.<span class="sc">:</span><span class="fl">2.000</span>  </span>
+<span id="cb74-27"><a href="ggplot2.html#cb74-27" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">4.000</span>   Median <span class="sc">:</span><span class="fl">2.000</span>  </span>
+<span id="cb74-28"><a href="ggplot2.html#cb74-28" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">3.688</span>   Mean   <span class="sc">:</span><span class="fl">2.812</span>  </span>
+<span id="cb74-29"><a href="ggplot2.html#cb74-29" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">4.000</span>   3rd Qu.<span class="sc">:</span><span class="fl">4.000</span>  </span>
+<span id="cb74-30"><a href="ggplot2.html#cb74-30" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">5.000</span>   Max.   <span class="sc">:</span><span class="fl">8.000</span>  </span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>Draw the histogram of <code>mpg</code> (use many number of bins).</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="ggplot2.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>mpg)<span class="sc">+</span><span class="fu">geom_histogram</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="ggplot2.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>mpg)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-69-2.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Always for the histogram, represent the density on the <span class="math inline">\(y\)</span>-axis.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="ggplot2.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>mpg,<span class="at">y=</span>..density..)<span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-70-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the barplot of <code>cyl</code>.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="ggplot2.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>cyl)<span class="sc">+</span><span class="fu">geom_bar</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the scatter plot <code>disp vs mpg</code> with one color for each value of <code>cyl</code>.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="ggplot2.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>disp,<span class="at">y=</span>mpg,<span class="at">color=</span>cyl)<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="ggplot2.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>disp,<span class="at">y=</span>mpg,<span class="at">color=</span><span class="fu">as.factor</span>(cyl))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;cyl&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-72-2.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Add the linear smoothers, one linear smoother for each value of <code>cyl</code>.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="ggplot2.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>disp,<span class="at">y=</span>mpg,<span class="at">color=</span><span class="fu">as.factor</span>(cyl))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb81-2"><a href="ggplot2.html#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span><span class="fu">labs</span>(<span class="at">color=</span><span class="st">&quot;cyl&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-73-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:ggplot-reg-simple" class="exercise"><strong>Exercise 1.10  (Residuals for a simple regression model) </strong></span><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>Simulate a sample <span class="math inline">\((x_i,y_i),i=1,\dots,100\)</span> according to the linear model
+<span class="math display">\[y_i=3+x_i+\varepsilon_i\]</span>
+where the <span class="math inline">\(x_i\)</span>’s are i.i.d. with uniform distribution over <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(\varepsilon_i\)</span>’s are gaussian <span class="math inline">\(N(0,0.2^2)\)</span> (use <strong>runif</strong> and <strong>rnorm</strong>)</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="ggplot2.html#cb82-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb82-2"><a href="ggplot2.html#cb82-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
+<span id="cb82-3"><a href="ggplot2.html#cb82-3" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="at">sd=</span><span class="fl">0.2</span>)</span>
+<span id="cb82-4"><a href="ggplot2.html#cb82-4" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">+</span>X<span class="sc">+</span>eps</span>
+<span id="cb82-5"><a href="ggplot2.html#cb82-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X,Y)</span></code></pre></div></li>
+<li><p>Draw the scatter plot <strong>y vs x</strong> and add the linear smoother.</p>
+<div class="corR">
+<p>
+We first do that “step by step” by computing the linear smoother.
+</p>
+</div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="ggplot2.html#cb83-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y<span class="sc">~</span>.,<span class="at">data=</span>D)</span>
+<span id="cb83-2"><a href="ggplot2.html#cb83-2" aria-hidden="true" tabindex="-1"></a>co <span class="ot">&lt;-</span> <span class="fu">coef</span>(model)</span>
+<span id="cb83-3"><a href="ggplot2.html#cb83-3" aria-hidden="true" tabindex="-1"></a>D<span class="sc">$</span>fit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model)</span>
+<span id="cb83-4"><a href="ggplot2.html#cb83-4" aria-hidden="true" tabindex="-1"></a>co <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y<span class="sc">~</span>.,<span class="at">data=</span>D))</span>
+<span id="cb83-5"><a href="ggplot2.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(D)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y)<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb83-6"><a href="ggplot2.html#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope=</span>co[<span class="dv">2</span>],<span class="at">intercept=</span>co[<span class="dv">1</span>],<span class="at">color=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="corR">
+<p>
+We can do the same more quickly with <strong>geom_smooth</strong>.
+</p>
+</div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="ggplot2.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(D)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y)<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-78-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Draw the residuals: add a vertical line from each point to the linear smoother (use <strong>geom_segment</strong>).</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="ggplot2.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(D)<span class="sc">+</span><span class="fu">aes</span>(<span class="at">x=</span>X,<span class="at">y=</span>Y)<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>)<span class="sc">+</span></span>
+<span id="cb85-2"><a href="ggplot2.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend=</span>X,<span class="at">yend=</span>fit))</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+</ol>
+</div>
+<div class="exercise">
+<p><span id="exr:ggplot-challenge" class="exercise"><strong>Exercise 1.11  (Challenge) </strong></span>We consider the <strong>diamonds</strong> dataset.</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw the following graphs (use <strong>coord_flip</strong> for the second one).</p>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-80-2.png" width="672" style="display: block; margin: auto;" /><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-80-3.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="corR">
+<p>
+We obtain the required graphs with:
+</p>
+</div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="ggplot2.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>cut,<span class="at">y=</span>carat,<span class="at">fill=</span>cut)) </span>
+<span id="cb86-2"><a href="ggplot2.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>cut,<span class="at">y=</span>carat,<span class="at">fill=</span>cut)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span>
+<span id="cb86-3"><a href="ggplot2.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>..density..)) <span class="sc">+</span> <span class="fu">facet_grid</span>(cut<span class="sc">~</span>.)</span></code></pre></div></li>
+<li><p>Add on the third graph a vertical line for the quartiles of the variable <strong>carat</strong> (for each value of <strong>cut</strong>).</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="ggplot2.html#cb87-1" aria-hidden="true" tabindex="-1"></a>Q1 <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cut) <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="ggplot2.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">q1=</span><span class="fu">quantile</span>(carat,<span class="fu">c</span>(<span class="fl">0.25</span>)),<span class="at">q2=</span><span class="fu">quantile</span>(carat,<span class="fu">c</span>(<span class="fl">0.5</span>)),</span>
+<span id="cb87-3"><a href="ggplot2.html#cb87-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">q3=</span><span class="fu">quantile</span>(carat,<span class="fu">c</span>(<span class="fl">0.75</span>)))</span>
+<span id="cb87-4"><a href="ggplot2.html#cb87-4" aria-hidden="true" tabindex="-1"></a>quantildf <span class="ot">&lt;-</span> Q1 <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>cut,<span class="at">names_to=</span><span class="st">&quot;alpha&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;quantiles&quot;</span>)</span>
+<span id="cb87-5"><a href="ggplot2.html#cb87-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="ggplot2.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>..density..)) <span class="sc">+</span></span>
+<span id="cb87-7"><a href="ggplot2.html#cb87-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(cut<span class="sc">~</span>.) <span class="sc">+</span></span>
+<span id="cb87-8"><a href="ggplot2.html#cb87-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">data=</span>quantildf,<span class="fu">aes</span>(<span class="at">xintercept=</span>quantiles),<span class="at">col=</span><span class="fu">alpha</span>(<span class="st">&quot;black&quot;</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span></code></pre></div>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-83-1.png" width="672" style="display: block; margin: auto;" /></p></li>
+<li><p>Add a horizontal boxplot under each graph (use the <strong>ggstance</strong> package) to obtain the following chart:</p>
+<p><img src="TUTO_DATAVIZ_files/figure-html/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="corR">
+<p>
+We obtain the required graph with:
+</p>
+</div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="ggplot2.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstance)</span>
+<span id="cb88-2"><a href="ggplot2.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>diamonds) <span class="sc">+</span></span>
+<span id="cb88-3"><a href="ggplot2.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxploth</span>(<span class="at">data=</span>diamonds,<span class="fu">aes</span>(<span class="at">y=</span><span class="sc">-</span><span class="fl">0.5</span>,<span class="at">x=</span>carat,<span class="at">fill=</span>cut)) <span class="sc">+</span></span>
+<span id="cb88-4"><a href="ggplot2.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>carat,<span class="at">y=</span>..density..)) <span class="sc">+</span>  <span class="fu">facet_grid</span>(cut<span class="sc">~</span>.) <span class="sc">+</span></span>
+<span id="cb88-5"><a href="ggplot2.html#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">data=</span>quantildf,<span class="fu">aes</span>(<span class="at">xintercept=</span>quantiles),<span class="at">col=</span><span class="fu">alpha</span>(<span class="st">&quot;black&quot;</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb88-6"><a href="ggplot2.html#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div></li>
+</ol>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mapping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["TUTO_DATAVIZ.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"fontsettings": {
+"theme": "white",
+"size": 2,
+"family": "sans"
+},
+"sharing": {
+"facebook": true,
+"github": true,
+"twitter": true
+}
+},
+"highlight": "default"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

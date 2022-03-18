@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R</title>
+  <meta name="description" content="Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R" />
+  
+  
+  
+
+<meta name="author" content="Laurent Rouvière" />
+
+
+<meta name="date" content="2022-03-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dynamic.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/amcharts-3.21.13/amcharts.js"></script>
+<script src="libs/ramcharts_base-binding-2.1.13/ramcharts_base.js"></script>
+<script src="libs/amcharts_type_serial-3.20.18/serial.js"></script>
+<script src="libs/amcharts_themes_light.js-3.20.18/light.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.0/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.0/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<script src="libs/amcharts_type_xy-3.20.18/xy.js"></script>
+<link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet" />
+<script src="libs/vis-9.1.0/vis-network.min.js"></script>
+<script src="libs/visNetwork-binding-2.1.0/visNetwork.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dynamic data visualization, L. Rouvière</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Presentation</a></li>
+<li class="chapter" data-level="1" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>1</b> Data visualization with ggplot2</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ggplot2.html"><a href="ggplot2.html#conventional-graphical-functions"><i class="fa fa-check"></i><b>1.1</b> Conventional Graphical Functions</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="ggplot2.html"><a href="ggplot2.html#the-plot-function"><i class="fa fa-check"></i><b>1.1.1</b> The plot function</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ggplot2.html"><a href="ggplot2.html#interactive-graphs-with-ramcharts"><i class="fa fa-check"></i><b>1.1.2</b> Interactive graphs with rAmCharts</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ggplot2.html"><a href="ggplot2.html#some-exercises"><i class="fa fa-check"></i><b>1.1.3</b> Some exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ggplot2.html"><a href="ggplot2.html#ggplot2-grammar"><i class="fa fa-check"></i><b>1.2</b> Ggplot2 grammar</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ggplot2.html"><a href="ggplot2.html#first-charts-with-ggplot2"><i class="fa fa-check"></i><b>1.2.1</b> First charts with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="1.2.2" data-path="ggplot2.html"><a href="ggplot2.html#data-et-aesthetics"><i class="fa fa-check"></i><b>1.2.2</b> Data et aesthetics</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrics"><i class="fa fa-check"></i><b>1.2.3</b> <code>Geometrics</code></a></li>
+<li class="chapter" data-level="1.2.4" data-path="ggplot2.html"><a href="ggplot2.html#statistics"><i class="fa fa-check"></i><b>1.2.4</b> <code>Statistics</code></a></li>
+<li class="chapter" data-level="1.2.5" data-path="ggplot2.html"><a href="ggplot2.html#scales"><i class="fa fa-check"></i><b>1.2.5</b> <code>Scales</code></a></li>
+<li class="chapter" data-level="1.2.6" data-path="ggplot2.html"><a href="ggplot2.html#group-and-facets"><i class="fa fa-check"></i><b>1.2.6</b> <code>Group and facets</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ggplot2.html"><a href="ggplot2.html#complements"><i class="fa fa-check"></i><b>1.3</b> Complements</a></li>
+<li class="chapter" data-level="1.4" data-path="ggplot2.html"><a href="ggplot2.html#some-exercises-1"><i class="fa fa-check"></i><b>1.4</b> Some exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mapping.html"><a href="mapping.html"><i class="fa fa-check"></i><b>2</b> Mapping with R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mapping.html"><a href="mapping.html#ggmap-package"><i class="fa fa-check"></i><b>2.1</b> ggmap package</a></li>
+<li class="chapter" data-level="2.2" data-path="mapping.html"><a href="mapping.html#maps-with-contours-shapefile-format"><i class="fa fa-check"></i><b>2.2</b> Maps with contours, shapefile format</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="mapping.html"><a href="mapping.html#challenge1"><i class="fa fa-check"></i><b>2.2.1</b> Challenge 1: temperature map with sf</a></li>
+<li class="chapter" data-level="2.2.2" data-path="mapping.html"><a href="mapping.html#finding-background-shapefile-map"><i class="fa fa-check"></i><b>2.2.2</b> Finding background shapefile map</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="mapping.html"><a href="mapping.html#dynamic-maps-with-leaflet"><i class="fa fa-check"></i><b>2.3</b> Dynamic maps with leaflet</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="mapping.html"><a href="mapping.html#challenge-2-bike-stations-in-paris"><i class="fa fa-check"></i><b>2.3.1</b> Challenge 2: bike stations in Paris</a></li>
+<li class="chapter" data-level="2.3.2" data-path="mapping.html"><a href="mapping.html#temperature-map-with-leaflet"><i class="fa fa-check"></i><b>2.3.2</b> Temperature map with leaflet</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dynamic.html"><a href="dynamic.html"><i class="fa fa-check"></i><b>3</b> Dynamic visualization</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dynamic.html"><a href="dynamic.html#basic-charts-with-ramcharts-and-plotly"><i class="fa fa-check"></i><b>3.1</b> Basic charts with <code>rAmCharts</code> and <code>plotly</code></a></li>
+<li class="chapter" data-level="3.2" data-path="dynamic.html"><a href="dynamic.html#graphs-to-visualize-networks-with-visnetwork"><i class="fa fa-check"></i><b>3.2</b> Graphs to visualize networks with visNetwork</a></li>
+<li class="chapter" data-level="3.3" data-path="dynamic.html"><a href="dynamic.html#dashboard"><i class="fa fa-check"></i><b>3.3</b> Dashboard</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html"><i class="fa fa-check"></i><b>4</b> Shiny web applications</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#first-app"><i class="fa fa-check"></i><b>4.1</b> First app</a></li>
+<li class="chapter" data-level="4.2" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#input---output"><i class="fa fa-check"></i><b>4.2</b> Input - output</a></li>
+<li class="chapter" data-level="4.3" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#organizing-the-application"><i class="fa fa-check"></i><b>4.3</b> Organizing the application</a></li>
+<li class="chapter" data-level="4.4" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#adding-interactive-charts"><i class="fa fa-check"></i><b>4.4</b> Adding interactive charts</a></li>
+<li class="chapter" data-level="4.5" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#reactive-isolation-observe-html"><i class="fa fa-check"></i><b>4.5</b> Reactive, isolation, observe, html, …</a></li>
+<li class="chapter" data-level="4.6" data-path="shiny-web-applications.html"><a href="shiny-web-applications.html#some-additional-exercises"><i class="fa fa-check"></i><b>4.6</b> Some additional exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tutorial: Dynamic data visualization with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="shiny-web-applications" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Shiny web applications</h1>
+<p>This part comes from the tutorial of Benoît Thieurmel. It is available here <a href="https://github.com/datastorm-open/tuto_shiny_rennes" class="uri">https://github.com/datastorm-open/tuto_shiny_rennes</a>.</p>
+<div id="first-app" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> First app</h2>
+<p>Create a new repository for the application (<strong>in RStudio</strong>):</p>
+<pre><code>File -&gt; New Project -&gt; New Directory -&gt; Shiny Web Application</code></pre>
+<p>Choose an application <strong>Multiple File</strong>.</p>
+<p>If the option <strong>Multiple File</strong> (it depends on the version of Rstudio) is not possible, you can use</p>
+<pre><code>File -&gt; New File -&gt; Shiny Web App -&gt; Multiple File</code></pre>
+<p>Two files are automatically created: <code>ui.R</code> and <code>server.R</code>. Run the application with the button <code>Run App</code>.</p>
+<ul>
+<li>Change the title of the application. You can call it <strong>My first application</strong>.</li>
+<li>Update the application and check that the new title appears.</li>
+</ul>
+</div>
+<div id="input---output" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Input - output</h2>
+<p>We keep the same application, we don’t care about the structure (rows, columns, tabs…) for the moment. We just want to add:</p>
+<ul>
+<li>new <strong>inputs</strong> in <code>sidebarPanel</code>, after the <code>sliderInput</code>. Don’t forget to add commas to separate the inputs;</li>
+<li>new <strong>outputs</strong> in <code>mainPanel</code>, after the <code>plotOutput</code>. Don’t forget to add commas to separate the outputs.</li>
+</ul>
+<p>To summarize, we want one column for all the inputs and another one for all the outputs.</p>
+<ol style="list-style-type: decimal">
+<li><p>Add in <code>ui.R</code> an input which allows to change the color of the histogram. You can use this command:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="shiny-web-applications.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selectInput</span>(<span class="at">inputId =</span> <span class="st">&quot;color&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Couleur :&quot;</span>,</span>
+<span id="cb178-2"><a href="shiny-web-applications.html#cb178-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">&quot;Rouge&quot;</span> <span class="ot">=</span> <span class="st">&quot;red&quot;</span>, <span class="st">&quot;Vert&quot;</span> <span class="ot">=</span> <span class="st">&quot;green&quot;</span>, <span class="st">&quot;Bleu&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>))</span></code></pre></div></li>
+<li><p>Add a new output to visualize the <strong>summary</strong> of the dataset <code>faithful</code>. You can use:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="shiny-web-applications.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ui.R</span></span>
+<span id="cb179-2"><a href="shiny-web-applications.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">verbatimTextOutput</span>(<span class="st">&quot;...&quot;</span>)</span>
+<span id="cb179-3"><a href="shiny-web-applications.html#cb179-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-4"><a href="shiny-web-applications.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="co"># server.R</span></span>
+<span id="cb179-5"><a href="shiny-web-applications.html#cb179-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>... <span class="ot">&lt;-</span> <span class="fu">renderPrint</span>({</span>
+<span id="cb179-6"><a href="shiny-web-applications.html#cb179-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(...)</span>
+<span id="cb179-7"><a href="shiny-web-applications.html#cb179-7" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div></li>
+</ol>
+<div class="exercise">
+<p><span id="exr:exo-shiny-input-output" class="exercise"><strong>Exercise 4.1  (Adding some inputs/outputs) </strong></span>Add some inputs and outputs on the previous application to</p>
+<ol style="list-style-type: decimal">
+<li><p>propose to the user to change the title of the histogram (use a <code>textInput</code> in the <strong>ui</strong> and the option <code>main</code> in the hist function);</p></li>
+<li><p>select the variable of <code>faithful</code> for the histogram (use a <code>radioButtons</code> with choices <code>colnames(faithful)</code>);</p></li>
+<li><p>visualize the whole dataset <code>faithful</code> (<code>renderDataTable</code> &amp; <code>dataTableOutput</code>);</p></li>
+<li><p>add a text under the histogram which indicates the number of class (use <code>renderText</code> and <code>paste</code> functions in <strong>server</strong>, <code>textOutput</code> in <strong>ui</strong>).</p></li>
+<li><p>replace the <code>selectInput</code> of the color choice by a <code>colourInput</code> (use <a href="https://cran.r-project.org/web/packages/colourpicker/vignettes/colourpicker.html">colourpicker</a> package);</p></li>
+<li><p>export the graph (<code>downloadButton</code> &amp; <code>jpeg</code>).</p></li>
+</ol>
+<p>The final application may look like <a href="https://input-output-rouviere-shiny.apps.math.cnrs.fr" class="uri">https://input-output-rouviere-shiny.apps.math.cnrs.fr</a>.</p>
+</div>
+</div>
+<div id="organizing-the-application" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Organizing the application</h2>
+<div class="exercise">
+<p><span id="exr:exo-shiny-structure" class="exercise"><strong>Exercise 4.2  (Structure of an application) </strong></span>Consider the application <strong>app_structure</strong> available <a href="https://lrouviere.github.io/VISU/">here</a>. It is quite the same as the previous one with a <code>navbarPage</code> which defines</p>
+<ul>
+<li>a tab <em>Data</em> to visualize the data (table + summary)</li>
+<li>a tab <em>Visualisation</em> : inputs + histogram.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p>Tab <strong>Data</strong>: use <code>navlistPanel</code> to separate the <code>summary</code> and the <code>table</code> into two tabs:</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="shiny-web-applications.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rappel de la structure (ui.R)</span></span>
+<span id="cb180-2"><a href="shiny-web-applications.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="fu">navlistPanel</span>(</span>
+<span id="cb180-3"><a href="shiny-web-applications.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Title of the structure&quot;</span>,</span>
+<span id="cb180-4"><a href="shiny-web-applications.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>),</span>
+<span id="cb180-5"><a href="shiny-web-applications.html#cb180-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>)</span>
+<span id="cb180-6"><a href="shiny-web-applications.html#cb180-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div></li>
+<li><p>Tab <strong>Visualization</strong>: change <code>sidebarLayout</code> - <code>sidebarPanel</code> - <code>mainPanel</code> by a <code>fluidRow</code> with 2 columns:</p>
+<ul>
+<li>1/4: for the <code>sidebarPanel</code></li>
+<li>3/4: for the <code>mainPanel</code>.</li>
+</ul>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="shiny-web-applications.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fluidRow</span>(</span>
+<span id="cb181-2"><a href="shiny-web-applications.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">3</span>, ...), <span class="co"># column 1/4 (3/12)</span></span>
+<span id="cb181-3"><a href="shiny-web-applications.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">9</span>, ...)  <span class="co"># column 3/4 (9/12)</span></span>
+<span id="cb181-4"><a href="shiny-web-applications.html#cb181-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><em>Hint: use <code>wellPanel</code> for the left column.</em></p></li>
+<li><p>Add a boxplot in the visualisation tab (same variable and same color). You can also use <code>tabsetPanel</code> to obtain two different tabs for the histogram and the boxplot.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="shiny-web-applications.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rappel de la structure (ui.R)</span></span>
+<span id="cb182-2"><a href="shiny-web-applications.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tabsetPanel</span>(</span>
+<span id="cb182-3"><a href="shiny-web-applications.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>),</span>
+<span id="cb182-4"><a href="shiny-web-applications.html#cb182-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tabPanel</span>(<span class="st">&quot;Title of the tab&quot;</span>, ... <span class="st">&quot;(content of the tab)&quot;</span>)</span>
+<span id="cb182-5"><a href="shiny-web-applications.html#cb182-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div></li>
+</ol>
+<p>The final application may look libe <a href="https://structure-rouviere-shiny.apps.math.cnrs.fr" class="uri">https://structure-rouviere-shiny.apps.math.cnrs.fr</a>.</p>
+<p><strong>Taking things further</strong>: use <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> (<a href="https://rstudio.github.io/shinydashboard/" class="uri">https://rstudio.github.io/shinydashboard/</a>) for building the same application.</p>
+</div>
+</div>
+<div id="adding-interactive-charts" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Adding interactive charts</h2>
+<p>In the previous application, replace histogram and boxplots by javascript charts obtained with <a href="http://datastorm-open.github.io/introduction_ramcharts/">rAmCharts</a>. You can use (see <a href="https://interactifs-rouviere-shiny-2.apps.math.cnrs.fr" class="uri">https://interactifs-rouviere-shiny-2.apps.math.cnrs.fr</a>)</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="shiny-web-applications.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># server.R</span></span>
+<span id="cb183-2"><a href="shiny-web-applications.html#cb183-2" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderAmCharts</span>({...})</span>
+<span id="cb183-3"><a href="shiny-web-applications.html#cb183-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-4"><a href="shiny-web-applications.html#cb183-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ui.R</span></span>
+<span id="cb183-5"><a href="shiny-web-applications.html#cb183-5" aria-hidden="true" tabindex="-1"></a><span class="fu">amChartsOutput</span>(<span class="st">&quot;...&quot;</span>)</span></code></pre></div>
+</div>
+<div id="reactive-isolation-observe-html" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Reactive, isolation, observe, html, …</h2>
+<p>Keep the previous application and</p>
+<ul>
+<li><p>add <code>actionButton</code> combined with <code>isolate</code> to update the application only when we click on a button.</p></li>
+<li><p>Use <code>observeEvent</code> to force the visualization of the histogram when we update the application. You can use</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="shiny-web-applications.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># think to add  &quot;session&quot; </span></span>
+<span id="cb184-2"><a href="shiny-web-applications.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyServer</span>(<span class="cf">function</span>(input, output, session)</span>
+<span id="cb184-3"><a href="shiny-web-applications.html#cb184-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="shiny-web-applications.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="co"># an id </span></span>
+<span id="cb184-5"><a href="shiny-web-applications.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tabsetPanel</span>(<span class="at">id =</span> <span class="st">&quot;viz&quot;</span>, </span>
+<span id="cb184-6"><a href="shiny-web-applications.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;Histogram&quot;</span>, ...</span>
+<span id="cb184-7"><a href="shiny-web-applications.html#cb184-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-8"><a href="shiny-web-applications.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="co"># and finaly</span></span>
+<span id="cb184-9"><a href="shiny-web-applications.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>go, {</span>
+<span id="cb184-10"><a href="shiny-web-applications.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="fu">updateTabsetPanel</span>(session, <span class="at">inputId =</span> <span class="st">&quot;viz&quot;</span>, <span class="at">selected =</span> <span class="st">&quot;Histogram&quot;</span>)</span>
+<span id="cb184-11"><a href="shiny-web-applications.html#cb184-11" aria-hidden="true" tabindex="-1"></a>})  </span></code></pre></div></li>
+<li><p>Use <code>reactive</code> function to store the selected variable</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="shiny-web-applications.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example of reactive</span></span>
+<span id="cb185-2"><a href="shiny-web-applications.html#cb185-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb185-3"><a href="shiny-web-applications.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb185-4"><a href="shiny-web-applications.html#cb185-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb185-5"><a href="shiny-web-applications.html#cb185-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-6"><a href="shiny-web-applications.html#cb185-6" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb185-7"><a href="shiny-web-applications.html#cb185-7" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data</span>()</span>
+<span id="cb185-8"><a href="shiny-web-applications.html#cb185-8" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb185-9"><a href="shiny-web-applications.html#cb185-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div></li>
+<li><p>Add a title on the dataset with blue color. You can use <code>h1</code> function:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="shiny-web-applications.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">h1</span>(<span class="st">&quot;Dataset&quot;</span>, <span class="at">style =</span> <span class="st">&quot;color : #0099ff;text-align:center&quot;</span>)</span></code></pre></div></li>
+<li><p>Add a third tab where you present a summary of your school. You can also add an image and a link to a website (see <a href="https://plus-loin-rouviere-shiny-2.apps.math.cnrs.fr" class="uri">https://plus-loin-rouviere-shiny-2.apps.math.cnrs.fr</a>).</p></li>
+<li><p><strong>Taking things further</strong>: change the theme of the application with a <code>.css</code> file. You can use bootswatch for instance <a href="http://bootswatch.com/3" class="uri">http://bootswatch.com/3</a>.</p></li>
+</ul>
+</div>
+<div id="some-additional-exercises" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Some additional exercises</h2>
+<div class="exercise">
+<p><span id="exr:shiny-desc-app" class="exercise"><strong>Exercise 4.3  (Descriptive statistics) </strong></span>We consider the dataset <strong>SAheart</strong> from the <strong>bestglm</strong> package.</p>
+<ol style="list-style-type: decimal">
+<li><p>Use <strong>rAmCharts</strong> to visualize histograms of the numeric variables of the dataset and boxplots in terms of the variable <strong>chd</strong>.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="shiny-web-applications.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bestglm)</span>
+<span id="cb187-2"><a href="shiny-web-applications.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">amHist</span>(SAheart<span class="sc">$</span>adiposity,<span class="at">freq=</span><span class="cn">FALSE</span>,<span class="at">xlab=</span><span class="st">&quot;adiposity&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-2a48247a750f8b6906c3" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a48247a750f8b6906c3">{"x":{"chartData":{"columnSpacing":0,"columnWidth":1,"fillAlphas":1,"lineAlpha":1,"categoryAxis":{"title":"adiposity"},"categoryField":"x","creditsPosition":"bottom-right","dataProvider":[{"x":7.5,"y":0.004,"cut":"(from 5 to 10)","color":"#1e90ff"},{"x":12.5,"y":0.019,"cut":"(from 10 to 15)","color":"#1e90ff"},{"x":17.5,"y":0.028,"cut":"(from 15 to 20)","color":"#1e90ff"},{"x":22.5,"y":0.038,"cut":"(from 20 to 25)","color":"#1e90ff"},{"x":27.5,"y":0.051,"cut":"(from 25 to 30)","color":"#1e90ff"},{"x":32.5,"y":0.039,"cut":"(from 30 to 35)","color":"#1e90ff"},{"x":37.5,"y":0.019,"cut":"(from 35 to 40)","color":"#1e90ff"},{"x":42.5,"y":0.002,"cut":"(from 40 to 45)","color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"fillAlphas":0.8,"lineAlpha":1,"fillColorsField":"color","lineColor":"#1e90ff","labelText":"","balloonText":"<b>[[value]]<\/b> <br/> [[cut]] ","type":"column","valueField":"y"}],"theme":"light","type":"serial","valueAxes":[{"minimum":0,"maximum":0.05355,"title":"Density"}]},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":[],"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script>
+amBoxplot(adiposity~chd,data=SAheart)
+<div id="htmlwidget-f683faa15ede0d9ef1b2" style="width:100%;height:500px;" class="ramcharts_base html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f683faa15ede0d9ef1b2">{"x":{"chartData":{"rotate":false,"categoryField":"cat","dataProvider":[{"cat":"0","low_outlier":6.74,"low":6.74,"open":17.42,"median":24.62,"close":29.98,"high":42.06,"high_outlier":42.06,"color":"#1e90ff"},{"cat":"1","low_outlier":9.39,"low":9.39,"open":23.41,"median":28.41,"close":33.62,"high":42.49,"high_outlier":42.49,"color":"#1e90ff"}],"graphs":[{"animationPlayed":false,"id":"g1","closeField":"close","fillColorsField":"color","highField":"high","lineColor":"#7f8da9","lineAlpha":1,"lowField":"low","fillAlphas":"0.9","negativeLineColor":"#7f8da9","openField":"open","columnWidth":0.4,"balloonText":"High = <b>[[high_outlier]]<\/b><br/>3rd quart. = <b>[[close]]<\/b><br/>Median = <b>[[median]]<\/b><br/>1st quart. = <b>[[open]]<\/b><br/>Low = <b>[[low_outlier]]<\/b><br/>","title":"Price:","type":"candlestick","valueField":"close"},{"animationPlayed":false,"id":"g2","lineColor":"black","noStepRisers":true,"lineThickness":3,"periodSpan":0.4,"balloonText":"","type":"step","valueField":"median"},{"animationPlayed":false,"id":"g3","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"low_outlier"},{"animationPlayed":false,"id":"g4","lineColor":"black","noStepRisers":true,"periodSpan":0.3,"balloonText":"","type":"step","valueField":"high_outlier"},{"animationPlayed":false,"id":"g5","lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"","type":"line","valueField":"real_outlier"},{"animationPlayed":false,"lineColor":"black","lineAlpha":0,"bullet":"round","noStepRisers":true,"periodSpan":0.5,"balloonText":"[[individual_1]]<br/><b> Value <\/b>: [[real_outlier_1]]","type":"line","valueField":"real_outlier_1"}],"theme":"light","type":"serial"},"background":"#ffffff","listeners":null,"axes_listeners":null,"axes_listenersIndices":null,"categoryAxis_listeners":null,"chartCursor_listeners":null,"dataSetSelector_listeners":null,"legend_listeners":null,"panels_listeners":null,"panels_listenersIndices":null,"periodSelector_listeners":null,"valueAxes_listeners":null,"valueAxes_listenersIndices":null,"stockLegend_listeners":null,"group":null,"is_ts_module":false},"evals":[],"jsHooks":[]}</script></li>
+<li><p>Create a shiny web application (you can use <a href="https://rstudio.github.io/shinydashboard/index.html">shinydashboard</a>) which allows to</p>
+<ul>
+<li>select one variable among the numeric variables of the dataset. You can use <strong>radioButtons</strong> with</li>
+</ul>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="shiny-web-applications.html#cb188-1" aria-hidden="true" tabindex="-1"></a>choices<span class="ot">=</span><span class="fu">names</span>(SAheart)[<span class="fu">sapply</span>(SAheart,class)<span class="sc">==</span><span class="st">&quot;numeric&quot;</span>]</span></code></pre></div>
+<ul>
+<li><p>visualize the histogram and the boxplot (in terms of <strong>chd</strong>) of the selected variable. These graphsshould be done with <strong>rAmCharts</strong> (use <strong>amChartsOutput</strong>).</p></li>
+<li><p>The required application may look like
+<iframe src="https://lrouviere.shinyapps.io/DESC_APP/?showcase=0" width="760" height="650px" data-external="1"></iframe></p></li>
+</ul></li>
+</ol>
+<p>It is also available at <a href="https://lrouviere.shinyapps.io/DESC_APP">https://lrouviere.shinyapps.io/DESC_APP</a>.</p>
+</div>
+<div class="exercise">
+<p><span id="exr:shiny-velib-app" class="exercise"><strong>Exercise 4.4  (Bike stations in Rennes) </strong></span>Create an application which allows to visualize bike stations in Rennes. It may look like</p>
+<iframe src="https://lrouviere.shinyapps.io/velib/?showcase=0" width="760" height="650px" data-external="1">
+</iframe>
+<p>It is also available at <a href="https://lrouviere.shinyapps.io/velib/">https://lrouviere.shinyapps.io/velib/</a>. You can obtain the data on the Rennes métropole website: <a href="https://data.rennesmetropole.fr/explore/dataset/etat-des-stations-le-velo-star-en-temps-reel/export/">https://data.rennesmetropole.fr/explore/dataset/etat-des-stations-le-velo-star-en-temps-reel/export/</a></p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dynamic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["TUTO_DATAVIZ.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"fontsettings": {
+"theme": "white",
+"size": 2,
+"family": "sans"
+},
+"sharing": {
+"facebook": true,
+"github": true,
+"twitter": true
+}
+},
+"highlight": "default"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
