@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R</title>
   <meta name="description" content="Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Shiny web applications | Tutorial: Dynamic data visualization with R" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Laurent Rouvière" />
 
 
-<meta name="date" content="2021-12-20" />
+<meta name="date" content="2022-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="dynamic.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +49,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/amcharts-3.21.13/amcharts.js"></script>
 <script src="libs/ramcharts_base-binding-2.1.13/ramcharts_base.js"></script>
@@ -64,15 +63,15 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
-<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="libs/vis-9.1.0/vis-network.min.css" rel="stylesheet" />
 <script src="libs/vis-9.1.0/vis-network.min.js"></script>
 <script src="libs/visNetwork-binding-2.1.0/visNetwork.js"></script>
@@ -231,11 +230,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="shiny-web-applications" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Shiny web applications</h1>
+<div id="shiny-web-applications" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Shiny web applications<a href="shiny-web-applications.html#shiny-web-applications" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This part comes from the tutorial of Benoît Thieurmel. It is available here <a href="https://github.com/datastorm-open/tuto_shiny_rennes" class="uri">https://github.com/datastorm-open/tuto_shiny_rennes</a>.</p>
-<div id="first-app" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> First app</h2>
+<div id="first-app" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> First app<a href="shiny-web-applications.html#first-app" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Create a new repository for the application (<strong>in RStudio</strong>):</p>
 <pre><code>File -&gt; New Project -&gt; New Directory -&gt; Shiny Web Application</code></pre>
 <p>Choose an application <strong>Multiple File</strong>.</p>
@@ -247,8 +246,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Update the application and check that the new title appears.</li>
 </ul>
 </div>
-<div id="input---output" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Input - output</h2>
+<div id="input---output" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Input - output<a href="shiny-web-applications.html#input---output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We keep the same application, we don’t care about the structure (rows, columns, tabs…) for the moment. We just want to add:</p>
 <ul>
 <li>new <strong>inputs</strong> in <code>sidebarPanel</code>, after the <code>sliderInput</code>. Don’t forget to add commas to separate the inputs;</li>
@@ -281,8 +280,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The final application may look like <a href="https://input-output-rouviere-shiny.apps.math.cnrs.fr" class="uri">https://input-output-rouviere-shiny.apps.math.cnrs.fr</a>.</p>
 </div>
 </div>
-<div id="organizing-the-application" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Organizing the application</h2>
+<div id="organizing-the-application" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Organizing the application<a href="shiny-web-applications.html#organizing-the-application" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
 <p><span id="exr:exo-shiny-structure" class="exercise"><strong>Exercise 4.2  (Structure of an application) </strong></span>Consider the application <strong>app_structure</strong> available <a href="https://lrouviere.github.io/VISU/">here</a>. It is quite the same as the previous one with a <code>navbarPage</code> which defines</p>
 <ul>
@@ -318,8 +317,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Taking things further</strong>: use <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a> (<a href="https://rstudio.github.io/shinydashboard/" class="uri">https://rstudio.github.io/shinydashboard/</a>) for building the same application.</p>
 </div>
 </div>
-<div id="adding-interactive-charts" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Adding interactive charts</h2>
+<div id="adding-interactive-charts" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Adding interactive charts<a href="shiny-web-applications.html#adding-interactive-charts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the previous application, replace histogram and boxplots by javascript charts obtained with <a href="http://datastorm-open.github.io/introduction_ramcharts/">rAmCharts</a>. You can use (see <a href="https://interactifs-rouviere-shiny-2.apps.math.cnrs.fr" class="uri">https://interactifs-rouviere-shiny-2.apps.math.cnrs.fr</a>)</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="shiny-web-applications.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># server.R</span></span>
 <span id="cb101-2"><a href="shiny-web-applications.html#cb101-2" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderAmCharts</span>({...})</span>
@@ -327,8 +326,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb101-4"><a href="shiny-web-applications.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ui.R</span></span>
 <span id="cb101-5"><a href="shiny-web-applications.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="fu">amChartsOutput</span>(<span class="st">&quot;...&quot;</span>)</span></code></pre></div>
 </div>
-<div id="reactive-isolation-observe-html" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Reactive, isolation, observe, html, …</h2>
+<div id="reactive-isolation-observe-html" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Reactive, isolation, observe, html, …<a href="shiny-web-applications.html#reactive-isolation-observe-html" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Keep the previous application and</p>
 <ul>
 <li><p>add <code>actionButton</code> combined with <code>isolate</code> to update the application only when we click on a button.</p></li>
@@ -360,8 +359,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Taking things further</strong>: change the theme of the application with a <code>.css</code> file. You can use bootswatch for instance <a href="http://bootswatch.com/3" class="uri">http://bootswatch.com/3</a>.</p></li>
 </ul>
 </div>
-<div id="some-additional-exercises" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> Some additional exercises</h2>
+<div id="some-additional-exercises" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Some additional exercises<a href="shiny-web-applications.html#some-additional-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercise">
 <p><span id="exr:shiny-desc-app" class="exercise"><strong>Exercise 4.3  (Descriptive statistics) </strong></span>We consider the dataset <strong>SAheart</strong> from the <strong>bestglm</strong> package.</p>
 <ol style="list-style-type: decimal">
@@ -465,7 +464,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
