@@ -235,14 +235,14 @@ ggmap(map)
 
 ## ----message=FALSE, warning=FALSE,cache=cache_carto-------
 europe <- c(left = -12, bottom = 35, right = 30, top = 63)
-get_stamenmap(europe, zoom = 5,"toner-lite") %>% ggmap()
+get_stamenmap(europe, zoom = 5,"toner-lite") |> ggmap()
 
 ## ----message=FALSE, warning=FALSE,cache=cache_carto-------
-get_stamenmap(europe, zoom = 5,"toner-background") %>% ggmap()
+get_stamenmap(europe, zoom = 5,"toner-background") |> ggmap()
 
 ## ----message=FALSE, warning=FALSE,cache=cache_carto-------
 fr <- c(left = -6, bottom = 41, right = 10, top = 52)
-get_stamenmap(fr, zoom = 5,"toner-lite") %>% ggmap()
+get_stamenmap(fr, zoom = 5,"toner-lite") |> ggmap()
 
 ## ----message=FALSE, warning=FALSE-------------------------
 if (!(require(jsonlite))) install.packages("jsonlite")
@@ -277,11 +277,11 @@ mygeocode("Rennes")
 #  df <- read_csv("data/villes_fr.csv")
 #  df$Commune <- as.character(df$Commune)
 #  df$Commune[10] <- "Lille"
-#  coord <- mygeocode(as.character(df$Commune)) %>% as_tibble()
+#  coord <- mygeocode(as.character(df$Commune)) |> as_tibble()
 #  write_csv(coord,path="coord_exo1_ggmap.csv")
 
 ## ----echo=correct,eval=FALSE------------------------------
-#  coord <- mygeocode(as.character(df$Commune)) %>% as_tibble()
+#  coord <- mygeocode(as.character(df$Commune)) |> as_tibble()
 #  df1 <- bind_cols(df,coord)
 #  ggmap(fond)+geom_point(data=df1,aes(x=lon,y=lat),color="red")
 #  ggmap(fond)+geom_point(data=df1,aes(x=lon,y=lat,size=`2014`),color="red")
@@ -309,7 +309,7 @@ ggplot(nc[1:3,]) + geom_sf(aes(fill = AREA)) + geom_sf_label(aes(label = NAME))
 
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  #Pour aller plus vite
-#  coord.ville.nc <- mygeocode(paste(as.character(nc$NAME),"NC")) %>% as.data.frame()
+#  coord.ville.nc <- mygeocode(paste(as.character(nc$NAME),"NC")) |> as.data.frame()
 #  write_csv(coord.ville.nc,path="data_comp_tuto/coord_ville_nc.csv")
 
 ## ----echo=FALSE-------------------------------------------
@@ -323,9 +323,9 @@ names(coord.ville.nc) <- c("lon","lat")
 #  names(coord.ville.nc) <- c("lon","lat")
 
 ## ---------------------------------------------------------
-coord.ville1.nc <- coord.ville.nc %>%  
-  filter(lon<=-77 & lon>=-85 & lat>=33 & lat<=37) %>% 
-  as.matrix() %>% st_multipoint()  %>% st_geometry() %>% st_cast(to="POINT")
+coord.ville1.nc <- coord.ville.nc |>  
+  filter(lon<=-77 & lon>=-85 & lat>=33 & lat<=37) |> 
+  as.matrix() |> st_multipoint()  |> st_geometry() |> st_cast(to="POINT")
 coord.ville1.nc
 
 ## ---------------------------------------------------------
@@ -335,7 +335,7 @@ st_crs(coord.ville1.nc) <- 4326
 ggplot(nc)+geom_sf()+geom_sf(data=coord.ville1.nc)
 
 ## ---------------------------------------------------------
-nc2 <- nc %>% mutate(centre=st_centroid(nc)$geometry)
+nc2 <- nc |> mutate(centre=st_centroid(nc)$geometry)
 ggplot(nc2)+geom_sf()+geom_sf(aes(geometry=centre))
 
 ## ---------------------------------------------------------
@@ -343,13 +343,13 @@ dpt <- read_sf("data/dpt")
 ggplot(dpt) + geom_sf()
 
 ## ----echo=FALSE,eval=FALSE--------------------------------
-#  dpt3 <- dpt2 %>% select(A2006=TCHOMB1T06,A2011=TCHOMB1T11,geometry) %>%
+#  dpt3 <- dpt2 |> select(A2006=TCHOMB1T06,A2011=TCHOMB1T11,geometry) |>
 #    gather(key="Annee",value="TxChomage",-geometry)
 #  #  pivot_longer(-geometry,names_to="Annee",values_to="TxChomage")
 
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  #Pour éviter les changements
-#  donnees <- read_delim("https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/synop.2020052415.csv",delim=";",col_types = cols(t=col_double()))
+#  donnees <- read_delim("https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/synop.2022112415.csv",delim=";",col_types = cols(t=col_double()))
 #  station <- read_delim("https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/postesSynop.csv",delim=";")
 #  write_csv(donnees,path="donnees_temp_fr.csv")
 #  write_csv(station,path="station_temp_fr.csv")
@@ -358,7 +358,7 @@ ggplot(dpt) + geom_sf()
 donnees <- read_csv("data/donnees_temp_fr.csv")
 station <- read_csv("data/station_temp_fr.csv")
 donnees$t <- donnees$t-273.15 #Celcius
-temp <- donnees %>% select(numer_sta,t)
+temp <- donnees |> select(numer_sta,t)
 names(temp)[1] <- c("ID")
 D <- inner_join(temp, station, by = c("ID"))
 
@@ -366,13 +366,13 @@ D <- inner_join(temp, station, by = c("ID"))
 #  donnees <- read_delim("https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/synop.2020052415.csv",delim=";",col_types = cols(t=col_double()))
 #  station <- read_delim("https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/postesSynop.csv",delim=";")
 #  donnees$t <- donnees$t-273.15 #on passe en degrés celcius
-#  temp <- donnees %>% select(numer_sta,t)
+#  temp <- donnees |> select(numer_sta,t)
 #  names(temp)[1] <- c("ID")
 #  D <- inner_join(temp, station, by = c("ID"))
 
 ## ----echo=TRUE,eval=correct-------------------------------
-#  station2 <- station1 %>% select(Longitude,Latitude) %>%
-#    as.matrix() %>% st_multipoint() %>% st_geometry()
+#  station2 <- station1 |> select(Longitude,Latitude) |>
+#    as.matrix() |> st_multipoint() |> st_geometry()
 #  st_crs(station2) <- 4326
 #  station2 <- st_cast(station2, to = "POINT")
 
@@ -410,26 +410,26 @@ ggplot(regions1)+geom_sf()+
 
 ## ----message=FALSE, warning=FALSE-------------------------
 library(leaflet)
-leaflet() %>% addTiles()
+leaflet() |> addTiles()
 
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  Paris <- c(2.351462,48.8567)
 
 ## ---------------------------------------------------------
 Paris <- mygeocode("paris")
-m2 <- leaflet() %>% setView(lng = Paris[1], lat = Paris[2], zoom = 12) %>% 
+m2 <- leaflet() |> setView(lng = Paris[1], lat = Paris[2], zoom = 12) |> 
   addTiles()
-m2 %>% addProviderTiles("Stamen.Toner")
-m2 %>% addProviderTiles("Wikimedia")
-m2 %>% addProviderTiles("Esri.NatGeoWorldMap")
-m2 %>%
-  addProviderTiles("Stamen.Watercolor") %>%
+m2 |> addProviderTiles("Stamen.Toner")
+m2 |> addProviderTiles("Wikimedia")
+m2 |> addProviderTiles("Esri.NatGeoWorldMap")
+m2 |>
+  addProviderTiles("Stamen.Watercolor") |>
   addProviderTiles("Stamen.TonerHybrid")
 
 
 ## ---------------------------------------------------------
 data(quakes)
-leaflet(data = quakes[1:20,]) %>% addTiles() %>%
+leaflet(data = quakes[1:20,]) |> addTiles() |>
   addMarkers(~long, ~lat, popup = ~as.character(mag))
 
 ## ---------------------------------------------------------
@@ -439,7 +439,7 @@ content <- paste(sep = "<br/>",
   "Seattle, WA 98138"
 )
 
-leaflet() %>% addTiles() %>%
+leaflet() |> addTiles() |>
   addPopups(-122.327298, 47.597131, content,
     options = popupOptions(closeButton = FALSE)
   )
@@ -457,8 +457,8 @@ sta.Paris <- read_csv("data/sta.Paris.csv")
 #  sta.Paris <- read_delim(lien,delim=";")
 
 ## ---- echo=correct,eval=TRUE------------------------------
-sta.Paris1 <- sta.Paris %>% 
-  separate(`Coordonnées géographiques`,into=c("lat","lon"),sep=",") %>% 
+sta.Paris1 <- sta.Paris |> 
+  separate(`Coordonnées géographiques`,into=c("lat","lon"),sep=",") |> 
   mutate(lat=as.numeric(lat),lon=as.numeric(lon))
 
 ## ---------------------------------------------------------
@@ -470,13 +470,13 @@ ColorPal2 <- colorNumeric(scales::seq_gradient_pal(low = "red", high = "black",
 ## ----echo=correct,eval=TRUE-------------------------------
 nom.station <- "Jussieu - Fossés Saint-Bernard"
 local.station <- function(nom.station){
-  df <- sta.Paris1 %>% filter(`Nom station`==nom.station)
-  leaflet(data = sta.Paris1) %>% setView(lng=df$lon,lat=df$lat,zoom=15) %>% 
-addTiles() %>% 
+  df <- sta.Paris1 |> filter(`Nom station`==nom.station)
+  leaflet(data = sta.Paris1) |> setView(lng=df$lon,lat=df$lat,zoom=15) |> 
+addTiles() |> 
 addCircleMarkers(~ lon, ~ lat,stroke = FALSE, fillOpacity = 0.7,
                 popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
                                 as.character(`Nombre total vélos disponibles`),
-                                sep="")) %>%
+                                sep="")) |>
 addMarkers(lng=df$lon,lat=df$lat,
            popup = ~ paste(nom.station,", Vélos dispos :",
                            as.character(df$`Nombre total vélos disponibles`),
@@ -517,8 +517,8 @@ D %>% plot_ly(x=~X,y=~Y) %>%
          yaxis=list(title="ordonnées"))
 
 ## ----name="plotly_html",eval=!comp_pdf,echo=!comp_pdf-----
-plot_ly(z = volcano, type = "surface")
-plot_ly(z = volcano, type = "contour")
+#  plot_ly(z = volcano, type = "surface")
+#  plot_ly(z = volcano, type = "contour")
 
 ## ----eval=FALSE,echo=FALSE--------------------------------
 #  p <- plot_ly(z = volcano, type = "surface")
@@ -528,7 +528,7 @@ plot_ly(z = volcano, type = "contour")
 #  plot_ly(z = volcano, type = "surface")
 
 ## ----name="plotly_pdf1",eval=comp_pdf,echo=comp_pdf-------
-#  plot_ly(z = volcano, type = "contour")
+plot_ly(z = volcano, type = "contour")
 
 ## ---------------------------------------------------------
 p <- ggplot(iris)+aes(x=Species,y=Sepal.Length)+geom_boxplot()+theme_classic()
@@ -620,10 +620,10 @@ plot(media)
 #                     selected=list("T9"))
 
 ## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
 
 ## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf---------
-#  webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  selectInput(inputId = "color", label = "Couleur :",
@@ -702,14 +702,14 @@ knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px'
 #  choices=names(SAheart)[sapply(SAheart,class)=="numeric"]
 
 ## ----name='desc-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
 
 ## ----name='desc-app_pdf',echo=FALSE,eval=comp_pdf---------
-#  webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
 
 ## ----name='velib-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
 
 ## ----name='velib-app_pdf',echo=FALSE,eval=comp_pdf--------
-#  webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
 

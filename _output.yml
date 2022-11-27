@@ -20,7 +20,7 @@ bookdown::gitbook:
 bookdown::pdf_book:
   includes:
 #    in_header: preamble.tex
-    in_header: ~/Dropbox/FICHIERS_STYLE/Latex/header_bdown.tex
+    in_header: ~/Google Drive/FICHIERS_STYLE/Latex/header_bdown.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
