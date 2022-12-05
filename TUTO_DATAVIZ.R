@@ -572,10 +572,6 @@ ggplot(dpt3) + aes(fill = TxChomage)+geom_sf() +
   facet_wrap(~Annee, nrow = 1)+
   scale_fill_gradient(low="white",high="brown")+theme_bw()
 
-## ----echo=FALSE-------------------------------------------
-correct <- FALSE
-cor <- correct
-
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  #Pour éviter les changements
 #  donnees <- read_delim("https://donneespubliques.meteofrance.fr/donnees_libres/Txt/Synop/synop.2022112415.csv",delim=";",col_types = cols(t=col_double()))
@@ -599,18 +595,47 @@ D <- inner_join(temp, station, by = c("ID"))
 #  names(temp)[1] <- c("ID")
 #  D <- inner_join(temp, station, by = c("ID"))
 
-## ----echo=TRUE,eval=correct-------------------------------
-#  station2 <- station1 |> select(Longitude,Latitude) |>
-#    as.matrix() |> st_multipoint() |> st_geometry()
-#  st_crs(station2) <- 4326
-#  station2 <- st_cast(station2, to = "POINT")
+## ---- teacher=correct-------------------------------------
+station1 <- D |> filter(Longitude<25 & Longitude>-20) |> na.omit()
+station4326 <- st_multipoint(as.matrix(station1[,5:4])) |> st_geometry()
+st_crs(station4326) <- 4326
+ggplot(dpt) + geom_sf()+ geom_sf(data=station4326)
 
 ## ----echo=TRUE,eval=correct-------------------------------
-#  centro <- st_centroid(dpt$geometry)
-#  centro <- st_transform(centro,crs=4326)
+station2 <- station1 |> select(Longitude,Latitude) |> 
+  as.matrix() |> st_multipoint() |> st_geometry()
+st_crs(station2) <- 4326
+station2 <- st_cast(station2, to = "POINT")
+
+## ----teacher=correct--------------------------------------
+df <- data.frame(temp=station1$t)
+st_geometry(df) <- station2
+
+## ----teacher=correct--------------------------------------
+ggplot(dpt) + geom_sf(fill="white")+
+  geom_sf(data=df,aes(color=temp),size=2)+
+  scale_color_continuous(low="yellow",high="red")
 
 ## ----echo=TRUE,eval=correct-------------------------------
-#  DD <- st_distance(df,centro)
+centro <- st_centroid(dpt$geometry) 
+centro <- st_transform(centro,crs=4326)
+
+## ----echo=TRUE,eval=correct-------------------------------
+DD <- st_distance(df,centro)
+
+## ----teacher=correct--------------------------------------
+NN <- apply(DD,2,order)[1,]
+t_prev <- station1[NN,2]
+
+## ----teacher=correct--------------------------------------
+dpt1 <- dpt |> mutate(t_prev=as.matrix(t_prev))
+ggplot(dpt1) + geom_sf(aes(fill=t_prev)) +
+  scale_fill_continuous(low="yellow",high="red")+theme_void()
+
+## ----teacher=correct--------------------------------------
+ggplot(dpt1) + geom_sf(aes(fill=t_prev,color=t_prev)) + 
+  scale_fill_continuous(low="yellow",high="red") + 
+  scale_color_continuous(low="yellow",high="red")+theme_void()
 
 ## ---------------------------------------------------------
 world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
@@ -673,6 +698,17 @@ leaflet() |> addTiles() |>
     options = popupOptions(closeButton = FALSE)
   )
 
+## ---- teacher=cor-----------------------------------------
+Ensai <- mygeocode("Ensai bruz") |> as_tibble()
+info <- paste(sep = "<br/>",
+  "<b><a href='http://ensai.fr'>Ensai</a></b>",
+  "Campus ker lann")
+
+
+leaflet() |> addTiles() |>  
+  addPopups(Ensai[1]$lon, Ensai[2]$lat, info,
+            options = popupOptions(closeButton = FALSE))
+
 ## ----echo=FALSE,eval=FALSE--------------------------------
 #  #Pour éviter les problèmes de changement
 #  sta.Paris <- read_delim("https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/download/?format=csv&timezone=Europe/Berlin&use_labels_for_header=true",delim=";")
@@ -689,12 +725,77 @@ sta.Paris <- read_csv("data/sta.Paris.csv")
 sta.Paris1 <- sta.Paris |> 
   separate(`Coordonnées géographiques`,into=c("lat","lon"),sep=",") |> 
   mutate(lat=as.numeric(lat),lon=as.numeric(lon))
+#or
+sta.Paris1 <- sta.Paris |> 
+  separate(`Coordonnées géographiques`,into=c("lat","lon"),sep=",",convert = TRUE)
+
+## ---- teacher=correct-------------------------------------
+map.velib1 <- leaflet(data = sta.Paris1) |> 
+  addTiles() |>
+  addCircleMarkers(~ lon, ~ lat,radius=3,
+               stroke = FALSE, fillOpacity = 0.5,color="red")
+
+map.velib1
+
+## ----teacher=correct--------------------------------------
+map.velib2 <- leaflet(data = sta.Paris1) |> 
+  addTiles() |> 
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, 
+               fillOpacity = 0.7,color="red", 
+               popup = ~ sprintf("<b> Vélos dispos: %s</b>",
+                                 as.character(`Nombre total vélos disponibles`)))
+
+#or without sprintf
+
+map.velib2 <- leaflet(data = sta.Paris1) |> 
+  addTiles() |> 
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, fillOpacity = 0.7,color="red", 
+               popup = ~ paste("Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`)))
+
+map.velib2
+
+## ----teacher=correct--------------------------------------
+map.velib3 <- leaflet(data = sta.Paris1) |> 
+  addTiles() |>
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, 
+               fillOpacity = 0.7,color="red", 
+               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`),
+                               sep=""))
+
+map.velib3
 
 ## ---------------------------------------------------------
 ColorPal1 <- colorNumeric(scales::seq_gradient_pal(low = "#132B43", high = "#56B1F7",
                                                space = "Lab"), domain = c(0,1))
 ColorPal2 <- colorNumeric(scales::seq_gradient_pal(low = "red", high = "black", 
                                                space = "Lab"), domain = c(0,1))
+
+## ---- teacher=correct-------------------------------------
+map.velib4 <- leaflet(data = sta.Paris1) |> 
+  addTiles() |>
+  addCircleMarkers(~ lon, ~ lat,radius=3,stroke = FALSE, fillOpacity = 0.7,
+               color=~ColorPal1(`Nombre total vélos disponibles`/
+                                  `Capacité de la station`), 
+               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`),
+                               sep=""))
+
+map.velib4
+
+map.velib5 <- leaflet(data = sta.Paris1) |> 
+  addTiles() |>
+  addCircleMarkers(~ lon, ~ lat,stroke = FALSE, fillOpacity = 0.7,
+               color=~ColorPal2(`Nombre total vélos disponibles`/
+                                  `Capacité de la station`),
+               radius=~(`Nombre total vélos disponibles`/
+                          `Capacité de la station`)*8,
+               popup = ~ paste(as.character(`Nom station`),", Vélos dispos :",
+                               as.character(`Nombre total vélos disponibles`),
+                               sep=""))
+
+map.velib5
 
 ## ----echo=correct,eval=TRUE-------------------------------
 nom.station <- "Jussieu - Fossés Saint-Bernard"
@@ -717,6 +818,27 @@ addMarkers(lng=df$lon,lat=df$lat,
 local.station("Jussieu - Fossés Saint-Bernard")
 local.station("Gare Montparnasse - Arrivée")
 
+## ----teacher=correct--------------------------------------
+dpt2 <- st_transform(dpt1, crs = 4326)
+dpt2$t_prev <- round(dpt2$t_prev)
+pal <- colorNumeric(scales::seq_gradient_pal(low = "yellow", high = "red",
+                                             space = "Lab"), domain = dpt2$t_prev)
+m <- leaflet() |> addTiles() |> 
+  addPolygons(data = dpt2,color=~pal(t_prev),fillOpacity = 0.6, 
+              stroke = TRUE,weight=1,
+              popup=~paste(as.character(NOM_DEPT),as.character(t_prev),sep=" : ")) |> 
+  addLayersControl(options=layersControlOptions(collapsed = FALSE))
+m
+
+## ----teacher=correct--------------------------------------
+pal1 <- colorNumeric(palette = c("inferno"),domain = dpt2$t_prev)
+m1 <- leaflet() |> addTiles() |> 
+  addPolygons(data = dpt2,color=~pal1(t_prev),fillOpacity = 0.6, 
+              stroke = TRUE,weight=1,
+              popup=~paste(as.character(NOM_DEPT),as.character(t_prev),sep=" : ")) |> 
+  addLayersControl(options=layersControlOptions(collapsed = FALSE))
+m1
+
 ## ---------------------------------------------------------
 library(rAmCharts)
 amHist(iris$Petal.Length)
@@ -737,17 +859,17 @@ D <- data.frame(X,Y)
 model <- lm(Y~X,data=D)
 
 ## ---------------------------------------------------------
-D %>% plot_ly(x=~X,y=~Y) %>%
+D |> plot_ly(x=~X,y=~Y) |>
   add_markers(type="scatter",mode="markers",
-              marker=list(color="red"),name="Nuage") %>%
+              marker=list(color="red"),name="Nuage") |>
   add_trace(y=fitted(model),type="scatter",mode='lines',
-            name="Régression",line=list(color="blue")) %>% 
+            name="Régression",line=list(color="blue")) |> 
   layout(title="Régression",xaxis=list(title="abscisse"),
          yaxis=list(title="ordonnées"))
 
 ## ----name="plotly_html",eval=!comp_pdf,echo=!comp_pdf-----
-plot_ly(z = volcano, type = "surface")
-plot_ly(z = volcano, type = "contour")
+#  plot_ly(z = volcano, type = "surface")
+#  plot_ly(z = volcano, type = "contour")
 
 ## ----eval=FALSE,echo=FALSE--------------------------------
 #  p <- plot_ly(z = volcano, type = "surface")
@@ -757,11 +879,24 @@ plot_ly(z = volcano, type = "contour")
 #  plot_ly(z = volcano, type = "surface")
 
 ## ----name="plotly_pdf1",eval=comp_pdf,echo=comp_pdf-------
-#  plot_ly(z = volcano, type = "contour")
+plot_ly(z = volcano, type = "contour")
 
 ## ---------------------------------------------------------
 p <- ggplot(iris)+aes(x=Species,y=Sepal.Length)+geom_boxplot()+theme_classic()
 ggplotly(p)
+
+## ----teacher=correct--------------------------------------
+amPlot(Sepal.Length~Sepal.Width,data=iris,col=iris$Species) 
+
+## ----teacher=correct--------------------------------------
+iris |> plot_ly(x=~Sepal.Width,y=~Sepal.Length,color=~Species) |>
+  add_markers(type="scatter",mode="markers")
+
+## ----teacher=correct--------------------------------------
+amBoxplot(Petal.Length~Species,data=iris)
+
+## ----teacher=correct--------------------------------------
+iris |> plot_ly(x=~Species,y=~Petal.Length) |> add_boxplot()
 
 ## ---------------------------------------------------------
 nodes <- data.frame(id = 1:15, label = paste("Id", 1:15),
@@ -771,13 +906,13 @@ library(visNetwork)
 visNetwork(nodes,edges)
 
 ## ---------------------------------------------------------
-visNetwork(nodes, edges) %>% visOptions(highlightNearest = TRUE)
+visNetwork(nodes, edges) |> visOptions(highlightNearest = TRUE)
 
 ## ---------------------------------------------------------
-visNetwork(nodes, edges) %>% visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+visNetwork(nodes, edges) |> visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
 
 ## ---------------------------------------------------------
-visNetwork(nodes, edges) %>% visOptions(selectedBy = "group")
+visNetwork(nodes, edges) |> visOptions(selectedBy = "group")
 
 ## ---------------------------------------------------------
 nodes <- read.csv("data/Dataset1-Media-Example-NODES.csv", header=T, as.is=T)
@@ -793,30 +928,50 @@ V(media)$name <- nodes$media
 ## ---------------------------------------------------------
 plot(media)
 
+## ----teacher=correct--------------------------------------
+media.VN <- toVisNetworkData(media)
+visNetwork(nodes=media.VN$nodes,edges=media.VN$edges)
+
+## ----teacher=correct--------------------------------------
+names(media.VN$nodes)[4] <- "labels"
+visNetwork(nodes=media.VN$nodes,edges=media.VN$edges) |> 
+  visOptions(selectedBy = "labels") 
+
+## ----teacher=correct--------------------------------------
+media.VN1 <- media.VN
+names(media.VN1$nodes)[3] <- "group"
+visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) |> 
+  visOptions(selectedBy = "labels")
+
+## ----teacher=correct--------------------------------------
+names(media.VN1$edges)[3] <- "value"
+visNetwork(nodes=media.VN1$nodes,edges=media.VN1$edges) |> 
+  visOptions(selectedBy = "labels",highlightNearest = TRUE) 
+
 ## ----echo=FALSE,eval=FALSE,indent='    '------------------
 #  df <- read.table("data/ozone.txt")
 #  gg.nuage <- ggplot(df)+aes(x=T12,y=maxO3)+geom_point()+geom_smooth()
 #  modT12 <- lm(maxO3~T12,data=df)
-#  p12 <- predict(modT12) %>% as.numeric()
-#  am.nuage <- amPlot(x=df$T12,y=df$maxO3) %>% amLines(y=p12,type="line")
+#  p12 <- predict(modT12) |> as.numeric()
+#  am.nuage <- amPlot(x=df$T12,y=df$maxO3) |> amLines(y=p12,type="line")
 #  pl.nuage <- ggplotly(gg.nuage)
 
 ## ----echo=cor,eval=cor,indent='        '------------------
-#  df <- read.table("data/ozone.txt")
-#  cc <- cor(df[,1:11])
-#  mat.cor <- corrplot::corrplot(cc)
+df <- read.table("data/ozone.txt")
+cc <- cor(df[,1:11])
+mat.cor <- corrplot::corrplot(cc)
 
 ## ----echo=cor,eval=cor,indent='        '------------------
-#  gg.H <- ggplot(df)+aes(x=maxO3)+geom_histogram(bins = 10)
-#  am.H <- amHist(df$maxO3)
-#  pl.H <- ggplotly(gg.H)
+gg.H <- ggplot(df)+aes(x=maxO3)+geom_histogram(bins = 10)
+am.H <- amHist(df$maxO3)
+pl.H <- ggplotly(gg.H)
 
 ## ----echo=cor,eval=cor,indent='        '------------------
-#  mod <- lm(maxO3~.,data=df)
-#  res <- rstudent(mod)
-#  df1 <- data.frame(maxO3=df$maxO3,r.student=res)
-#  Ggg <- ggplot(df1)+aes(x=maxO3,y=res)+geom_point()+geom_smooth()
-#  Gggp <- ggplotly(Ggg)
+mod <- lm(maxO3~.,data=df)
+res <- rstudent(mod)
+df1 <- data.frame(maxO3=df$maxO3,r.student=res)
+Ggg <- ggplot(df1)+aes(x=maxO3,y=res)+geom_point()+geom_smooth()
+Gggp <- ggplotly(Ggg)
 
 ## ----eval=FALSE,indent='        '-------------------------
 #  radioButtons("variable1",
@@ -827,19 +982,19 @@ plot(media)
 ## ----eval=FALSE,indent='        '-------------------------
 #  mod1 <- reactive({
 #    XX <- paste(input$variable1,collapse="+")
-#    form <- paste("maxO3~",XX,sep="") %>% formula()
+#    form <- paste("maxO3~",XX,sep="") |> formula()
 #    lm(form,data=df)
 #    })
 #  #Df corresponds to the dataset
 #  renderDataTable({
-#    mod.sum1 <- summary(mod1())$coefficients %>% round(3) %>% as.data.frame()
+#    mod.sum1 <- summary(mod1())$coefficients |> round(3) |> as.data.frame()
 #    DT::datatable(mod.sum1,options = list(dom = 't'))
 #  })
 
 ## ----eval=FALSE,indent='        '-------------------------
 #  renderPlotly({
 #    (ggplot(df)+aes(x=!!as.name(input$variable1),y=maxO3)+
-#       geom_point()+geom_smooth(method="lm")) %>% ggplotly()
+#       geom_point()+geom_smooth(method="lm")) |> ggplotly()
 #  })
 
 ## ----eval=FALSE,indent = '        '-----------------------
@@ -849,10 +1004,10 @@ plot(media)
 #                     selected=list("T9"))
 
 ## ----name='app_dash_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px')
 
 ## ----name='app_dash_pdf',echo=FALSE,eval=comp_pdf---------
-#  webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/dashboard/", file="dashboard.png",delay=20,zoom=1)
 
 ## ---- echo = TRUE, eval = FALSE---------------------------
 #  selectInput(inputId = "color", label = "Couleur :",
@@ -923,22 +1078,22 @@ knitr::include_app('https://lrouviere.shinyapps.io/dashboard/', height = '650px'
 #  h1("Dataset", style = "color : #0099ff;text-align:center")
 
 ## ----echo=correct,eval=correct----------------------------
-#  library(bestglm)
-#  amHist(SAheart$adiposity,freq=FALSE,xlab="adiposity")
-#  amBoxplot(adiposity~chd,data=SAheart)
+library(bestglm)
+amHist(SAheart$adiposity,freq=FALSE,xlab="adiposity")
+amBoxplot(adiposity~chd,data=SAheart)
 
 ## ---- eval=FALSE, message=FALSE, warning=FALSE, include=TRUE----
 #  choices=names(SAheart)[sapply(SAheart,class)=="numeric"]
 
 ## ----name='desc-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/DESC_APP/', height = '650px')
 
 ## ----name='desc-app_pdf',echo=FALSE,eval=comp_pdf---------
-#  webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/DESC_APP/", file="desc_app.png",delay=5,zoom=1)
 
 ## ----name='velib-app_html',screenshot.opts=list(delay = 5, cliprect = 'viewport',zoom=2,vwidth=200,vheight=200),echo=FALSE,eval=!comp_pdf,out.width=760,out.height=750----
-knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
+#  knitr::include_app('https://lrouviere.shinyapps.io/velib/', height = '650px')
 
 ## ----name='velib-app_pdf',echo=FALSE,eval=comp_pdf--------
-#  webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
+webshot::webshot("https://lrouviere.shinyapps.io/velib/", file="velib_app.png",delay=5,zoom=1)
 
